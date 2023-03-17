@@ -1,0 +1,105 @@
+
+<p *ngIf="isLoading">Aan het laden</p>
+
+<div *ngIf="!isLoading">
+
+    <div class="btn btn-primary" (click)="editPerson(person.id)">edit button</div>
+
+    <div class="row">
+        <div class="col-4">
+            <p>Voornaam: </p>
+        </div>
+        <div class="col-8">
+            <p>{{person.firstName}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4">
+            <p>Achternaam: </p>
+        </div>
+        <div class="col-8">
+            <p>{{person.lastName}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4">
+            <p>Straat: </p>
+        </div>
+        <div class="col-8">
+            <p>{{person.address.street}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4">
+            <p>Nummer: </p>
+        </div>
+        <div class="col-8">
+            <p>{{person.address.number}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4">
+            <p>Bus: </p>
+        </div>
+        <div class="col-8">
+            <p>{{person.address.box}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4">
+            <p>Postcode: </p>
+        </div>
+        <div class="col-8">
+            <p>{{person.address.postalCode}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4">
+            <p>Gemeente/stad: </p>
+        </div>
+        <div class="col-8">
+            <p>{{person.address.city}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4">
+            <p>Land: </p>
+        </div>
+        <div class="col-8">
+            <p>{{person.address.country}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4">
+            <p>Email: </p>
+        </div>
+        <div class="col-8">
+            <p>{{person.emailAddress}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4">
+            <p>Geboortedatum: </p>
+        </div>
+        <div class="col-8">
+            <p>{{person.dateOfBirth}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4">
+            <p>Geslacht: </p>
+        </div>
+        <div class="col-8">
+            <p>{{person.gender}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4">
+            <p>Rijksregisternummer: </p>
+        </div>
+        <div class="col-8">
+            <p>{{person.identityNumber}}</p>
+        </div>
+    </div>
+    
+</div>

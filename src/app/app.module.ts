@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -10,10 +9,16 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MemberModule } from './member/member.module';
+import { HttpClientModule } from '@angular/common/http';
+import { PersonFormComponent } from './member/person/person-form/person-form.component';
+// import { PersonOverviewComponent } from './member/person/person-overview/person-overview.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PersonFormComponent,
+    // PersonOverviewComponent
   ],
   imports: [
     BrowserModule,
@@ -25,6 +30,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatIconModule,
     MatDividerModule,
     ReactiveFormsModule,
+    MemberModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
