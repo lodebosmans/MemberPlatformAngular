@@ -22,17 +22,12 @@ export class PersonOverviewComponent implements OnInit {
     emailAddress: "",
     identityNumber: "",
     privacyApproval: true,
-    address: {
-      id: 0,
-      name: "",
-      street: "",
-      number: "",
-      box: "",
-      postalCode: "",
-      city: "",
-      country: "",
-      addressType: "",
-    }
+    street: "",
+    number: "",
+    box: "",
+    postalCode: "",
+    city: "",
+    country: "",
   };
 
   isLoading = true;
