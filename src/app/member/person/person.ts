@@ -1,5 +1,3 @@
-import { Address } from "./address"
-
 export interface Person {
     id: number,
     firstName: string,
@@ -11,5 +9,10 @@ export interface Person {
     emailAddress: string,
     identityNumber: string,
     privacyApproval: boolean,
-    address: Address,
+    street: string,
+    number: string,
+    box: string,
+    postalCode: string,
+    city: string,
+    country: string,
 }
