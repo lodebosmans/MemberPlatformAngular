@@ -16,7 +16,7 @@ export class PersonFormComponent implements OnInit {
   isAdd: boolean = false;
   isEdit: boolean = false;
   personId: number = 0;
-  addressType:string = "Residential";
+  addressType: string = "Residential";
 
 
   isSubmitted: boolean = false;
@@ -41,7 +41,7 @@ export class PersonFormComponent implements OnInit {
     postalCode: "",
     city: "",
     country: "",
-    addressType:"",
+    addressType: "",
   };
   person$: Subscription = new Subscription();
   postPerson$: Subscription = new Subscription();
@@ -49,23 +49,23 @@ export class PersonFormComponent implements OnInit {
 
   // reactive form
   personForm = new FormGroup({
-    id: new FormControl<number>(0,{nonNullable: true}),
-    firstName: new FormControl<string>('', {nonNullable: true}),
-    lastName: new FormControl<string>('', {nonNullable: true}),
-    gender: new FormControl<string>('', {nonNullable: true}),
-    dateOfBirth: new FormControl<string>('', {nonNullable: true}),
-    insuranceCompany: new FormControl<string>('', {nonNullable: true}),
-    mobilePhone: new FormControl<string>('', {nonNullable: true}),
-    emailAddress: new FormControl<string>('', {nonNullable: true}),
-    identityNumber: new FormControl<string>('', {nonNullable: true}),
-    privacyApproval: new FormControl<boolean>(true, {nonNullable: true}),
-    street: new FormControl<string>('', {nonNullable: true}),
-    number: new FormControl<string>('',{nonNullable: true}),
+    id: new FormControl<number>(0, { nonNullable: true }),
+    firstName: new FormControl<string>('', { nonNullable: true }),
+    lastName: new FormControl<string>('', { nonNullable: true }),
+    gender: new FormControl<string>('', { nonNullable: true }),
+    dateOfBirth: new FormControl<string>('', { nonNullable: true }),
+    insuranceCompany: new FormControl<string>('', { nonNullable: true }),
+    mobilePhone: new FormControl<string>('', { nonNullable: true }),
+    emailAddress: new FormControl<string>('', { nonNullable: true }),
+    identityNumber: new FormControl<string>('', { nonNullable: true }),
+    privacyApproval: new FormControl<boolean>(true, { nonNullable: true }),
+    street: new FormControl<string>('', { nonNullable: true }),
+    number: new FormControl<string>('', { nonNullable: true }),
     box: new FormControl<string>(''),
-    postalCode: new FormControl<string>('', {nonNullable: true}),
-    city: new FormControl<string>('', {nonNullable: true}),
-    country: new FormControl<string>('', {nonNullable: true}),
-    addressType: new FormControl<string>('', {nonNullable: true}),
+    postalCode: new FormControl<string>('', { nonNullable: true }),
+    city: new FormControl<string>('', { nonNullable: true }),
+    country: new FormControl<string>('', { nonNullable: true }),
+    addressType: new FormControl<string>('', { nonNullable: true }),
   });
 
 
@@ -81,12 +81,12 @@ export class PersonFormComponent implements OnInit {
         console.log(result);
         const tempDateTime = new Date(result.dateOfBirth);
         const tempUtcDate = new Date(Date.UTC(tempDateTime.getFullYear(), tempDateTime.getMonth(), tempDateTime.getDate()));
-        const tempDateOnly = tempUtcDate.toISOString().slice(0, 10);  
+        const tempDateOnly = tempUtcDate.toISOString().slice(0, 10);
         console.log('Dit is de datum: ')
         console.log(tempDateOnly)
 
         this.personForm.setValue({
-          id: result.id ,
+          id: result.id,
           firstName: result.firstName,
           lastName: result.lastName,
           gender: result.gender,
@@ -107,65 +107,6 @@ export class PersonFormComponent implements OnInit {
       });
     }
   }
-
-
-  // constructor(private router: Router, private personService: PersonService, private formBuilder: FormBuilder) {
-  //   this.isAdd = this.router.getCurrentNavigation()?.extras.state?.['mode'] === 'add';
-  //   this.isEdit = this.router.getCurrentNavigation()?.extras.state?.['mode'] === 'edit';
-  //   this.personId = +this.router.getCurrentNavigation()?.extras.state?.['id'];
-  
-  //   // Use the formBuilder to initialize the form
-  //   this.personForm = this.formBuilder.group({
-  //     id: [0, Validators.required],
-  //     firstName: ['', Validators.required],
-  //     lastName: ['', Validators.required],
-  //     gender: ['', Validators.required],
-  //     dateOfBirth: ['', Validators.required],
-  //     insuranceCompany: ['', Validators.required],
-  //     mobilePhone: ['', Validators.required],
-  //     emailAddress: ['', Validators.required],
-  //     identityNumber: ['', Validators.required],
-  //     privacyApproval: [true, Validators.required],
-  //     street: ['', Validators.required],
-  //     number: ['', Validators.required],
-  //     box: [''],
-  //     postalCode: ['', Validators.required],
-  //     city: ['', Validators.required],
-  //     country: ['', Validators.required],
-  //   });
-  
-  //   console.log('in constructor: ' + this.personId)
-  
-  //   if (this.personId != null && this.personId > 0) {
-  //     this.person$ = this.personService.getPersonById(this.personId).subscribe(result => {
-  //       console.log(result);
-  //       const tempDateTime = new Date(result.dateOfBirth);
-  //       const tempUtcDate = new Date(Date.UTC(tempDateTime.getFullYear(), tempDateTime.getMonth(), tempDateTime.getDate()));
-  //       const tempDateOnly = tempUtcDate.toISOString().slice(0, 10);  
-  //       console.log('Dit is de datum: ')
-  //       console.log(tempDateOnly)
-  //       this.personForm.patchValue({
-  //         id: result.id,
-  //         firstName: result.firstName,
-  //         lastName: result.lastName,
-  //         gender: result.gender,
-  //         dateOfBirth: tempDateOnly,
-  //         mobilePhone: result.mobilePhone,
-  //         emailAddress: result.emailAddress,
-  //         identityNumber: result.identityNumber,
-  //         insuranceCompany: result.insuranceCompany,
-  //         privacyApproval: result.privacyApproval,
-  //         street: result.street,
-  //         number: result.number,
-  //         box: result.box,
-  //         postalCode: result.postalCode,
-  //         city: result.city,
-  //         country: result.country,
-  //       });
-  //     });
-  //   }
-  // }
-
 
   ngOnInit(): void {
     this.getPersonById()
@@ -212,38 +153,11 @@ export class PersonFormComponent implements OnInit {
       console.log(this.personForm.value)
       this.putPerson$ = this.personService.putPerson(this.personId, this.personForm.getRawValue()).subscribe(result => {
         //all went well
-        this.router.navigateByUrl("/profile" );
+        this.router.navigateByUrl("/profile");
       },
         error => {
           this.errorMessage = error.message;
         });
-      // const updatedPerson: Person = {
-      //   id: this.personForm.value.id!,
-      //   firstName: this.personForm.value.firstName!,
-      //   lastName: this.personForm.value.lastName!,
-      //   gender: this.personForm.value.gender!,
-      //   dateOfBirth: this.personForm.value.dateOfBirth!,
-      //   insuranceCompany: this.personForm.value.insuranceCompany!,
-      //   mobilePhone: this.personForm.value.mobilePhone!,
-      //   emailAddress: this.personForm.value.emailAddress!,
-      //   identityNumber: this.personForm.value.identityNumber!,
-      //   privacyApproval: this.personForm.value.privacyApproval!,
-      //   street: this.personForm.value.street!,
-      //   number: this.personForm.value.number!,
-      //   box: this.personForm.value.box!,
-      //   postalCode: this.personForm.value.postalCode!,
-      //   city: this.personForm.value.city!,
-      //   country: this.personForm.value.country!,
-      // };
-      // console.log("updatedPerson", updatedPerson)
-      // this.putPerson$ = this.personService.putPerson(this.personId, updatedPerson).subscribe(result => {
-      //   //all went well
-      //   this.router.navigateByUrl("/profile/" + this.personId);
-      // },
-      // error => {
-      //   this.errorMessage = error.message;
-      // });
-      
     }
   }
 
