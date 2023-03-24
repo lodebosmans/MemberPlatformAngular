@@ -28,6 +28,7 @@ export class PersonOverviewComponent implements OnInit {
     postalCode: "",
     city: "",
     country: "",
+    addressType:"",
   };
 
   isLoading = true;

@@ -11,8 +11,9 @@ export interface Person {
     privacyApproval: boolean,
     street: string,
     number: string,
-    box: string,
+    box: string | null,
     postalCode: string,
     city: string,
     country: string,
+    addressType: string,
 }
