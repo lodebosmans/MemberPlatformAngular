@@ -16,6 +16,7 @@ export class PersonFormComponent implements OnInit {
   isAdd: boolean = false;
   isEdit: boolean = false;
   personId: number = 0;
+  addressType:string = "Residential";
 
 
   isSubmitted: boolean = false;
@@ -40,6 +41,7 @@ export class PersonFormComponent implements OnInit {
     postalCode: "",
     city: "",
     country: "",
+    addressType:"",
   };
   person$: Subscription = new Subscription();
   postPerson$: Subscription = new Subscription();
@@ -47,22 +49,23 @@ export class PersonFormComponent implements OnInit {
 
   // reactive form
   personForm = new FormGroup({
-    id: new FormControl<number>(0, Validators.required),
-    firstName: new FormControl<string>('', Validators.required),
-    lastName: new FormControl<string>('', Validators.required),
-    gender: new FormControl<string>('', Validators.required),
-    dateOfBirth: new FormControl<string>('', Validators.required),
-    insuranceCompany: new FormControl<string>('', Validators.required),
-    mobilePhone: new FormControl<string>('', Validators.required),
-    emailAddress: new FormControl<string>('', Validators.required),
-    identityNumber: new FormControl<string>('', Validators.required),
-    privacyApproval: new FormControl<boolean>(true, Validators.required),
-    street: new FormControl<string>('', Validators.required),
-    number: new FormControl<string>('', Validators.required),
+    id: new FormControl<number>(0,{nonNullable: true}),
+    firstName: new FormControl<string>('', {nonNullable: true}),
+    lastName: new FormControl<string>('', {nonNullable: true}),
+    gender: new FormControl<string>('', {nonNullable: true}),
+    dateOfBirth: new FormControl<string>('', {nonNullable: true}),
+    insuranceCompany: new FormControl<string>('', {nonNullable: true}),
+    mobilePhone: new FormControl<string>('', {nonNullable: true}),
+    emailAddress: new FormControl<string>('', {nonNullable: true}),
+    identityNumber: new FormControl<string>('', {nonNullable: true}),
+    privacyApproval: new FormControl<boolean>(true, {nonNullable: true}),
+    street: new FormControl<string>('', {nonNullable: true}),
+    number: new FormControl<string>('',{nonNullable: true}),
     box: new FormControl<string>(''),
-    postalCode: new FormControl<string>('', Validators.required),
-    city: new FormControl<string>('', Validators.required),
-    country: new FormControl<string>('', Validators.required),
+    postalCode: new FormControl<string>('', {nonNullable: true}),
+    city: new FormControl<string>('', {nonNullable: true}),
+    country: new FormControl<string>('', {nonNullable: true}),
+    addressType: new FormControl<string>('', {nonNullable: true}),
   });
 
 
@@ -81,8 +84,9 @@ export class PersonFormComponent implements OnInit {
         const tempDateOnly = tempUtcDate.toISOString().slice(0, 10);  
         console.log('Dit is de datum: ')
         console.log(tempDateOnly)
+
         this.personForm.setValue({
-          id: result.id,
+          id: result.id ,
           firstName: result.firstName,
           lastName: result.lastName,
           gender: result.gender,
@@ -98,6 +102,7 @@ export class PersonFormComponent implements OnInit {
           postalCode: result.postalCode,
           city: result.city,
           country: result.country,
+          addressType: this.addressType,
         });
       });
     }
@@ -201,18 +206,45 @@ export class PersonFormComponent implements OnInit {
 
 
 
-    // if (this.isEdit) {
-    //   console.log("In isEdit")
-    //   console.log(this.personId)
-    //   console.log(this.personForm.value)
-    //   this.putPerson$ = this.personService.putPerson(this.personId, this.personForm.value).subscribe(result => {
-    //     //all went well
-    //     this.router.navigateByUrl("/profile/" + this.personId);
-    //   },
-    //     error => {
-    //       this.errorMessage = error.message;
-    //     });
-    // }
+    if (this.isEdit) {
+      console.log("In isEdit")
+      console.log(this.personId)
+      console.log(this.personForm.value)
+      this.putPerson$ = this.personService.putPerson(this.personId, this.personForm.getRawValue()).subscribe(result => {
+        //all went well
+        this.router.navigateByUrl("/profile" );
+      },
+        error => {
+          this.errorMessage = error.message;
+        });
+      // const updatedPerson: Person = {
+      //   id: this.personForm.value.id!,
+      //   firstName: this.personForm.value.firstName!,
+      //   lastName: this.personForm.value.lastName!,
+      //   gender: this.personForm.value.gender!,
+      //   dateOfBirth: this.personForm.value.dateOfBirth!,
+      //   insuranceCompany: this.personForm.value.insuranceCompany!,
+      //   mobilePhone: this.personForm.value.mobilePhone!,
+      //   emailAddress: this.personForm.value.emailAddress!,
+      //   identityNumber: this.personForm.value.identityNumber!,
+      //   privacyApproval: this.personForm.value.privacyApproval!,
+      //   street: this.personForm.value.street!,
+      //   number: this.personForm.value.number!,
+      //   box: this.personForm.value.box!,
+      //   postalCode: this.personForm.value.postalCode!,
+      //   city: this.personForm.value.city!,
+      //   country: this.personForm.value.country!,
+      // };
+      // console.log("updatedPerson", updatedPerson)
+      // this.putPerson$ = this.personService.putPerson(this.personId, updatedPerson).subscribe(result => {
+      //   //all went well
+      //   this.router.navigateByUrl("/profile/" + this.personId);
+      // },
+      // error => {
+      //   this.errorMessage = error.message;
+      // });
+      
+    }
   }
 
 }

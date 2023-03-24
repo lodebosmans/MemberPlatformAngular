@@ -130,8 +130,6 @@
         <div *ngIf="personForm.controls['country'].invalid && isSubmitted" class="alert">
             Geef een geldige landsnaam in.
         </div>
-
-
         <div *ngIf="isEdit" class="form-group d-none">
             <label for="id">personId</label>
             <input type="number" class="form-control" id="id" name="id" placeholder="id" formControlName="id" required>
