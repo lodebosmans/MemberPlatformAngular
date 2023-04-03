@@ -1,0 +1,14 @@
+<p *ngIf="isLoading">Aan het laden</p>
+
+<div *ngIf="!isLoading">
+    <div class="btn btn-success" (click)="add()">Option toevoegen</div>
+    <table class="table" *ngIf="options && options.length > 0">
+        <tbody>
+            <tr *ngFor="let o of options">
+                <th scope="row">{{o.id}}</th>
+                <td>{{o.name}}</td>
+                <td><button type="button" class="btn knop" (click)="edit(o.id)"><i class="fas fa-edit"></i></button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

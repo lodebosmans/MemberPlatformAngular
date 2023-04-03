@@ -137,7 +137,7 @@
 
         
         <button type="submit" class="btn btn-succes btn-primary" *ngIf="isAdd"
-            [disabled]="!personForm.valid">Add</button>
+            [disabled]="personForm.valid">Add</button>
         <button type="submit" class="btn btn-succes btn-primary" *ngIf="isEdit"
             [disabled]="!personForm.valid">Save</button>
         <a class="btn btn-danger ml-1" routerLink="/profile/">Cancel</a>
