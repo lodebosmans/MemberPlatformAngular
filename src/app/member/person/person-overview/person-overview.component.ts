@@ -32,6 +32,7 @@ export class PersonOverviewComponent implements OnInit {
   };
 
   isLoading = true;
+  
 
   person$: Subscription = new Subscription();
 

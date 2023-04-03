@@ -8,16 +8,21 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MemberModule } from './member/member.module';
 import { HttpClientModule } from '@angular/common/http';
 import { PersonFormComponent } from './member/person/person-form/person-form.component';
+import { OptionModule } from './option/option.module';
+
+
 // import { PersonOverviewComponent } from './member/person/person-overview/person-overview.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PersonFormComponent,
+  
+   
     // PersonOverviewComponent
   ],
   imports: [
@@ -30,8 +35,10 @@ import { PersonFormComponent } from './member/person/person-form/person-form.com
     MatIconModule,
     MatDividerModule,
     ReactiveFormsModule,
+    FormsModule,
     MemberModule,
-    HttpClientModule
+    HttpClientModule,
+ OptionModule
   ],
   providers: [],
   bootstrap: [AppComponent]
