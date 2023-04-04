@@ -13,6 +13,8 @@ import { MemberModule } from './member/member.module';
 import { HttpClientModule } from '@angular/common/http';
 import { PersonFormComponent } from './member/person/person-form/person-form.component';
 import { OptionModule } from './option/option.module';
+import { ProductDefinitionModule } from './product-definition/product-definition.module';
+
 
 
 // import { PersonOverviewComponent } from './member/person/person-overview/person-overview.component';
@@ -21,6 +23,7 @@ import { OptionModule } from './option/option.module';
   declarations: [
     AppComponent,
     PersonFormComponent,
+
   
    
     // PersonOverviewComponent
@@ -38,7 +41,8 @@ import { OptionModule } from './option/option.module';
     FormsModule,
     MemberModule,
     HttpClientModule,
- OptionModule
+    OptionModule,
+    ProductDefinitionModule
   ],
   providers: [],
   bootstrap: [AppComponent]

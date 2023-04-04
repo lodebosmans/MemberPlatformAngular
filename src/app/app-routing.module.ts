@@ -4,6 +4,8 @@ import { PersonFormComponent } from './member/person/person-form/person-form.com
 import { PersonOverviewComponent } from './member/person/person-overview/person-overview.component';
 import { OptionFormComponent } from './option/option-form/option-form.component';
 import { OptionComponent } from './option/option/option.component';
+import { ProductDefinitionComponent } from './product-definition/product-definition/product-definition.component';
+import { ProductDefinitionFormComponent } from './product-definition/product-definition-form/product-definition-form.component';
 
 
 const routes: Routes = [
@@ -11,7 +13,9 @@ const routes: Routes = [
   { path: 'profile/edit', component: PersonFormComponent },
   { path: 'option', component: OptionComponent},
   { path: 'option/edit', component: OptionFormComponent},
-  { path: 'option/add', component: OptionFormComponent}
+  { path: 'option/add', component: OptionFormComponent},
+  { path: 'productDefinition', component: ProductDefinitionComponent},
+  { path: 'productDefinition/edit', component: ProductDefinitionFormComponent}
 ];
 
 @NgModule({
