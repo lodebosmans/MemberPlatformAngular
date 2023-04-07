@@ -17,6 +17,8 @@ export class AppComponent {
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
 
+  isSignedIn: boolean = true;
+
   constructor(private observer: BreakpointObserver) { }
 
   ngAfterViewInit() {

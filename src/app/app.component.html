@@ -1,123 +1,129 @@
+<div *ngIf="!isSignedIn">
+  <p>test</p>
+  <app-signin></app-signin>
+</div>
 
-<mat-toolbar class="mat-elevation-z8">
-  <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
-    <mat-icon *ngIf="!sidenav.opened">
-      menu
-    </mat-icon>
-    <mat-icon *ngIf="sidenav.opened">
-      close
-    </mat-icon>
-  </button>
-  Westfit ledenplatform
-</mat-toolbar>
+<div *ngIf="isSignedIn">
+  <mat-toolbar class="mat-elevation-z8">
+    <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
+      <mat-icon *ngIf="!sidenav.opened">
+        menu
+      </mat-icon>
+      <mat-icon *ngIf="sidenav.opened">
+        close
+      </mat-icon>
+    </button>
+    Westfit ledenplatform
+  </mat-toolbar>
 
-<mat-sidenav-container>
-  <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
+  <mat-sidenav-container>
+    <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
 
-    <img class="avatar mat-elevation-z8" src="https://source.unsplash.com/c_GmwfHBDzk/200x200" />
+      <img class="avatar mat-elevation-z8" src="https://source.unsplash.com/c_GmwfHBDzk/200x200" />
 
-    <h4 class="name">Lode Bosmans</h4>
+      <h4 class="name">Lode Bosmans</h4>
 
-    <mat-divider></mat-divider>
+      <mat-divider></mat-divider>
 
-    <button mat-button routerLink="/" class="menu-button">
-      <mat-icon>home</mat-icon>
-      <span>Home</span>
-    </button>
-    <button mat-button routerLink="/profile" class="menu-button">
-      <mat-icon>person</mat-icon>
-      <span>Profiel</span>
-    </button>
-    <button mat-button class="menu-button">
-      <mat-icon>people</mat-icon>
-      <span>Mijn leden</span>
-    </button>
-    <button mat-button class="menu-button">
-      <mat-icon>create</mat-icon>
-      <span>Inschrijven</span>
-    </button>
-    <button mat-button class="menu-button">
-      <mat-icon>fitness_center</mat-icon>
-      <span>Mijn trainingen</span>
-    </button>
-    <button mat-button class="menu-button">
-      <mat-icon>file_copy</mat-icon>
-      <span>Attesten</span>
-    </button>
+      <button mat-button routerLink="/" class="menu-button">
+        <mat-icon>home</mat-icon>
+        <span>Home</span>
+      </button>
+      <button mat-button routerLink="/profile" class="menu-button">
+        <mat-icon>person</mat-icon>
+        <span>Profiel</span>
+      </button>
+      <button mat-button class="menu-button">
+        <mat-icon>people</mat-icon>
+        <span>Mijn leden</span>
+      </button>
+      <button mat-button class="menu-button">
+        <mat-icon>create</mat-icon>
+        <span>Inschrijven</span>
+      </button>
+      <button mat-button class="menu-button">
+        <mat-icon>fitness_center</mat-icon>
+        <span>Mijn trainingen</span>
+      </button>
+      <button mat-button class="menu-button">
+        <mat-icon>file_copy</mat-icon>
+        <span>Attesten</span>
+      </button>
 
-    <mat-divider></mat-divider>
+      <!-- <mat-divider></mat-divider>
 
-    <button mat-button class="menu-button">
-      <mat-icon>people</mat-icon>
-      <span>Leden</span>
-    </button>
-    <button mat-button class="menu-button">
-      <mat-icon>supervisor_account</mat-icon>
-      <span>Trainers</span>
-    </button>
-    <button mat-button class="menu-button">
-      <mat-icon>directions_bike</mat-icon>
-      <span>Trainingen</span>
-    </button>
-    <button mat-button class="menu-button">
-      <mat-icon>list</mat-icon>
-      <span>Inschrijvingen</span>
-    </button>
+      <button mat-button class="menu-button">
+        <mat-icon>people</mat-icon>
+        <span>Leden</span>
+      </button>
+      <button mat-button class="menu-button">
+        <mat-icon>supervisor_account</mat-icon>
+        <span>Trainers</span>
+      </button>
+      <button mat-button class="menu-button">
+        <mat-icon>directions_bike</mat-icon>
+        <span>Trainingen</span>
+      </button>
+      <button mat-button class="menu-button">
+        <mat-icon>list</mat-icon>
+        <span>Inschrijvingen</span>
+      </button>
 
-    <mat-divider></mat-divider>
+      <mat-divider></mat-divider>
 
-    <button mat-button class="menu-button">
-      <mat-icon>people</mat-icon>
-      <span>Leden</span>
-    </button>
-    <button mat-button class="menu-button">
-      <mat-icon>supervisor_account</mat-icon>
-      <span>Trainers</span>
-    </button>
-    <button mat-button class="menu-button">
-      <mat-icon>directions_bike</mat-icon>
-      <span>Trainingen</span>
-    </button>
-    <button mat-button class="menu-button">
-      <mat-icon>list</mat-icon>
-      <span>Inschrijvingen</span>
-    </button>
+      <button mat-button class="menu-button">
+        <mat-icon>people</mat-icon>
+        <span>Leden</span>
+      </button>
+      <button mat-button class="menu-button">
+        <mat-icon>supervisor_account</mat-icon>
+        <span>Trainers</span>
+      </button>
+      <button mat-button class="menu-button">
+        <mat-icon>directions_bike</mat-icon>
+        <span>Trainingen</span>
+      </button>
+      <button mat-button class="menu-button">
+        <mat-icon>list</mat-icon>
+        <span>Inschrijvingen</span>
+      </button>
 
-    <mat-divider></mat-divider>
-    
-    <button mat-button class="menu-button">
-      <mat-icon>people</mat-icon>
-      <span>Leden</span>
-    </button>
-    <button mat-button class="menu-button">
-      <mat-icon>supervisor_account</mat-icon>
-      <span>Trainers</span>
-    </button>
-    <button mat-button class="menu-button">
-      <mat-icon>directions_bike</mat-icon>
-      <span>Trainingen</span>
-    </button>
-    <button mat-button class="menu-button">
-      <mat-icon>list</mat-icon>
-      <span>Inschrijvingen</span>
-    </button>
+      <mat-divider></mat-divider>
 
-    <mat-divider></mat-divider>
+      <button mat-button class="menu-button">
+        <mat-icon>people</mat-icon>
+        <span>Leden</span>
+      </button>
+      <button mat-button class="menu-button">
+        <mat-icon>supervisor_account</mat-icon>
+        <span>Trainers</span>
+      </button>
+      <button mat-button class="menu-button">
+        <mat-icon>directions_bike</mat-icon>
+        <span>Trainingen</span>
+      </button>
+      <button mat-button class="menu-button">
+        <mat-icon>list</mat-icon>
+        <span>Inschrijvingen</span>
+      </button> -->
 
-    <button mat-button class="menu-button">
-      <mat-icon>shopping_cart</mat-icon>
-      <span>Tweedehands</span>
-    </button>
+      <mat-divider></mat-divider>
 
-  </mat-sidenav>
+      <button mat-button class="menu-button">
+        <mat-icon>shopping_cart</mat-icon>
+        <span>Tweedehands</span>
+      </button>
 
-  <mat-sidenav-content>
-    <!-- <div class="content mat-elevation-z8"> -->
-    <div class="content mat-elevation-z8">
-    <!-- <div class="ms-5"> -->
+    </mat-sidenav>
 
-      <router-outlet></router-outlet>
+    <mat-sidenav-content>
+      <!-- <div class="content mat-elevation-z8"> -->
+      <div class="content mat-elevation-z8">
+        <!-- <div class="ms-5"> -->
 
-    </div>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+        <router-outlet></router-outlet>
+
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

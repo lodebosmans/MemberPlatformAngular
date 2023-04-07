@@ -12,12 +12,17 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MemberModule } from './member/member.module';
 import { HttpClientModule } from '@angular/common/http';
 import { PersonFormComponent } from './member/person/person-form/person-form.component';
+import { SignInComponent } from './login/signin/signin.component';
+import { SignoutComponent } from './login/signout/signout.component';
 // import { PersonOverviewComponent } from './member/person/person-overview/person-overview.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     PersonFormComponent,
+    SignInComponent,
+    SignoutComponent
     // PersonOverviewComponent
   ],
   imports: [
@@ -31,7 +36,7 @@ import { PersonFormComponent } from './member/person/person-form/person-form.com
     MatDividerModule,
     ReactiveFormsModule,
     MemberModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
