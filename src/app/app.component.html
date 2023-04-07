@@ -1,3 +1,4 @@
+
 <div *ngIf="!isSignedIn">
   <p>test</p>
   <app-signin></app-signin>
@@ -33,22 +34,30 @@
         <mat-icon>person</mat-icon>
         <span>Profiel</span>
       </button>
-      <button mat-button class="menu-button">
-        <mat-icon>people</mat-icon>
-        <span>Mijn leden</span>
-      </button>
-      <button mat-button class="menu-button">
-        <mat-icon>create</mat-icon>
-        <span>Inschrijven</span>
-      </button>
-      <button mat-button class="menu-button">
-        <mat-icon>fitness_center</mat-icon>
-        <span>Mijn trainingen</span>
-      </button>
-      <button mat-button class="menu-button">
-        <mat-icon>file_copy</mat-icon>
-        <span>Attesten</span>
-      </button>
+        <button mat-button class="menu-button">
+          <mat-icon>people</mat-icon>
+          <span>Mijn leden</span>
+        </button>
+        <button mat-button class="menu-button">
+          <mat-icon>create</mat-icon>
+          <span>Inschrijven</span>
+        </button>
+        <button mat-button class="menu-button">
+          <mat-icon>fitness_center</mat-icon>
+          <span>Mijn trainingen</span>
+        </button>
+        <button mat-button class="menu-button">
+          <mat-icon>file_copy</mat-icon>
+          <span>Attesten</span>
+        </button>
+        <button mat-button routerLink="/option" class="menu-button">
+          <mat-icon>file_copy</mat-icon>
+          <span>Option</span>
+        </button>
+        <button mat-button routerLink="/productDefinition" class="menu-button">
+          <mat-icon>file_copy</mat-icon>
+          <span>ProductDefinition</span>
+        </button>
 
       <!-- <mat-divider></mat-divider>
 
@@ -127,3 +136,4 @@
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>
+
