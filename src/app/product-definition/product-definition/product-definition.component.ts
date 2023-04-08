@@ -60,5 +60,8 @@ export class ProductDefinitionComponent implements OnInit {
     //Navigate to form in edit mode
     this.router.navigate(['productDefinition/edit'], { state: { id: id, mode: 'edit' } });
   }
+  add(){
+    this.router.navigate(['productDefinition/edit'], { state: {mode: 'add'}});
+  }
 
 }
