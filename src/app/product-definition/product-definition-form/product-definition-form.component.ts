@@ -132,6 +132,16 @@ export class ProductDefinitionFormComponent implements OnInit {
           this.errorMessage = error.message;
         });
     }
+    if(this.isAdd) {
+      console.log(" in Add")
+      console.log(this.productDefinitionId)
+      this.putProductDefinition$ = this.productDefinitionService.postProductDefinition(this.productDefinitionForm.getRawValue()).subscribe(result => {
+        this.router.navigateByUrl("/productDefinition");
+      },
+      error => {
+        this.errorMessage = error.message;
+      });
+    }
 
   }
 

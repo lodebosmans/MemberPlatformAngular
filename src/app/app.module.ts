@@ -17,6 +17,11 @@ import { SignoutComponent } from './login/signout/signout.component';
 import { OptionModule } from './option/option.module';
 import { ProductDefinitionModule } from './product-definition/product-definition.module';
 // import { PersonOverviewComponent } from './member/person/person-overview/person-overview.component';
+import { ProductUnitModule } from './product-unit/product-unit.module';
+import { AddressModule } from './address/address.module';
+import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 
 @NgModule({
@@ -41,10 +46,15 @@ import { ProductDefinitionModule } from './product-definition/product-definition
     MemberModule,
     HttpClientModule,
     OptionModule,
-    ProductDefinitionModule
+    ProductDefinitionModule,
+    ProductUnitModule,
+    AddressModule,
+    MatNativeDateModule,
+    MatInputModule,
+    MatFormFieldModule,
 
   ],
-  providers: [],
+  providers: [{provide: MAT_DATE_LOCALE, useValue: 'be-BE'},],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

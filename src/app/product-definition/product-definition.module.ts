@@ -15,7 +15,8 @@ import { ProductDefinitionFormComponent } from './product-definition-form/produc
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+
   ],
   providers: [DatePipe]
 })

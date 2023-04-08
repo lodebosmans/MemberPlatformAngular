@@ -1,0 +1,57 @@
+<div class="container">
+    <div class="alert alert-danger" role="alert" *ngIf="isSubmitted && errorMessage">
+        {{errorMessage}}
+    </div>
+    <p *ngIf="isAdd">Voeg een nieuw adres toe.</p>
+    <p *ngIf="isEdit">Pas de gegevens van een adres aan.</p>
+    <form (ngSubmit)="onSubmit()" [formGroup]="addressForm">
+        <div class="form-group">
+            <label for="name">name</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="option"
+                formControlName="name" minlength="2">
+        </div>
+        <div class="form-group">
+            <label for="street">straat</label>
+            <input type="text" class="form-control" id="street" name="street" placeholder="straat"
+                formControlName="street" minlength="2" required>
+        </div>
+        <div class="form-group">
+            <label for="number">Nummer</label>
+            <input type="text" class="form-control" id="number" name="number" placeholder="number"
+                formControlName="number" minlength="1" required>
+        </div>
+        <div class="form-group">
+            <label for="box">busnummer</label>
+            <input type="box" class="form-control" id="box" name="box" placeholder="busnummer"
+                formControlName="box" minlength="1">
+        </div>
+        <div class="form-group">
+            <label for="postalCode">postcode</label>
+            <input type="text" class="form-control" id="postalCode" name="postalCode" placeholder="potcode"
+                formControlName="postalCode" minlength="1" required>
+        </div>
+        <div class="form-group">
+            <label for="city">Stad</label>
+            <input type="city" class="form-control" id="city" name="city" placeholder="stad"
+                formControlName="city" minlength="1" required>
+        </div>
+        <div class="form-group">
+            <label for="country">Land</label>
+            <input type="country" class="form-control" id="country" name="country" placeholder="Land"
+                formControlName="country" minlength="1" required>
+        </div>
+        <div class="form-group">
+            <label for="addressTypeId">OptionType:</label>
+            <select id="addressTypeId" name="addressTypeId" formControlName="addressTypeId" required class="form-select"
+                aria-label="Default select example">
+                 <option *ngFor="let type of options" [ngValue]="type.id" [selected]="type.id === address.addressTypeId">{{ type.name }}</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-succes btn-primary" *ngIf="isAdd"
+        [disabled]="!addressForm.valid">Add</button>
+    <button type="submit" class="btn btn-succes btn-primary" *ngIf="isEdit"
+        [disabled]="!addressForm.valid">Save</button>
+    <a class="btn btn-danger ml-1" routerLink="/option">Cancel</a>
+
+    </form>
+</div>

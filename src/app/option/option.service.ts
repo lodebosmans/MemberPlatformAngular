@@ -10,7 +10,7 @@ import { Option } from './option';
   providedIn: 'root'
 })
 export class OptionService {
-  api_url = environment.api_url + "Option/";
+  api_url = environment.apiUrl + "Option/";
   
 
   constructor(private httpClient: HttpClient) {
