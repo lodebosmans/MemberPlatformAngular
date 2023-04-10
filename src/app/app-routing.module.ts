@@ -10,6 +10,9 @@ import { AddressComponent } from './address/address/address.component';
 import { AddressFormComponent } from './address/address-form/address-form.component';
 import { ProductUnitComponent } from './product-unit/product-unit/product-unit.component';
 import { ProductUnitFormComponent } from './product-unit/product-unit-form/product-unit-form.component';
+import { ContractFormComponent } from './contract/contract-form/contract-form.component';
+import { ContractComponent } from './contract/contract/contract.component';
+
 
 
 const routes: Routes = [
@@ -23,7 +26,9 @@ const routes: Routes = [
   { path: 'address', component: AddressComponent},
   { path: 'address/edit', component: AddressFormComponent},
   { path: 'productUnit', component: ProductUnitComponent},
-  { path: 'productUnit/edit', component: ProductUnitFormComponent}
+  { path: 'productUnit/edit', component: ProductUnitFormComponent},
+  { path: 'contract', component: ContractComponent},
+  { path: 'contract/edit', component: ContractFormComponent}
 ];
 
 @NgModule({

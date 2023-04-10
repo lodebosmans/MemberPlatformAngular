@@ -6,6 +6,7 @@ import { ProductUnitFormComponent } from './product-unit-form/product-unit-form.
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 
 
 
@@ -24,6 +25,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatDatepickerModule,
     MatInputModule,
     MatFormFieldModule,
-  ]
+  ],
+  providers: [{provide: MAT_DATE_LOCALE, useValue: 'nl-BE'}],
 })
 export class ProductUnitModule { }
