@@ -17,6 +17,8 @@ import { SignoutComponent } from './login/signout/signout.component';
 import { OptionModule } from './option/option.module';
 import { ProductDefinitionModule } from './product-definition/product-definition.module';
 // import { PersonOverviewComponent } from './member/person/person-overview/person-overview.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatInputModule } from '@angular/material/input';
 import { ProductUnitModule } from './product-unit/product-unit.module';
 import { AddressModule } from './address/address.module';
 import { MAT_DATE_LOCALE, MatNativeDateModule} from '@angular/material/core';
@@ -51,6 +53,8 @@ import { SubscriptionModule } from './subscription/subscription.module';
     HttpClientModule,
     OptionModule,
     ProductDefinitionModule,
+    // MatCardModule,
+    // MatInputModule,
     ProductUnitModule,
     AddressModule,
     MatNativeDateModule,
@@ -59,9 +63,6 @@ import { SubscriptionModule } from './subscription/subscription.module';
     ContractModule,
     ProductAgreementModule,
     SubscriptionModule
-
-  
-
   ],
   providers: [{provide: MAT_DATE_LOCALE, useValue:"nl-BE"},],
   bootstrap: [AppComponent]

@@ -1,0 +1,79 @@
+@startuml
+actor Member as m
+box frontend
+participant "Member platform\nAngular frontend\nComponent" as fec
+participant "Member platform\nAngular frontend\nauthService" as fes
+participant "Subscribe form" as sf
+end box
+participant Google as g
+box backend
+participant "AuthController\nLoginWithGoogle" as lwg
+participant "AuthController\nJWTGenerator" as jwtg
+participant "AuthController\nSetJWT" as setjwt
+participant "PersonController" as pc
+end box
+== Register ==
+m -> fec : Visit website
+fec -> fec : Get gmail account
+m -> fec : Press Oauth option
+fec -> g : Validate gmail account
+g -> fec : Provide token
+fec -> fes : LoginWithGoogle(credential)
+fes -> lwg : LoginWithGoogle(credential)
+lwg -> g : Validate Google\nsignature(credentials,settings)
+g -> lwg : Payload
+lwg -> lwg : Validate if person exists\nin db (email)
+lwg -> sf : Subscription form (email + naam)
+sf -> pc : Post(Person)
+== Login == 
+   opt
+    opt If person does not exist
+        lwg -> fes : Bad request
+        fes -> fec : Bad request
+        note over fec : The end
+    end
+    lwg -> jwtg : JWTGenerator(person)
+    jwtg -> jwtg : Create encrypted token
+    jwtg -> jwtg : SetJWT(encryptedToken)
+    jwtg -> jwtg : GenerateRefreshToken()
+    jwtg -> jwtg : SetRefreshToken(refreshToken, person)
+    jwtg -> lwg : {token,info}
+end
+== subscribe == 
+@enduml
+
+@startuml
+actor Member as m
+participant SportForm as s
+participant "Contract\nController" as cc
+participant "Contract\nService" as cs
+participant "ContractPerson\nInvolvement\nService" as cpis
+participant "Product\nAgreement\nService" as proas
+participant "Price\nAgreement\nService" as prias
+participant "Overview\nsubscriptions" as os
+m -> s : Subscribe
+note over s: sportId & personId\nis known
+== Start Contract ==
+s -> cc : Post Contract\n+ sportId\n+ personId
+cc -> cc : Generate subscription date
+cc -> cs : Create contract
+== Start Contract Person Involvement ==
+note over cs : roleId = member 
+cs -> cpis : Post ContractPersonInvolvement(contractId,personId,roleId)
+cpis -> cs : ContractPersonInvolvement created (cpi Id)
+note over cs: cpi created
+== Start product agreement ==
+cs -> proas : Post ProductAgreement(sportId,contractId)
+proas -> cs : ProductAgreement created (productAgreementId)
+note over cs : ProductAgreement created
+== Start price agreement ==
+note over cs : statusId = submitted
+cs -> prias : Post PriceAgreement(contractId,statusId)
+prias -[#blue]> prias : Check if\ndiscount possible
+prias -> cs : PriceAgreement created (priceAgreementId)
+note over cs : PriceAgreement created
+cs -> cc : Contract created (contractId)
+note over cc: Contract created
+== Finalize subscription ==
+cc -> os : Show subscription
+@enduml
