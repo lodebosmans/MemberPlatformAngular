@@ -17,6 +17,9 @@ import { SignoutComponent } from './login/signout/signout.component';
 import { OptionModule } from './option/option.module';
 import { ProductDefinitionModule } from './product-definition/product-definition.module';
 // import { PersonOverviewComponent } from './member/person/person-overview/person-overview.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 
 @NgModule({
@@ -41,8 +44,10 @@ import { ProductDefinitionModule } from './product-definition/product-definition
     MemberModule,
     HttpClientModule,
     OptionModule,
-    ProductDefinitionModule
-
+    ProductDefinitionModule,
+    // MatCardModule,
+    // MatFormFieldModule,
+    // MatInputModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

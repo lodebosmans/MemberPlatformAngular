@@ -8,7 +8,7 @@ import { OptionType } from './option-type';
   providedIn: 'root'
 })
 export class OptionTypeService {
-  api_url = environment.api_url + "OptionType/";
+  api_url = environment.apiUrl + "OptionType/";
 
   constructor(private httpClient: HttpClient) { 
   }

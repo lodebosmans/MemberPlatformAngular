@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ProductDefinitionService {
-  api_url = environment.api_url + "ProductDefinition/";
+  api_url = environment.apiUrl + "ProductDefinition/";
 
   constructor(private httpClient: HttpClient) { }
   getProductDefinitions(): Observable<ProductDefinition[]> {
