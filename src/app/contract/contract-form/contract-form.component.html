@@ -1,0 +1,53 @@
+<div class="container">
+    <div class="alert alert-danger" role="alert" *ngIf="isSubmitted && errorMessage">
+        {{errorMessage}}
+    </div>
+    <p *ngIf="isAdd">Voeg een nieuwe option toe.</p>
+    <p *ngIf="isEdit">Pas de gegevens van een option aan.</p>
+    <form (ngSubmit)="onSubmit()" [formGroup]="contractForm">
+        <div>
+            <mat-form-field>
+                <mat-label>contractdatum</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="contractDate">
+                <!-- <mat-hint>DD/MM/YYYY</mat-hint> -->
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field >
+        </div>
+        <div>
+            <mat-form-field>
+                <mat-label>kies startdatum</mat-label>
+                <input matInput [matDatepicker]="picker2" formControlName="startDate">
+                <!-- <mat-hint>DD/MM/YYYY</mat-hint> -->
+                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field>
+                <mat-label>kies einddatum</mat-label>
+                <input matInput [matDatepicker]="picker3" formControlName="endDate">
+                <!-- <mat-hint>DD/MM/YYYY</mat-hint> -->
+                <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                <mat-datepicker #picker3></mat-datepicker>
+            </mat-form-field>
+        </div>
+        <div class="form-group">
+            <label for="contractTypeId">ContractType:</label>
+            <select id="contractTypeId" name="contractTypeId" formControlName="contractTypeId" required class="form-select"
+                aria-label="Default select example">
+                 <option *ngFor="let type of options" [ngValue]="type.id" [selected]="type.id === contract.contractTypeId">{{ type.name }}</option>
+            </select>
+        </div>
+
+
+    
+        <button type="submit" class="btn btn-succes btn-primary" *ngIf="isAdd"
+        [disabled]="!contractForm.valid">Add</button>
+    <button type="submit" class="btn btn-succes btn-primary" *ngIf="isEdit"
+        [disabled]="!contractForm.valid">Save</button>
+    <a class="btn btn-danger ml-1" routerLink="/option">Cancel</a>
+
+    </form>
+</div>
+ 
