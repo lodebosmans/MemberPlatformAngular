@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="alert alert-danger" role="alert" *ngIf="isSubmitted && errorMessage">
+        {{errorMessage}}
+    </div>
+
+    <p *ngIf="isEdit">Inschrijven</p>
+    <p>Je wil inschrijven voor volgende sport {{productDefinition.name}}</p>
+    <p>met startdatum {{productDefinition.startDate}}</p>
+    <p> en  einddatum {{productDefinition.endDate}}</p>
+    <form (ngSubmit)="onSubmit()" [formGroup]="subscriptionform">
+        <div >
+          <input type="hidden" id="startDate" formControlName="startDate" value="{{productDefinition.startDate}}">
+          <input type="hidden" id="endDate" formControlName="endDate" value="{{productDefinition.EndDate}}">
+          <input type="hidden" id="contractTypeId" formControlName="contractTypeId" value="{{6}}">
+         
+        
+      
+          <!-- <label for="startDate">Start Date:</label>
+          <input type="date" id="startDate" formControlName="startDate">
+          <div *ngIf="form.get('contract.startDate').invalid && (form.get('contract.startDate').dirty || form.get('contract.startDate').touched)">
+            <div *ngIf="form.get('contract.startDate').errors.required">Start Date is required</div>
+          </div>
+      
+          <label for="endDate">End Date:</label>
+          <input type="date" id="endDate" formControlName="endDate">
+          <div *ngIf="form.get('contract.endDate').invalid && (form.get('contract.endDate').dirty || form.get('contract.endDate').touched)">
+            <div *ngIf="form.get('contract.endDate').errors.required">End Date is required</div>
+          </div> -->
+        </div>
+      
+        <!-- <div formGroupName="agreement">
+          <label for="description">Description:</label>
+          <input type="text" id="description" formControlName="description">
+          <div *ngIf="form.get('agreement.description').invalid && (form.get('agreement.description').dirty || form.get('agreement.description').touched)">
+            <div *ngIf="form.get('agreement.description').errors.required">Description is required</div>
+          </div>
+        </div> -->
+      
+        <button type="submit">Submit</button>
+      </form>
+      
+</div>
+ 

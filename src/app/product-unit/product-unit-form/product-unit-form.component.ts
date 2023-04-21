@@ -171,7 +171,7 @@ export class ProductUnitFormComponent implements OnInit {
     if(this.isAdd) {
       console.log(" in Add")
       console.log(this.productUnitId)
-      this.putProductUnit$ = this.productUnitService.postProductUnit(this.productUnitForm.getRawValue()).subscribe(result => {
+      this.postProductUnit$ = this.productUnitService.postProductUnit(this.productUnitForm.getRawValue()).subscribe(result => {
         this.router.navigateByUrl("/productUnit");
       },
       error => {
