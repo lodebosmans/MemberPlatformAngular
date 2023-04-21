@@ -19,10 +19,12 @@ import { ProductDefinitionModule } from './product-definition/product-definition
 // import { PersonOverviewComponent } from './member/person/person-overview/person-overview.component';
 import { ProductUnitModule } from './product-unit/product-unit.module';
 import { AddressModule } from './address/address.module';
-import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
+import { MAT_DATE_LOCALE, MatNativeDateModule} from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ContractModule } from './contract/contract.module';
+import { ProductAgreementModule } from './product-agreement/product-agreement.module';
+import { SubscriptionModule } from './subscription/subscription.module';
 
 
 
@@ -54,10 +56,14 @@ import { ContractModule } from './contract/contract.module';
     MatNativeDateModule,
     MatInputModule,
     MatFormFieldModule,
-    ContractModule
+    ContractModule,
+    ProductAgreementModule,
+    SubscriptionModule
+
+  
 
   ],
-  providers: [{provide: MAT_DATE_LOCALE, useValue: 'nl-BE'},],
+  providers: [{provide: MAT_DATE_LOCALE, useValue:"nl-BE"},],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

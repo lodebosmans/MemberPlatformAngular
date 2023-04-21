@@ -12,6 +12,9 @@ import { ProductUnitComponent } from './product-unit/product-unit/product-unit.c
 import { ProductUnitFormComponent } from './product-unit/product-unit-form/product-unit-form.component';
 import { ContractFormComponent } from './contract/contract-form/contract-form.component';
 import { ContractComponent } from './contract/contract/contract.component';
+import { SubscriptionComponent } from './subscription/subscription/subscription.component';
+import { SubscriptionFormComponent } from './subscription/subscription-form/subscription-form.component';
+
 
 
 
@@ -28,7 +31,9 @@ const routes: Routes = [
   { path: 'productUnit', component: ProductUnitComponent},
   { path: 'productUnit/edit', component: ProductUnitFormComponent},
   { path: 'contract', component: ContractComponent},
-  { path: 'contract/edit', component: ContractFormComponent}
+  { path: 'contract/edit', component: ContractFormComponent},
+  { path: 'subscription', component: SubscriptionComponent},
+  { path: 'subscription/subscribe', component: SubscriptionFormComponent}
 ];
 
 @NgModule({
