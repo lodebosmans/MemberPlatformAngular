@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';  
+import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { Option } from './option';
@@ -11,12 +11,12 @@ import { Option } from './option';
 })
 export class OptionService {
   api_url = environment.apiUrl + "Option/";
-  
+
 
   constructor(private httpClient: HttpClient) {
 
-   }
-   getOptions(): Observable<Option[]> {
+  }
+  getOptions(): Observable<Option[]> {
     return this.httpClient.get<Option[]>(this.api_url);
   }
 
