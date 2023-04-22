@@ -22,11 +22,12 @@ import { MatInputModule } from '@angular/material/input';
 import { ProductUnitModule } from './product-unit/product-unit.module';
 import { AddressModule } from './address/address.module';
 import { MAT_DATE_LOCALE, MatNativeDateModule} from '@angular/material/core';
-import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ContractModule } from './contract/contract.module';
 import { ProductAgreementModule } from './product-agreement/product-agreement.module';
 import { SubscriptionModule } from './subscription/subscription.module';
+import { AuthModule } from '@auth0/auth0-angular';
+import { LoginButtonModule } from './login-button/login-button.module';
 
 
 
@@ -62,7 +63,15 @@ import { SubscriptionModule } from './subscription/subscription.module';
     MatFormFieldModule,
     ContractModule,
     ProductAgreementModule,
-    SubscriptionModule
+    SubscriptionModule,
+    AuthModule.forRoot({
+      domain: 'lodebosmans.eu.auth0.com',
+      clientId: 'dc8iyjLONxtjfDcLBAixsaMspzeLlt0G',
+      authorizationParams: {
+        redirect_uri: window.location.origin
+      }
+    }),
+    LoginButtonModule
   ],
   providers: [{provide: MAT_DATE_LOCALE, useValue:"nl-BE"},],
   bootstrap: [AppComponent]
