@@ -22,11 +22,11 @@ import { MatInputModule } from '@angular/material/input';
 import { ProductUnitModule } from './product-unit/product-unit.module';
 import { AddressModule } from './address/address.module';
 import { MAT_DATE_LOCALE, MatNativeDateModule} from '@angular/material/core';
-import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ContractModule } from './contract/contract.module';
 import { ProductAgreementModule } from './product-agreement/product-agreement.module';
 import { SubscriptionModule } from './subscription/subscription.module';
+
 
 
 
@@ -61,8 +61,8 @@ import { SubscriptionModule } from './subscription/subscription.module';
     MatInputModule,
     MatFormFieldModule,
     ContractModule,
-    ProductAgreementModule,
     SubscriptionModule
+
   ],
   providers: [{provide: MAT_DATE_LOCALE, useValue:"nl-BE"},],
   bootstrap: [AppComponent]

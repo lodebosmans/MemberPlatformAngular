@@ -27,8 +27,7 @@ export class SubscriptionComponent implements OnInit {
   errorMessage: string='';
 
   constructor(private productDefinitionService: ProductDefinitionService, private router: Router,
-     private contractService: ContractService, private productAgreementService: ProductAgreementService,
-     ) { }
+     private contractService: ContractService, private productAgreementService: ProductAgreementService) { }
 
   ngOnInit(): void {
     this.getProductDefinitions();

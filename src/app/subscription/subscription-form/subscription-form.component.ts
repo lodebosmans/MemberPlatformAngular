@@ -7,7 +7,9 @@ import { Option } from 'src/app/option/option';
 import { OptionService } from 'src/app/option/option.service';
 import { ProductDefinitionService } from 'src/app/product-definition/product-definition.service';
 import { SubscriptionService } from '../subscription.service';
-import { FormControl, FormGroup } from '@angular/forms';
+
+import { Form, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { SubscriptionDTO } from '../subscriptionDTO';
 
 @Component({
   selector: 'app-subscription-form',
@@ -22,82 +24,64 @@ export class SubscriptionFormComponent implements OnInit {
   errorMessage: string = '';
   productDefinitionId: number =0;
   productDefinition: any= {};
-  contractId: number = 1;
 
-  contracts: Contract[]=[];
-  contract$: Subscription = new Subscription();
-  options: Option[]=[];
-  postContract$: Subscription = new Subscription();
-  productDefinition$ : Subscription = new Subscription();
-  option$ : Subscription = new Subscription();
-  subscriptionform = new FormGroup({
-    id: new FormControl<number>(0, { nonNullable: true }),
-    startDate: new FormControl<string>("", { nonNullable: true }),
-    endDate: new FormControl<string>("", { nonNullable: true }),
-    contractDate: new FormControl<string>("", { nonNullable: true }),
-    contractTypeId: new FormControl<number>(0, { nonNullable: true })
 
-  })
+  subscriptionForm: FormGroup |any ={};
 
-  constructor(private router: Router, private productDefinitionService: ProductDefinitionService,
-    private optionService: OptionService, private subscriptionService: SubscriptionService,
-    private contractService : ContractService) { 
+
+  postSubscription$: Subscription = new Subscription();
+  productDefinition$: Subscription = new Subscription();
+
+  constructor(private router: Router, private subscriptionService: SubscriptionService, private formbuilder: FormBuilder,
+    private productDefinitionService: ProductDefinitionService) { 
     this.isEdit = this.router.getCurrentNavigation()?.extras.state?.['mode'] === 'edit';
     this.productDefinitionId = +this.router.getCurrentNavigation()?.extras.state?.['id'];
     console.log('in constructor: ' + this.productDefinitionId);
-    // console.log('in constructor: ' + this.contractId)
-      if(this.contractId != null && this.contractId>0){
-      this.contract$ = this.productDefinitionService.getProductDefinitionById(this.productDefinition).subscribe(result => {
-
-      
-      this.subscriptionform.setValue({
-        id: result.id,
-        startDate: result.startDate,
-        endDate: result.endDate,
-        contractDate:Date.now().toString(),
-        contractTypeId: 6
-      })
-      console.log('res',result)
-      });
-    }
-    
     if (this.productDefinitionId != null && this.productDefinitionId > 0){
       this.productDefinition$ = this.productDefinitionService.getProductDefinitionById(this.productDefinitionId).subscribe(result => {
-        console.log('r',result);
+        console.log('result',result);
+    });
+  }
+}
+    
   
-      });
-  }
-  }
-  ngOnInit(): void {
-if (this.isEdit == true){
-  console.log('edit?', this.isEdit)
-    this.productDefinition$ = this.productDefinitionService.getProductDefinitionById(this.productDefinitionId).subscribe(result => {
-      this.productDefinition =result} );
+  
 
-      this.option$ = this.optionService.getOptions().subscribe(result => {
-        this.options = result;
-      });
-    }
-    console.log(this.subscriptionform)
-    console.log('tothier')
   
-  }
+  
+  ngOnInit(): void {
+    if(this.isEdit){
+      this.getProductDefinitionById();}
+      const conId = 15;
+      const currentDate = new Date().toISOString().substring(0, 10);
+      this.subscriptionForm = this.formbuilder.group({
+        productId: new FormControl<number>(0, { nonNullable: true }),
+        personId: new FormControl<number>(0, { nonNullable: true }),
+      });
+      
+    }
+
+  
+  
 
   onSubmit(): void{
+    console.log('form',this.subscriptionForm)
+    if(this.subscriptionForm.valid){
+      const productId = this.subscriptionForm.value.productId;
+      const personId = this.subscriptionForm.value.personId
+    console.log('test',productId + '' + personId)
+  
 
-    
-    if (this.isSubmitted == false){
-      debugger
-    this.postContract$ = this.contractService.postContract(this.subscriptionform.getRawValue()).subscribe(result => {
-      //all went well
-     
+    this.postSubscription$ = this.subscriptionService.postSubscription(productId,personId).subscribe(result => {
+      console.log('test2',result)
       this.router.navigateByUrl("/subscription");
     },
-      error => {
-        this.errorMessage = error.message;
-      });
-
-  }
+    error => {
+      this.errorMessage = error.message;
+    });
   this.isSubmitted =true;
+};}
+getProductDefinitionById() {
+  this.productDefinition$ = this.productDefinitionService.getProductDefinitionById(this.productDefinitionId).subscribe(result => this.productDefinition = result);
 }
 }
