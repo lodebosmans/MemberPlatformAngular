@@ -1,10 +1,11 @@
-
-<div *ngIf="!isSignedIn">
+<!-- <div *ngIf="!isSignedIn"> -->
+<div *ngIf="!(authService.isAuthenticated$ | async)">
   <p>test</p>
-  <app-signin></app-signin>
+  <!-- <app-signin></app-signin> -->
+  <app-login-button></app-login-button>
 </div>
 
-<div *ngIf="isSignedIn">
+<div *ngIf="(authService.isAuthenticated$ | async)">
   <mat-toolbar class="mat-elevation-z8">
     <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
       <mat-icon *ngIf="!sidenav.opened">
@@ -34,6 +35,8 @@
         <mat-icon>person</mat-icon>
         <span>Profiel</span>
       </button>
+
+      <div *ngIf="isRegistered">
         <button mat-button class="menu-button">
           <mat-icon>people</mat-icon>
           <span>Mijn leden</span>
@@ -50,6 +53,9 @@
           <mat-icon>file_copy</mat-icon>
           <span>Attesten</span>
         </button>
+
+        <mat-divider></mat-divider>
+
         <button mat-button routerLink="/option" class="menu-button">
           <mat-icon>file_copy</mat-icon>
           <span>Option</span>
@@ -71,69 +77,20 @@
           <span>Contract</span>
         </button>
 
-      <!-- <mat-divider></mat-divider>
+        <mat-divider></mat-divider>
 
-      <button mat-button class="menu-button">
-        <mat-icon>people</mat-icon>
-        <span>Leden</span>
-      </button>
-      <button mat-button class="menu-button">
-        <mat-icon>supervisor_account</mat-icon>
-        <span>Trainers</span>
-      </button>
-      <button mat-button class="menu-button">
-        <mat-icon>directions_bike</mat-icon>
-        <span>Trainingen</span>
-      </button>
-      <button mat-button class="menu-button">
-        <mat-icon>list</mat-icon>
-        <span>Inschrijvingen</span>
-      </button>
+        <button mat-button class="menu-button">
+          <mat-icon>shopping_cart</mat-icon>
+          <span>Tweedehands</span>
+        </button>
 
-      <mat-divider></mat-divider>
+        <mat-divider></mat-divider>
 
-      <button mat-button class="menu-button">
-        <mat-icon>people</mat-icon>
-        <span>Leden</span>
-      </button>
-      <button mat-button class="menu-button">
-        <mat-icon>supervisor_account</mat-icon>
-        <span>Trainers</span>
-      </button>
-      <button mat-button class="menu-button">
-        <mat-icon>directions_bike</mat-icon>
-        <span>Trainingen</span>
-      </button>
-      <button mat-button class="menu-button">
-        <mat-icon>list</mat-icon>
-        <span>Inschrijvingen</span>
-      </button>
+      </div>
 
-      <mat-divider></mat-divider>
-
-      <button mat-button class="menu-button">
-        <mat-icon>people</mat-icon>
-        <span>Leden</span>
-      </button>
-      <button mat-button class="menu-button">
-        <mat-icon>supervisor_account</mat-icon>
-        <span>Trainers</span>
-      </button>
-      <button mat-button class="menu-button">
-        <mat-icon>directions_bike</mat-icon>
-        <span>Trainingen</span>
-      </button>
-      <button mat-button class="menu-button">
-        <mat-icon>list</mat-icon>
-        <span>Inschrijvingen</span>
-      </button> -->
-
-      <mat-divider></mat-divider>
-
-      <button mat-button class="menu-button">
-        <mat-icon>shopping_cart</mat-icon>
-        <span>Tweedehands</span>
-      </button>
+      <div>
+        <app-login-button></app-login-button>
+      </div>
 
     </mat-sidenav>
 
@@ -148,4 +105,3 @@
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>
-
