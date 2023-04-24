@@ -135,7 +135,7 @@ export class ProductDefinitionFormComponent implements OnInit {
     if(this.isAdd) {
       console.log(" in Add")
       console.log(this.productDefinitionId)
-      this.putProductDefinition$ = this.productDefinitionService.postProductDefinition(this.productDefinitionForm.getRawValue()).subscribe(result => {
+      this.postProductDefinition$ = this.productDefinitionService.postProductDefinition(this.productDefinitionForm.getRawValue()).subscribe(result => {
         this.router.navigateByUrl("/productDefinition");
       },
       error => {
