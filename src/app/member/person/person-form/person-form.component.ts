@@ -17,7 +17,9 @@ export class PersonFormComponent implements OnInit {
   isEdit: boolean = false;
   personId: number = 0;
   addressType: string = "Residential";
-
+  firstName: string = '';
+  lastName: string = '';
+  emailAddress: string = '';
 
   isSubmitted: boolean = false;
   errorMessage: string = '';
@@ -49,14 +51,14 @@ export class PersonFormComponent implements OnInit {
 
   // reactive form
   personForm = new FormGroup({
-    id: new FormControl<number>(0, { nonNullable: true }),
+    id: new FormControl<number>(0, { nonNullable: true })!,
     firstName: new FormControl<string>('', { nonNullable: true }),
     lastName: new FormControl<string>('', { nonNullable: true }),
     gender: new FormControl<string>('', { nonNullable: true }),
     dateOfBirth: new FormControl<string>('', { nonNullable: true }),
     insuranceCompany: new FormControl<string>('', { nonNullable: true }),
     mobilePhone: new FormControl<string>('', { nonNullable: true }),
-    emailAddress: new FormControl<string>('', { nonNullable: true }),
+    emailAddress: new FormControl<string>({ value: '', disabled: true }, { nonNullable: true }),
     identityNumber: new FormControl<string>('', { nonNullable: true }),
     privacyApproval: new FormControl<boolean>(true, { nonNullable: true }),
     street: new FormControl<string>('', { nonNullable: true }),
@@ -74,10 +76,15 @@ export class PersonFormComponent implements OnInit {
     this.isAdd = this.router.getCurrentNavigation()?.extras.state?.['mode'] === 'add';
     this.isEdit = this.router.getCurrentNavigation()?.extras.state?.['mode'] === 'edit';
     this.personId = +this.router.getCurrentNavigation()?.extras.state?.['id'];
-    console.log('in constructor: ' + this.personId)
+    this.firstName = this.router.getCurrentNavigation()?.extras.state?.['firstName'];
+    this.lastName = this.router.getCurrentNavigation()?.extras.state?.['lastName'];
+    this.emailAddress = this.router.getCurrentNavigation()?.extras.state?.['emailAddress'];
 
+    console.log('in constructor: ' + this.personId)
+    // debugger
     if (this.personId != null && this.personId > 0) {
       this.person$ = this.personService.getPersonById(this.personId).subscribe(result => {
+        // If the person exist, add the data to the form.
         console.log(result);
         const tempDateTime = new Date(result.dateOfBirth);
         const tempUtcDate = new Date(Date.UTC(tempDateTime.getFullYear(), tempDateTime.getMonth(), tempDateTime.getDate()));
@@ -86,7 +93,7 @@ export class PersonFormComponent implements OnInit {
         console.log(tempDateOnly)
 
         this.personForm.setValue({
-          id: result.id,
+          id: result.id! as number,
           firstName: result.firstName,
           lastName: result.lastName,
           gender: result.gender,
@@ -104,6 +111,28 @@ export class PersonFormComponent implements OnInit {
           country: result.country,
           addressType: this.addressType,
         });
+      });
+    } else {
+      // If the person does not exist, send the name and email address to the person form
+      // debugger
+      this.personForm.setValue({
+        id: 0! as number,
+        firstName: this.firstName,
+        lastName: this.lastName,
+        gender: '',
+        dateOfBirth: '',
+        mobilePhone: '',
+        emailAddress: this.emailAddress,
+        identityNumber: '',
+        insuranceCompany: '',
+        privacyApproval: true,
+        street: '',
+        number: '',
+        box: '',
+        postalCode: '',
+        city: '',
+        country: '',
+        addressType: this.addressType,
       });
     }
   }
@@ -124,27 +153,21 @@ export class PersonFormComponent implements OnInit {
 
   onSubmit(): void {
     this.isSubmitted = true;
-    // if (this.isAdd) {
-    //   console.log("In isAdd")
-    //   console.log(this.personId)
-    //   console.log(this.personForm.value)
-    //   this.postPerson$ = this.personService.postPerson(this.personForm.value).subscribe(result => {
-    //     //all went well
-    //     this.router.navigateByUrl("/admin/treatmentupdate/" + this.personForm.value.treatmentCategoryID);
 
-    console.log('Plotten variable:')
-    console.log(this.personForm.value)
-
-
-
-    // this.router.navigateByUrl("profile");
-
-    //   },
-    //     error => {
-    //       this.errorMessage = error.message;
-    //     });
-    // // }
-
+    if (this.isAdd) {
+      console.log("In isAdd")
+      console.log(this.personForm.value)
+      debugger
+      this.postPerson$ = this.personService.postPerson(this.personForm.getRawValue()).subscribe(result => {
+        console.log('Plotten variable:')
+        console.log(this.personForm.value)
+        debugger
+        this.router.navigateByUrl("profile");
+      },
+        error => {
+          this.errorMessage = error.message;
+        });
+    }
 
 
     if (this.isEdit) {
