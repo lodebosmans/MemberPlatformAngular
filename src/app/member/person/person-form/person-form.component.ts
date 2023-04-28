@@ -44,6 +44,7 @@ export class PersonFormComponent implements OnInit {
     city: "",
     country: "",
     addressType: "",
+    parentId: null
   };
   person$: Subscription = new Subscription();
   postPerson$: Subscription = new Subscription();
@@ -63,11 +64,12 @@ export class PersonFormComponent implements OnInit {
     privacyApproval: new FormControl<boolean>(true, { nonNullable: true }),
     street: new FormControl<string>('', { nonNullable: true }),
     number: new FormControl<string>('', { nonNullable: true }),
-    box: new FormControl<string>(''),
+    box: new FormControl<string | null>(''),
     postalCode: new FormControl<string>('', { nonNullable: true }),
     city: new FormControl<string>('', { nonNullable: true }),
     country: new FormControl<string>('', { nonNullable: true }),
     addressType: new FormControl<string>('', { nonNullable: true }),
+    parentId: new FormControl<number | null>(null),
   });
 
 
@@ -81,7 +83,7 @@ export class PersonFormComponent implements OnInit {
     this.emailAddress = this.router.getCurrentNavigation()?.extras.state?.['emailAddress'];
 
     console.log('in constructor: ' + this.personId)
-    // debugger
+    debugger
     if (this.personId != null && this.personId > 0) {
       this.person$ = this.personService.getPersonById(this.personId).subscribe(result => {
         // If the person exist, add the data to the form.
@@ -93,7 +95,7 @@ export class PersonFormComponent implements OnInit {
         console.log(tempDateOnly)
 
         this.personForm.setValue({
-          id: result.id! as number,
+          id: result.id,
           firstName: result.firstName,
           lastName: result.lastName,
           gender: result.gender,
@@ -110,13 +112,14 @@ export class PersonFormComponent implements OnInit {
           city: result.city,
           country: result.country,
           addressType: this.addressType,
+          parentId: result.parentId
         });
       });
     } else {
       // If the person does not exist, send the name and email address to the person form
       // debugger
       this.personForm.setValue({
-        id: 0! as number,
+        id: 0,
         firstName: this.firstName,
         lastName: this.lastName,
         gender: '',
@@ -133,6 +136,7 @@ export class PersonFormComponent implements OnInit {
         city: '',
         country: '',
         addressType: this.addressType,
+        parentId: null
       });
     }
   }
