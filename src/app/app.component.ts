@@ -22,7 +22,12 @@ export class AppComponent {
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
 
-  email: string | undefined = '';
+  emailAddress: string | undefined = '';
+  emailAddressEncoded: string = '';
+  personId: number = 0;
+  firstName: string | undefined = '';
+  lastName: string | undefined = '';
+
   isRegistered: boolean = false;
   // isTrainer: boolean = false; 
   // isAdmin: boolean = false;
@@ -32,23 +37,32 @@ export class AppComponent {
     private personService: PersonService,
     private router: Router) {
 
-      // Get the email address of the authenticated user
-      this.authService.user$.subscribe((user: User | undefined | null) => {
-        this.email = user?.email;
-        debugger
-      });
+    // Get the email address of the authenticated user
+    debugger
+    this.authService.user$.subscribe((user: User | undefined | null) => {
+      // debugger
+      this.emailAddress = user?.email;
+      this.emailAddressEncoded = this.emailAddress ? encodeURIComponent(this.emailAddress) : '';
+      this.firstName = user?.given_name;
+      this.lastName = user?.family_name;
+      // debugger
 
-
-      // Check if the person is registered 
-      personService.getPersonByEmailAddress("bosmanslode@gmail.com").subscribe((isRegistered: boolean) => {
-        this.isRegistered = isRegistered;
+      // Check if the person is registered or not
+      personService.getPersonByEmailAddress(this.emailAddressEncoded).subscribe((isRegistered: number | null) => {
         console.log('Repons op email addres in db:')
-        console.log(this.isRegistered)
-        debugger
-        if(this.isRegistered == false) {
+        console.log(isRegistered)
+        // debugger
+        if (isRegistered != null) {
+          this.isRegistered = true;
           this.router.navigate(['profile/']);
+        } else {
+          this.isRegistered = false;
+          // this.router.navigate(['register/']);
+          // debugger
+          this.router.navigate(['register/'], { state: { emailAddress: this.emailAddress, firstName: this.firstName, lastName: this.lastName , mode: 'add' } });
         }
       });
+    });
   }
 
   ngAfterViewInit() {

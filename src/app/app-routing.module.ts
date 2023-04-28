@@ -19,6 +19,7 @@ import { SubscriptionFormComponent } from './subscription/subscription-form/subs
 
 
 const routes: Routes = [
+  { path: 'register', component: PersonFormComponent },
   { path: 'profile', component: PersonOverviewComponent },
   { path: 'profile/edit', component: PersonFormComponent },
   { path: 'option', component: OptionComponent},
