@@ -28,7 +28,7 @@ export class AppComponent {
   firstName: string | undefined = '';
   lastName: string | undefined = '';
 
-  isRegistered: boolean = false;
+  isRegistered: boolean = true;
   // isTrainer: boolean = false; 
   // isAdmin: boolean = false;
 
@@ -38,7 +38,7 @@ export class AppComponent {
     private router: Router) {
 
     // Get the email address of the authenticated user
-    debugger
+    // debugger
     this.authService.user$.subscribe((user: User | undefined | null) => {
       // debugger
       this.emailAddress = user?.email;

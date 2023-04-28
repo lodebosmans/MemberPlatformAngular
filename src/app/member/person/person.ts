@@ -16,4 +16,5 @@ export interface Person {
     city: string,
     country: string,
     addressType: string,
+    parentId: number | null,
 }

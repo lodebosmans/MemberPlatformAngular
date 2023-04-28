@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Person } from '../person';
 import { PersonService } from '../person.service';
 import { Subscription } from 'rxjs';
+import { AuthService, User } from '@auth0/auth0-angular';
 
 @Component({
   selector: 'app-person-overview',
@@ -29,17 +30,20 @@ export class PersonOverviewComponent implements OnInit {
     city: "",
     country: "",
     addressType:"",
+    parentId: null
   };
 
-  isLoading = true;
-  
-
+  isLoading: boolean = true;
+  emailAddress: string | undefined = "";
   person$: Subscription = new Subscription();
 
-  constructor(private personService: PersonService, private router: Router) { }
+  constructor(private personService: PersonService, 
+    private router: Router,
+    private authService: AuthService) { }
 
   ngOnInit(): void {
     console.log("In person-overview")
+    this.getAuthCredentials();
     this.getPerson();
   }
 
@@ -48,7 +52,15 @@ export class PersonOverviewComponent implements OnInit {
     // this.deletePriceListCategory$.unsubscribe();
   }
 
+  getAuthCredentials() {
+    this.authService.user$.subscribe((user: User | undefined | null) => {
+      // debugger
+      this.emailAddress = user?.email;
+    });
+  }
+
   getPerson() {
+    let personId = this.personService.getPersonByEmailAddress(this.emailAddress);
     this.person$ = this.personService.getPersonById(1).subscribe(result => {
       this.person = result;
       this.isLoading = false;
