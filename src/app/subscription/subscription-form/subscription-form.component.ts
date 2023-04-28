@@ -74,7 +74,7 @@ export class SubscriptionFormComponent implements OnInit {
 
     this.postSubscription$ = this.subscriptionService.postSubscription(productId,personId).subscribe(result => {
       console.log('test2',result)
-      this.router.navigateByUrl("/subscription");
+      this.router.navigateByUrl("/subscription/overview");
     },
     error => {
       this.errorMessage = error.message;

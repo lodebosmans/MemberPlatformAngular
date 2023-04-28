@@ -14,6 +14,9 @@ import { ContractFormComponent } from './contract/contract-form/contract-form.co
 import { ContractComponent } from './contract/contract/contract.component';
 import { SubscriptionComponent } from './subscription/subscription/subscription.component';
 import { SubscriptionFormComponent } from './subscription/subscription-form/subscription-form.component';
+import { PriceAgreementComponent } from './price-agreement/price-agreement/price-agreement.component';
+import { PriceAgreementFormComponent } from './price-agreement/price-agreement-form/price-agreement-form.component';
+import { SubscriptionOverviewComponent } from './subscription/subscription-overview/subscription-overview.component';
 
 
 
@@ -26,6 +29,8 @@ const routes: Routes = [
   { path: 'option/add', component: OptionFormComponent},
   { path: 'productDefinition', component: ProductDefinitionComponent},
   { path: 'productDefinition/edit', component: ProductDefinitionFormComponent},
+  { path: 'priceAgreement', component: PriceAgreementComponent},
+  { path: 'priceAgreement/edit', component: PriceAgreementFormComponent},
   { path: 'address', component: AddressComponent},
   { path: 'address/edit', component: AddressFormComponent},
   { path: 'productUnit', component: ProductUnitComponent},
@@ -33,7 +38,8 @@ const routes: Routes = [
   { path: 'contract', component: ContractComponent},
   { path: 'contract/edit', component: ContractFormComponent},
   { path: 'subscription', component: SubscriptionComponent},
-  { path: 'subscription/subscribe', component: SubscriptionFormComponent}
+  { path: 'subscription/subscribe', component: SubscriptionFormComponent},
+  { path: 'subscription/overview', component: SubscriptionOverviewComponent}
 ];
 
 @NgModule({

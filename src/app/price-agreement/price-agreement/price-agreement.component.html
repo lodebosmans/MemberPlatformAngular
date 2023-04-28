@@ -1,1 +1,14 @@
-<p>price-agreement works!</p>
+<p *ngIf="isLoading">Aan het laden</p>
+
+<div *ngIf="!isLoading">
+    <p>PriceAgreement updaten</p>
+    <table class="table" *ngIf="priceAgreements && priceAgreements.length > 0">
+        <tbody>
+            <tr *ngFor="let p of priceAgreements">
+                <th scope="row">{{p.id}}</th>
+                <td>{{p.id}}</td>
+                <td><button type="button" class="btn knop" (click)="add(p.contractId)"><i class="fas fa-edit"></i></button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

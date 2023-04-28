@@ -28,6 +28,7 @@ import { ProductAgreementModule } from './product-agreement/product-agreement.mo
 import { SubscriptionModule } from './subscription/subscription.module';
 import { AuthModule } from '@auth0/auth0-angular';
 import { LoginButtonModule } from './login-button/login-button.module';
+import { PriceAgreementModule } from './price-agreement/price-agreement.module';
 
 
 
@@ -65,6 +66,7 @@ import { LoginButtonModule } from './login-button/login-button.module';
     ContractModule,
     ProductAgreementModule,
     SubscriptionModule,
+    PriceAgreementModule,
     AuthModule.forRoot({
       domain: 'lodebosmans.eu.auth0.com',
       clientId: 'dc8iyjLONxtjfDcLBAixsaMspzeLlt0G',
