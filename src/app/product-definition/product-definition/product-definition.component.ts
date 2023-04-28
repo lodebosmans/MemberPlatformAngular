@@ -32,7 +32,6 @@ export class ProductDefinitionComponent implements OnInit {
     subscriptionClosing:"",
   };
   options: Option[] = [];
-
   productDefinitions: ProductDefinition [] = [];
   productDefinition$ : Subscription = new Subscription();
   option$: Subscription =new Subscription();

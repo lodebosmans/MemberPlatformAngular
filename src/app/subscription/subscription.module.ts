@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SubscriptionComponent } from './subscription/subscription.component';
 import { SubscriptionFormComponent } from './subscription-form/subscription-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SubscriptionOverviewComponent } from './subscription-overview/subscription-overview.component';
 
 
 
@@ -11,6 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   declarations: [
     SubscriptionComponent,
     SubscriptionFormComponent,
+    SubscriptionOverviewComponent,
   
    
   ],
