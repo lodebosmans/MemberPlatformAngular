@@ -49,7 +49,9 @@ export class AppComponent {
       // debugger
 
       // Check if the person is registered or not
+
       personService.getPersonByEmailAddress(this.emailAddressEncoded).subscribe((mymembers: Person[] | null) => {
+
         console.log('Repons op email addres in db:')
         console.log(mymembers)
         // debugger

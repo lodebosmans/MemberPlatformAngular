@@ -26,7 +26,10 @@ export class PersonService {
   getPersonByEmailAddress(emailAddress: string | undefined): Observable<Person[]> {
     return this.httpClient.get<Person[]>(this.api_url + 'byemailaddress/' + emailAddress);
   }
+  getPersonsIds(emailAddress: string | undefined): Observable<[]> {
+    return this.httpClient.get<[]>(this.api_url + 'personsIds/' + emailAddress);
 
+  }
   postPerson(person: Person): Observable<Person> {
     return this.httpClient.post<Person>(this.api_url, person);
   }

@@ -36,7 +36,9 @@ export class PersonOverviewComponent implements OnInit {
   isLoading: boolean = true;
   emailAddress: string | undefined = "";
   person$: Subscription = new Subscription();
+
   id: number = 0;
+
 
 
   constructor(private personService: PersonService, 
@@ -59,11 +61,14 @@ export class PersonOverviewComponent implements OnInit {
     this.authService.user$.subscribe((user: User | undefined | null) => {
       // debugger
       this.emailAddress = user?.email;
+
       this.getPerson();
+
     });
   }
 
   getPerson() {
+
     // debugger
     // let personId = this.personService.getPersonByEmailAddress(this.emailAddress);
     this.person$ = this.personService.getPersonById(this.id).subscribe(result => {

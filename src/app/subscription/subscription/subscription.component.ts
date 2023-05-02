@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService, User } from '@auth0/auth0-angular';
 import { Subscription } from 'rxjs';
 import { Contract } from 'src/app/contract/contract';
 import { ContractService } from 'src/app/contract/contract.service';
+import { PersonService } from 'src/app/member/person/person.service';
 import { ProductAgreement } from 'src/app/product-agreement/product-agreement';
 import { ProductAgreementService } from 'src/app/product-agreement/product-agreement.service';
 import { ProductDefinition } from 'src/app/product-definition/product-definition';
@@ -25,14 +27,26 @@ export class SubscriptionComponent implements OnInit {
   PostContract$: Subscription = new Subscription();
   isLoading = true;
   errorMessage: string='';
+  person$: Subscription = new Subscription();
+  emailAddress: string | undefined;
 
   constructor(private productDefinitionService: ProductDefinitionService, private router: Router,
-     private contractService: ContractService, private productAgreementService: ProductAgreementService) { }
+     private contractService: ContractService, private productAgreementService: ProductAgreementService,
+      private personService: PersonService,private authService: AuthService) { }
 
   ngOnInit(): void {
     this.getProductDefinitions();
     console.log(this.isLoading);
+    this.getAuthCredentials();
   }
+  getAuthCredentials() {
+    this.authService.user$.subscribe((user: User | undefined | null) => {
+      // debugger
+      this.emailAddress = user?.email;
+      console.log('mail', this.emailAddress)
+    });
+  }
+
 
   getProductDefinitions(){
     this.productDefinition$= this.productDefinitionService.getProductDefinitions().subscribe(result => {

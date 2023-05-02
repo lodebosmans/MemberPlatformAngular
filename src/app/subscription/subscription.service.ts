@@ -17,8 +17,13 @@ export class SubscriptionService {
       personId: personId
     };
     return this.httpClient.post<any>(this.api_url, body);
-
   }
+  getAllById(id: number, year: number): Observable<SubscriptionDTO[]> {
+    debugger
+    return this.httpClient.get<SubscriptionDTO[]>(this.api_url+ id + '/'  + year);
+  }
+
+  
   
   
 }
