@@ -1,0 +1,17 @@
+<p *ngIf="isLoading">Aan het laden</p>
+
+<div *ngIf="!isLoading">
+    <p>Mijn leden</p>
+    <table class="table" *ngIf="mymembers && mymembers.length > 0">
+        <tbody>
+            <tr *ngFor="let m of mymembers">
+                <!-- <th scope="row">{{p.id}}</th> -->
+                <td>{{m.firstName}}</td>
+                <td>{{m.lastName}}</td>
+                <td>{{m.id}}</td>
+                <td><button type="button" class="btn knop" (click)="edit(m.id)"><i class="fas fa-edit"></i></button></td>
+                <!-- " -->
+            </tr>
+        </tbody>
+    </table>
+</div>
