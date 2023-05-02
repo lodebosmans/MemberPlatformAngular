@@ -30,4 +30,8 @@ export class ProductDefinitionService {
   deleteProductDefinition(id: number): Observable<ProductDefinition> {
     return this.httpClient.delete<ProductDefinition>(this.api_url + id);
   }
+  getAllById(id: number, year: number): Observable<ProductDefinition[]> {
+    debugger
+    return this.httpClient.get<ProductDefinition[]>(this.api_url+ 'AllById/'+ id + '/'  + year);
+  }
 }
