@@ -17,6 +17,7 @@ import { SubscriptionFormComponent } from './subscription/subscription-form/subs
 import { PriceAgreementComponent } from './price-agreement/price-agreement/price-agreement.component';
 import { PriceAgreementFormComponent } from './price-agreement/price-agreement-form/price-agreement-form.component';
 import { SubscriptionOverviewComponent } from './subscription/subscription-overview/subscription-overview.component';
+import { MymembersComponent } from './member/mymembers/mymembers.component';
 
 
 
@@ -25,6 +26,7 @@ const routes: Routes = [
   { path: 'register', component: PersonFormComponent },
   { path: 'profile', component: PersonOverviewComponent },
   { path: 'profile/edit', component: PersonFormComponent },
+  { path: 'mymembers', component: MymembersComponent },
   { path: 'option', component: OptionComponent},
   { path: 'option/edit', component: OptionFormComponent},
   { path: 'option/add', component: OptionFormComponent},

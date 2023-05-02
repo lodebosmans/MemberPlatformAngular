@@ -16,6 +16,7 @@ export class PersonFormComponent implements OnInit {
   isAdd: boolean = false;
   isEdit: boolean = false;
   personId: number = 0;
+  parentId: number | null = null;
   addressType: string = "Residential";
   firstName: string = '';
   lastName: string = '';
@@ -78,12 +79,13 @@ export class PersonFormComponent implements OnInit {
     this.isAdd = this.router.getCurrentNavigation()?.extras.state?.['mode'] === 'add';
     this.isEdit = this.router.getCurrentNavigation()?.extras.state?.['mode'] === 'edit';
     this.personId = +this.router.getCurrentNavigation()?.extras.state?.['id'];
+    this.parentId = +this.router.getCurrentNavigation()?.extras.state?.['parentId'];
     this.firstName = this.router.getCurrentNavigation()?.extras.state?.['firstName'];
     this.lastName = this.router.getCurrentNavigation()?.extras.state?.['lastName'];
     this.emailAddress = this.router.getCurrentNavigation()?.extras.state?.['emailAddress'];
 
     console.log('in constructor: ' + this.personId)
-    debugger
+    // debugger
     if (this.personId != null && this.personId > 0) {
       this.person$ = this.personService.getPersonById(this.personId).subscribe(result => {
         // If the person exist, add the data to the form.
@@ -136,7 +138,7 @@ export class PersonFormComponent implements OnInit {
         city: '',
         country: '',
         addressType: this.addressType,
-        parentId: null
+        parentId: this.parentId
       });
     }
   }
@@ -178,6 +180,7 @@ export class PersonFormComponent implements OnInit {
       console.log("In isEdit")
       console.log(this.personId)
       console.log(this.personForm.value)
+      // debugger
       this.putPerson$ = this.personService.putPerson(this.personId, this.personForm.getRawValue()).subscribe(result => {
         //all went well
         this.router.navigateByUrl("/profile");

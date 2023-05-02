@@ -29,6 +29,7 @@ import { SubscriptionModule } from './subscription/subscription.module';
 import { AuthModule } from '@auth0/auth0-angular';
 import { LoginButtonModule } from './login-button/login-button.module';
 import { PriceAgreementModule } from './price-agreement/price-agreement.module';
+import { MymembersComponent } from './member/mymembers/mymembers.component';
 
 
 
@@ -38,7 +39,8 @@ import { PriceAgreementModule } from './price-agreement/price-agreement.module';
     AppComponent,
     PersonFormComponent,
     SignInComponent,
-    SignoutComponent
+    SignoutComponent,
+    MymembersComponent
     // PersonOverviewComponent
   ],
   imports: [

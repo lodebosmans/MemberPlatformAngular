@@ -31,13 +31,13 @@
         <mat-icon>home</mat-icon>
         <span>Home</span>
       </button>
-      <button mat-button routerLink="/profile" class="menu-button">
+      <!-- <button mat-button routerLink="/profile" class="menu-button">
         <mat-icon>person</mat-icon>
         <span>Profiel</span>
-      </button>
+      </button> -->
 
       <div *ngIf="isRegistered">
-        <button mat-button class="menu-button">
+        <button mat-button (click)="navigateToMyMembers()" class="menu-button">
           <mat-icon>people</mat-icon>
           <span>Mijn leden</span>
         </button>

@@ -36,15 +36,18 @@ export class PersonOverviewComponent implements OnInit {
   isLoading: boolean = true;
   emailAddress: string | undefined = "";
   person$: Subscription = new Subscription();
+  id: number = 0;
+
 
   constructor(private personService: PersonService, 
     private router: Router,
-    private authService: AuthService) { }
+    private authService: AuthService) { 
+      this.id = this.router.getCurrentNavigation()?.extras.state?.['id'];
+    }
 
   ngOnInit(): void {
     console.log("In person-overview")
     this.getAuthCredentials();
-    this.getPerson();
   }
 
   ngOnDestroy(): void {
@@ -56,12 +59,14 @@ export class PersonOverviewComponent implements OnInit {
     this.authService.user$.subscribe((user: User | undefined | null) => {
       // debugger
       this.emailAddress = user?.email;
+      this.getPerson();
     });
   }
 
   getPerson() {
-    let personId = this.personService.getPersonByEmailAddress(this.emailAddress);
-    this.person$ = this.personService.getPersonById(1).subscribe(result => {
+    // debugger
+    // let personId = this.personService.getPersonByEmailAddress(this.emailAddress);
+    this.person$ = this.personService.getPersonById(this.id).subscribe(result => {
       this.person = result;
       this.isLoading = false;
       console.log('Person: ');

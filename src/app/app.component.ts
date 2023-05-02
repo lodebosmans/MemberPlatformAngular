@@ -27,6 +27,7 @@ export class AppComponent {
   personId: number = 0;
   firstName: string | undefined = '';
   lastName: string | undefined = '';
+  mymembers: Person[] = [];
 
   isRegistered: boolean = true;
   // isTrainer: boolean = false; 
@@ -48,13 +49,16 @@ export class AppComponent {
       // debugger
 
       // Check if the person is registered or not
-      personService.getPersonByEmailAddress(this.emailAddressEncoded).subscribe((isRegistered: number | null) => {
+      personService.getPersonByEmailAddress(this.emailAddressEncoded).subscribe((mymembers: Person[] | null) => {
         console.log('Repons op email addres in db:')
-        console.log(isRegistered)
+        console.log(mymembers)
         // debugger
-        if (isRegistered != null) {
+        if (mymembers != null) {
+          this.mymembers = mymembers;
           this.isRegistered = true;
-          this.router.navigate(['profile/']);
+          // debugger
+          // this.router.navigate(['mymembers/'], { state: { emailAddressEncoded: this.emailAddressEncoded, mode: 'show' } });
+          this.navigateToMyMembers();
         } else {
           this.isRegistered = false;
           // this.router.navigate(['register/']);
@@ -63,6 +67,10 @@ export class AppComponent {
         }
       });
     });
+  }
+
+  navigateToMyMembers() {
+    this.router.navigate(['mymembers/'], { state: { emailAddressEncoded: this.emailAddressEncoded, mode: 'show' } });
   }
 
   ngAfterViewInit() {
