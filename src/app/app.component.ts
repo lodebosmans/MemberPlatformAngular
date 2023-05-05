@@ -72,7 +72,7 @@ export class AppComponent {
   }
 
   navigateToMyMembers() {
-    this.router.navigate(['mymembers/'], { state: { emailAddressEncoded: this.emailAddressEncoded, mode: 'show' } });
+    this.router.navigate(['mymembers/']);
   }
 
   ngAfterViewInit() {
