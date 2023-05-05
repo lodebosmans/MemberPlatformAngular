@@ -5,9 +5,13 @@
   <app-login-button></app-login-button>
 </div>
 
-<div *ngIf="(authService.isAuthenticated$ | async)">
+<div *ngIf="authService.isAuthenticated$ | async">
   <mat-toolbar class="mat-elevation-z8">
-    <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
+    <button
+      mat-icon-button
+      *ngIf="sidenav.mode === 'over'"
+      (click)="sidenav.toggle()"
+    >
       <mat-icon *ngIf="!sidenav.opened">
         menu
       </mat-icon>
@@ -20,8 +24,10 @@
 
   <mat-sidenav-container>
     <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
-
-      <img class="avatar mat-elevation-z8" src="https://source.unsplash.com/c_GmwfHBDzk/200x200" />
+      <img
+        class="avatar mat-elevation-z8"
+        src="https://source.unsplash.com/c_GmwfHBDzk/200x200"
+      />
 
       <h4 class="name">Lode Bosmans</h4>
 
@@ -45,7 +51,11 @@
           <mat-icon>create</mat-icon>
           <span>Inschrijven</span>
         </button>
-        <button mat-button routerLink="/subscription/overview" class="menu-button">
+        <button
+          mat-button
+          routerLink="/subscription/overview"
+          class="menu-button"
+        >
           <mat-icon>fitness_center</mat-icon>
           <span>Mijn trainingen</span>
         </button>
@@ -89,13 +99,11 @@
         </button>
 
         <mat-divider></mat-divider>
-
       </div>
 
       <div>
         <app-login-button></app-login-button>
       </div>
-
     </mat-sidenav>
 
     <mat-sidenav-content>
@@ -104,7 +112,6 @@
         <!-- <div class="ms-5"> -->
 
         <router-outlet></router-outlet>
-
       </div>
     </mat-sidenav-content>
   </mat-sidenav-container>

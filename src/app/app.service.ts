@@ -8,10 +8,7 @@ import { PersonService } from './member/person/person.service';
   providedIn: 'root'
 })
 export class AppService {
+  private path = environment.apiUrl;
 
-  private path = environment.apiUrl
-
-  constructor(private httpClient: HttpClient) { }
-
-
+  constructor(private httpClient: HttpClient) {}
 }

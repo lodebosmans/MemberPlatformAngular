@@ -4,18 +4,13 @@ import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { Option } from './option';
 
-
-
 @Injectable({
   providedIn: 'root'
 })
 export class OptionService {
-  api_url = environment.apiUrl + "Option/";
+  api_url = environment.apiUrl + 'Option/';
 
-
-  constructor(private httpClient: HttpClient) {
-
-  }
+  constructor(private httpClient: HttpClient) {}
   getOptions(): Observable<Option[]> {
     return this.httpClient.get<Option[]>(this.api_url);
   }

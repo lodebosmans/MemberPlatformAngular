@@ -1,27 +1,50 @@
 <div class="container">
-    <div class="alert alert-danger" role="alert" *ngIf="isSubmitted && errorMessage">
-        {{errorMessage}}
-    </div>
+  <div
+    class="alert alert-danger"
+    role="alert"
+    *ngIf="isSubmitted && errorMessage"
+  >
+    {{ errorMessage }}
+  </div>
 
-    <p *ngIf="isEdit">Inschrijven</p>
-    <p>Je wil inschrijven voor volgende sport {{productDefinition.name}}</p>
-    <p>met startdatum {{productDefinition.startDate}}</p>
-    <p> en  einddatum {{productDefinition.endDate}}</p>
-    <form [formGroup]="subscriptionForm" (ngSubmit)="onSubmit()">
-
+  <p *ngIf="isEdit">Inschrijven</p>
+  <p>Je wil inschrijven voor volgende sport {{ productDefinition.name }}</p>
+  <p>met startdatum {{ productDefinition.startDate | date: "dd-MM-yyyy" }}</p>
+  <p>en einddatum {{ productDefinition.endDate | date: "dd-MM-yyyy" }}</p>
+  <form [formGroup]="subscriptionForm" (ngSubmit)="onSubmit()">
     <div>
       <div class="form-group">
-        <label for="personId">Person ID:</label>
-        <input type="number" class="form-control" formControlName="personId" id="personId" required>
+        <label for="personId">Kies voor je wie wil inschrijven:</label>
+        <select
+          id="personId"
+          name="personId"
+          formControlName="personId"
+          required
+          class="form-select"
+        >
+          <!-- <option value="">--Kies de persoon voor wie je wil inschrijven --</option> -->
+          <option *ngFor="let p of persons" [ngValue]="p.id">{{
+            p.firstName
+          }}</option>
+        </select>
       </div>
 
       <div>
-        <input type="hidden" class="form-control" formControlName="productId" id="productId" [(ngModel)]=productDefinition.id>
+        <input
+          type="hidden"
+          class="form-control"
+          formControlName="productId"
+          id="productId"
+          [(ngModel)]="productDefinition.id"
+        />
       </div>
-
     </div>
-      <button type="submit" class="btn btn-primary" [disabled]="!subscriptionForm.valid">Submit</button>
-    </form>
-      
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="!subscriptionForm.controls.personId.valid"
+    >
+      Submit
+    </button>
+  </form>
 </div>
- 

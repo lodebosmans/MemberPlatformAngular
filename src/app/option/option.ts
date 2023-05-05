@@ -1,7 +1,5 @@
 export interface Option {
-    id: number,
-    name: string,
-    optionTypeId: number
+  id: number;
+  name: string;
+  optionTypeId: number;
 }
-
-
