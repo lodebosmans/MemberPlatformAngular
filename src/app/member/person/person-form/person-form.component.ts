@@ -44,6 +44,7 @@ export class PersonFormComponent implements OnInit {
     postalCode: "",
     city: "",
     country: "",
+    addressId: 0,
     addressType: "",
     parentId: null
   };
@@ -69,6 +70,7 @@ export class PersonFormComponent implements OnInit {
     postalCode: new FormControl<string>('', { nonNullable: true }),
     city: new FormControl<string>('', { nonNullable: true }),
     country: new FormControl<string>('', { nonNullable: true }),
+    addressId: new FormControl<number>(0, { nonNullable: true }),
     addressType: new FormControl<string>('', { nonNullable: true }),
     parentId: new FormControl<number | null>(null),
   });
@@ -114,6 +116,7 @@ export class PersonFormComponent implements OnInit {
           postalCode: result.postalCode,
           city: result.city,
           country: result.country,
+          addressId: result.addressId,
           addressType: this.addressType,
           parentId: result.parentId
         });
@@ -138,6 +141,7 @@ export class PersonFormComponent implements OnInit {
         postalCode: '',
         city: '',
         country: '',
+        addressId: 0,
         addressType: this.addressType,
         parentId: this.parentId
       });
@@ -182,7 +186,7 @@ export class PersonFormComponent implements OnInit {
       console.log("In isEdit")
       console.log(this.personId)
       console.log(this.personForm.value)
-      // debugger
+      debugger
       this.putPerson$ = this.personService.putPerson(this.personId, this.personForm.getRawValue()).subscribe(result => {
         //all went well
         this.router.navigateByUrl("/profile");

@@ -29,7 +29,8 @@ export class PersonOverviewComponent implements OnInit {
     postalCode: "",
     city: "",
     country: "",
-    addressType:"",
+    addressId: 0,
+    addressType: "",
     parentId: null
   };
 

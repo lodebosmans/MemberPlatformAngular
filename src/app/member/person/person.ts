@@ -15,6 +15,7 @@ export interface Person {
     postalCode: string,
     city: string,
     country: string,
+    addressId: number,
     addressType: string,
     parentId: number | null,
 }
