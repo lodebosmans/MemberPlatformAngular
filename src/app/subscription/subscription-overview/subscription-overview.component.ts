@@ -19,72 +19,72 @@ import { SubscriptionDTO } from '../subscriptionDTO';
   styleUrls: ['./subscription-overview.component.scss']
 })
 export class SubscriptionOverviewComponent implements OnInit {
-  productDefinitions: ProductDefinition [] = [];
-  contracts: Contract []=[];
-  productAgreements: ProductAgreement []= [];
+  productDefinitions: ProductDefinition[] = [];
+  contracts: Contract[] = [];
+  productAgreements: ProductAgreement[] = [];
   contract$: Subscription = new Subscription();
   productAgreement$: Subscription = new Subscription();
-  productDefinition$ : Subscription = new Subscription();
-  postProductAgreement$: Subscription =new Subscription();
+  productDefinition$: Subscription = new Subscription();
+  postProductAgreement$: Subscription = new Subscription();
   PostContract$: Subscription = new Subscription();
-  subscriptionDTOs :SubscriptionDTO [] =[]; 
+  subscriptionDTOs: SubscriptionDTO[] = [];
   subscriptionDTO$: Subscription = new Subscription();
   isLoading = true;
   isDetail = false;
-  errorMessage: string='';
+  errorMessage: string = '';
   person$: Subscription = new Subscription();
   emailAddress: string | undefined;
-  persons: Person [] =[];
-  m: string | undefined = "" ;
+  persons: Person[] = [];
+  m: string | undefined = '';
   public years: number[] = [];
   public currentYear: number = new Date().getFullYear();
-  public selectedYear: number =2023;
-  
-  
+  public selectedYear: number = 2023;
 
-  constructor(private productDefinitionService: ProductDefinitionService, private router: Router,
-   private subscriptionService: SubscriptionService,
-     private personService: PersonService,private authService: AuthService) { }
+  constructor(
+    private productDefinitionService: ProductDefinitionService,
+    private router: Router,
+    private subscriptionService: SubscriptionService,
+    private personService: PersonService,
+    private authService: AuthService
+  ) {}
 
-     async ngOnInit(): Promise<void> {
-      await this.getAuthCredentials();
-      this.getPerson();
-        // populate years array with the last 10 years and the next year from current year
-      for (let i = this.currentYear - 10; i <= this.currentYear +1; i++) {
-        this.years.push(i);
-      }
+  async ngOnInit(): Promise<void> {
+    await this.getAuthCredentials();
+    this.getPerson();
+    // populate years array with the last 10 years and the next year from current year
+    for (let i = this.currentYear - 10; i <= this.currentYear + 1; i++) {
+      this.years.push(i);
     }
-  getAuthCredentials() :Promise<void>{
-    return new Promise<void>((resolve, reject)=> {
-    this.authService.user$.subscribe((user: User | undefined | null) => {
-      this.emailAddress = user?.email;
-      console.log('mail', this.emailAddress)
-      this.m = this.emailAddress
-      console.log("m", this.m)
-      resolve();
+  }
+  getAuthCredentials(): Promise<void> {
+    return new Promise<void>((resolve, reject) => {
+      this.authService.user$.subscribe((user: User | undefined | null) => {
+        this.emailAddress = user?.email;
+        console.log('mail', this.emailAddress);
+        this.m = this.emailAddress;
+        console.log('m', this.m);
+        resolve();
+      });
     });
-   
-  });
   }
-  getPerson(){
-  console.log('mmm', this.m)
-    this.person$ = this.personService.getPersonByEmailAddress(this.m).subscribe( result =>{
-      this.persons = result
-      console.log('r',this.persons)
-    })
+  getPerson() {
+    console.log('mmm', this.m);
+    this.person$ = this.personService
+      .getPersonByEmailAddress(this.m)
+      .subscribe(result => {
+        this.persons = result;
+        console.log('r', this.persons);
+      });
   }
-  show(id: number, SelectedYear: number){
-
-
-this.isDetail = true;
-this.subscriptionDTO$ = this.subscriptionService.getAllById(id, SelectedYear).subscribe(result =>{
-  debugger
-  this.subscriptionDTOs = result
-})
+  show(id: number, SelectedYear: number) {
+    this.isDetail = true;
+    this.subscriptionDTO$ = this.subscriptionService
+      .getAllById(id, SelectedYear)
+      .subscribe(result => {
+        this.subscriptionDTOs = result;
+      });
   }
-  back(){
+  back() {
     this.isDetail = false;
   }
-  
-
 }

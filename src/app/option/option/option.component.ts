@@ -10,43 +10,42 @@ import { Router } from '@angular/router';
   styleUrls: ['./option.component.scss']
 })
 export class OptionComponent implements OnInit {
-
   option: Option = {
     id: 0,
-    name: "",
-    optionTypeId: 0,
+    name: '',
+    optionTypeId: 0
   };
- 
-  options: Option[]= [];
+
+  options: Option[] = [];
   option$: Subscription = new Subscription();
-  deleteOption$ : Subscription =new Subscription();
+  deleteOption$: Subscription = new Subscription();
   isLoading = true;
-  errorMessage: string='';
-  constructor(private optionService: OptionService, private router: Router) { }
+  errorMessage: string = '';
+  constructor(private optionService: OptionService, private router: Router) {}
 
   ngOnInit(): void {
-    console.log("In option")
+    console.log('In option');
     this.getOptions();
-    console.log(this.isLoading)
+    console.log(this.isLoading);
   }
 
   ngOnDestroy(): void {
     this.option$.unsubscribe();
   }
 
-  getOptions(){
+  getOptions() {
     this.option$ = this.optionService.getOptions().subscribe(result => {
-    this.options = result;
-    this.isLoading = false;
-    console.log("alle options ", this.options)
-  });
+      this.options = result;
+      this.isLoading = false;
+      console.log('alle options ', this.options);
+    });
   }
 
   edit(id: number) {
     //Navigate to form in edit mode
     this.router.navigate(['option/edit'], { state: { id: id, mode: 'edit' } });
   }
-  add(){
-    this.router.navigate(['option/edit'], { state: {mode: 'add'}});
+  add() {
+    this.router.navigate(['option/edit'], { state: { mode: 'add' } });
   }
 }

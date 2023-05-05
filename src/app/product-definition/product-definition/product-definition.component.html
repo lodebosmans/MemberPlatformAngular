@@ -1,14 +1,21 @@
 <p *ngIf="isLoading">Aan het laden</p>
 
 <div *ngIf="!isLoading">
-    <div class="btn btn-success" (click)="add()">productDefinition toevoegen</div>
-    <table class="table" *ngIf="productDefinitions && productDefinitions.length > 0">
-        <tbody>
-            <tr *ngFor="let p of productDefinitions">
-                <th scope="row">{{p.id}}</th>
-                <td>{{p.name}}</td>
-                <td><button type="button" class="btn knop" (click)="edit(p.id)"><i class="fas fa-edit"></i></button></td>
-            </tr>
-        </tbody>
-    </table>
+  <div class="btn btn-success" (click)="add()">productDefinition toevoegen</div>
+  <table
+    class="table"
+    *ngIf="productDefinitions && productDefinitions.length > 0"
+  >
+    <tbody>
+      <tr *ngFor="let p of productDefinitions">
+        <th scope="row">{{ p.id }}</th>
+        <td>{{ p.name }}</td>
+        <td>
+          <button type="button" class="btn knop" (click)="edit(p.id)">
+            <i class="fas fa-edit"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
