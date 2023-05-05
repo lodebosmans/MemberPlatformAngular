@@ -8,9 +8,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ProductDefinitionService {
-  api_url = environment.apiUrl + "ProductDefinition/";
+  api_url = environment.apiUrl + 'ProductDefinition/';
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {}
   getProductDefinitions(): Observable<ProductDefinition[]> {
     return this.httpClient.get<ProductDefinition[]>(this.api_url);
   }
@@ -19,19 +19,32 @@ export class ProductDefinitionService {
     return this.httpClient.get<ProductDefinition>(this.api_url + id);
   }
 
-  postProductDefinition(productDefinition: ProductDefinition): Observable<ProductDefinition> {
-    return this.httpClient.post<ProductDefinition>(this.api_url, productDefinition);
+  postProductDefinition(
+    productDefinition: ProductDefinition
+  ): Observable<ProductDefinition> {
+    return this.httpClient.post<ProductDefinition>(
+      this.api_url,
+      productDefinition
+    );
   }
 
-  putProductDefinition(id: number, productDefinition: ProductDefinition): Observable<ProductDefinition> {
-    return this.httpClient.put<ProductDefinition>(this.api_url + id, productDefinition);
+  putProductDefinition(
+    id: number,
+    productDefinition: ProductDefinition
+  ): Observable<ProductDefinition> {
+    return this.httpClient.put<ProductDefinition>(
+      this.api_url + id,
+      productDefinition
+    );
   }
 
   deleteProductDefinition(id: number): Observable<ProductDefinition> {
     return this.httpClient.delete<ProductDefinition>(this.api_url + id);
   }
   getAllById(id: number, year: number): Observable<ProductDefinition[]> {
-    debugger
-    return this.httpClient.get<ProductDefinition[]>(this.api_url+ 'AllById/'+ id + '/'  + year);
+    debugger;
+    return this.httpClient.get<ProductDefinition[]>(
+      this.api_url + 'AllById/' + id + '/' + year
+    );
   }
 }

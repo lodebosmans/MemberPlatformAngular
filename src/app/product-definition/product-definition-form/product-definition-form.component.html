@@ -1,105 +1,251 @@
 <div class="container">
-    <div class="alert alert-danger" role="alert" *ngIf="isSubmitted && errorMessage">
-        {{errorMessage}}
+  <div
+    class="alert alert-danger"
+    role="alert"
+    *ngIf="isSubmitted && errorMessage"
+  >
+    {{ errorMessage }}
+  </div>
+  <p *ngIf="isAdd">Voeg een nieuwe ProductDefinition toe.</p>
+  <p *ngIf="isEdit">Pas de gegevens van een ProductDefinition aan.</p>
+  <form (ngSubmit)="onSubmit()" [formGroup]="productDefinitionForm">
+    <div class="form-group">
+      <label for="name">Naam</label>
+      <input
+        type="text"
+        class="form-control"
+        id="name"
+        name="name"
+        placeholder="Naam"
+        formControlName="name"
+        minlength="2"
+        required
+      />
     </div>
-    <p *ngIf="isAdd">Voeg een nieuwe option toe.</p>
-    <p *ngIf="isEdit">Pas de gegevens van een option aan.</p>
-    <form (ngSubmit)="onSubmit()" [formGroup]="productDefinitionForm">
-        <div class="form-group">
-            <label for="name">name</label>
-            <input type="text" class="form-control" id="name" name="name" placeholder="option"
-                formControlName="name" minlength="2" required>
-        </div>
-        <div class="form-group">
-            <label for="description">Description</label>
-            <input type="text" class="form-control" id="description" name="description" placeholder="description"
-                formControlName="description" minlength="2" required>
-        </div>
-        <div class="form-group">
-            <label for="numberOfSessions">Number of Sessions</label>
-            <input type="number" class="form-control" id="numberOfSessions" name="numberOfSessions" placeholder="numberOfSessions"
-                formControlName="numberOfSessions" minlength="1">
-        </div>
-        <div class="form-group">
-            <label for="maxAmountMembers">max amount members</label>
-            <input type="number" class="form-control" id="maxAmountMembers" name="maxAmountMembers" placeholder="maxAmountMembers"
-                formControlName="maxAmountMembers" minlength="1" required>
-        </div>
-        <div class="form-group">
-            <label for="startDate">StartDate</label>
-            <input type="date" class="form-control" id="startDate" name="startDate" placeholder="startDate"
-                formControlName="startDate" minlength="2" required>
-        </div>
-        <div class="form-group">
-            <label for="endDate">EndDate</label>
-            <input type="date" class="form-control" id="endDate" name="endDate" placeholder="endDate"
-                formControlName="endDate" minlength="2" required>
-        </div>
-        <div class="form-group">
-            <label for="price">Price</label>
-            <input type="price" class="form-control" id="price" name="price" placeholder="price"
-                formControlName="price" minlength="1" required>
-        </div>
-        <div class="form-group">
-            <label for="dayOfWeek">Weekday</label>
-            <input type="text" class="form-control" id="dayOfWeek" name="dayOfWeek" placeholder="weekday"
-                formControlName="dayOfWeek" minlength="2">
-        </div>
-        <div class="form-group">
-            <label for="numberOfGroups">number of groups</label>
-            <input type="number" class="form-control" id="numberOfGroups" name="numberOfGroups" placeholder="numberOfGroups"
-                formControlName="numberOfGroups" minlength="1">
-        </div>
-        <div class="form-group">
-            <label for="subscriptionOpening">subscription open</label>
-            <input type="date" class="form-control" id="subscriptionOpening" name="subscriptionOpening" placeholder="subscription open"
-                formControlName="subscriptionOpening" minlength="2" required>
-        </div>
-        <div class="form-group">
-            <label for="subscriptionClosing">subscription closed</label>
-            <input type="date" class="form-control" id="subscriptionClosing" name="subscriptionClosing" placeholder="subscription closed"
-                formControlName="subscriptionClosing" minlength="2" required>
-        </div>
-        <div class="form-group">
-            <label for="imageUrl">imageUrl</label>
-            <input type="text" class="form-control" id="imageUrl" name="imageUrl" placeholder="imageUrl"
-                formControlName="imageUrl" minlength="2">
-        </div>
-        <div class="form-group">
-            <label for="productDefinitionStatusId">Status:</label>
-            <select id="productDefinitionStatusId" name="productDefinitionStatusId" formControlName="productDefinitionStatusId" required class="form-select"
-                aria-label="Default select example">
-                 <option *ngFor="let type of options" [ngValue]="type.id" [selected]="type.id === productDefinition.productDefinitionStatusId">{{ type.name }}</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="productDefinitionSportId">Sport:</label>
-            <select id="productDefinitionSportId" name="productDefinitionSportId" formControlName="productDefinitionSportId" required class="form-select"
-                aria-label="Default select example">
-                 <option *ngFor="let type of options" [ngValue]="type.id" [selected]="type.id === productDefinition.productDefinitionSportId">{{ type.name }}</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="productDefinitionFormatId">Format:</label>
-            <select id="productDefinitionFormatId" name="productDefinitionFormatId" formControlName="productDefinitionFormatId" required class="form-select"
-                aria-label="Default select example">
-                 <option *ngFor="let type of options" [ngValue]="type.id" [selected]="type.id === productDefinition.productDefinitionFormatId">{{ type.name }}</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="parentProductDefinitionId">ParentProductdefinition:</label>
-            <select id="parentProductDefinitionId" name="parentProductDefinitionId" formControlName="parentProductDefinitionId" class="form-select"
-                aria-label="Default select example">
-                 <option [ngValue]="null">-- Not Set --</option>
-                 <option *ngFor="let type of productDefinitions" [ngValue]="type.id">{{ type.name }}</option>
-            </select>
-        </div>
-        <button type="submit" class="btn btn-succes btn-primary" *ngIf="isAdd"
-        [disabled]="!productDefinitionForm.valid">Add</button>
-        <button type="submit" class="btn btn-succes btn-primary" *ngIf="isEdit"
-        [disabled]="!productDefinitionForm.valid">Save</button>
+    <div class="form-group">
+      <label for="description">Beschrijving</label>
+      <input
+        type="text"
+        class="form-control"
+        id="description"
+        name="description"
+        placeholder="Beschrijving"
+        formControlName="description"
+        minlength="2"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="numberOfSessions">Aantall sessies</label>
+      <input
+        type="number"
+        class="form-control"
+        id="numberOfSessions"
+        name="numberOfSessions"
+        placeholder="Annatla sessies"
+        formControlName="numberOfSessions"
+        minlength="1"
+      />
+    </div>
+    <div class="form-group">
+      <label for="maxAmountMembers">maximum aantal inschrijvingen</label>
+      <input
+        type="number"
+        class="form-control"
+        id="maxAmountMembers"
+        name="maxAmountMembers"
+        placeholder="Maximum aantal inschrijvingen"
+        formControlName="maxAmountMembers"
+        minlength="1"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="startDate">Startdatum</label>
+      <input
+        type="date"
+        class="form-control"
+        id="startDate"
+        name="startDate"
+        placeholder="Startdatum"
+        formControlName="startDate"
+        minlength="2"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="endDate">einddatum</label>
+      <input
+        type="date"
+        class="form-control"
+        id="endDate"
+        name="endDate"
+        placeholder="Einddatum"
+        formControlName="endDate"
+        minlength="2"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="price">Prijs</label>
+      <input
+        type="price"
+        class="form-control"
+        id="price"
+        name="price"
+        placeholder="Prijs"
+        formControlName="price"
+        minlength="1"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="dayOfWeek">Waakdag</label>
+      <input
+        type="text"
+        class="form-control"
+        id="dayOfWeek"
+        name="dayOfWeek"
+        placeholder="weekdag"
+        formControlName="dayOfWeek"
+        minlength="2"
+      />
+    </div>
+    <div class="form-group">
+      <label for="numberOfGroups">Aantal groepen</label>
+      <input
+        type="number"
+        class="form-control"
+        id="numberOfGroups"
+        name="numberOfGroups"
+        placeholder="Aantal groepen"
+        formControlName="numberOfGroups"
+        minlength="1"
+      />
+    </div>
+    <div class="form-group">
+      <label for="subscriptionOpening">Inschrijving open vanaf</label>
+      <input
+        type="date"
+        class="form-control"
+        id="subscriptionOpening"
+        name="subscriptionOpening"
+        placeholder="Inschrijving open vanaf"
+        formControlName="subscriptionOpening"
+        minlength="2"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="subscriptionClosing">Inschrijving gesloten</label>
+      <input
+        type="date"
+        class="form-control"
+        id="subscriptionClosing"
+        name="subscriptionClosing"
+        placeholder="Inschrijving gesloten"
+        formControlName="subscriptionClosing"
+        minlength="2"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="imageUrl">imageUrl</label>
+      <input
+        type="text"
+        class="form-control"
+        id="imageUrl"
+        name="imageUrl"
+        placeholder="imageUrl"
+        formControlName="imageUrl"
+        minlength="2"
+      />
+    </div>
+    <div class="form-group">
+      <label for="productDefinitionStatusId">Status:</label>
+      <select
+        id="productDefinitionStatusId"
+        name="productDefinitionStatusId"
+        formControlName="productDefinitionStatusId"
+        required
+        class="form-select"
+        aria-label="Default select example"
+      >
+        <option
+          *ngFor="let type of options"
+          [ngValue]="type.id"
+          [selected]="type.id === productDefinition.productDefinitionStatusId"
+          >{{ type.name }}</option
+        >
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="productDefinitionSportId">Sport:</label>
+      <select
+        id="productDefinitionSportId"
+        name="productDefinitionSportId"
+        formControlName="productDefinitionSportId"
+        required
+        class="form-select"
+        aria-label="Default select example"
+      >
+        <option
+          *ngFor="let type of options"
+          [ngValue]="type.id"
+          [selected]="type.id === productDefinition.productDefinitionSportId"
+          >{{ type.name }}</option
+        >
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="productDefinitionFormatId">Format:</label>
+      <select
+        id="productDefinitionFormatId"
+        name="productDefinitionFormatId"
+        formControlName="productDefinitionFormatId"
+        required
+        class="form-select"
+        aria-label="Default select example"
+      >
+        <option
+          *ngFor="let type of options"
+          [ngValue]="type.id"
+          [selected]="type.id === productDefinition.productDefinitionFormatId"
+          >{{ type.name }}</option
+        >
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="parentProductDefinitionId">ParentProductdefinition:</label>
+      <select
+        id="parentProductDefinitionId"
+        name="parentProductDefinitionId"
+        formControlName="parentProductDefinitionId"
+        class="form-select"
+        aria-label="Default select example"
+      >
+        <option [ngValue]="null">-- Not Set --</option>
+        <option *ngFor="let type of productDefinitions" [ngValue]="type.id">{{
+          type.name
+        }}</option>
+      </select>
+    </div>
+    <button
+      type="submit"
+      class="btn btn-succes btn-primary"
+      *ngIf="isAdd"
+      [disabled]="!productDefinitionForm.valid"
+    >
+      Add
+    </button>
+    <button
+      type="submit"
+      class="btn btn-succes btn-primary"
+      *ngIf="isEdit"
+      [disabled]="!productDefinitionForm.valid"
+    >
+      Save
+    </button>
     <a class="btn btn-danger ml-1" routerLink="/option">Cancel</a>
-
-    </form>
+  </form>
 </div>
- 

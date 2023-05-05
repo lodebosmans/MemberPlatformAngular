@@ -19,34 +19,31 @@ import { PriceAgreementFormComponent } from './price-agreement/price-agreement-f
 import { SubscriptionOverviewComponent } from './subscription/subscription-overview/subscription-overview.component';
 import { MymembersComponent } from './member/mymembers/mymembers.component';
 
-
-
-
 const routes: Routes = [
   { path: 'register', component: PersonFormComponent },
   { path: 'profile', component: PersonOverviewComponent },
   { path: 'profile/edit', component: PersonFormComponent },
   { path: 'mymembers', component: MymembersComponent },
-  { path: 'option', component: OptionComponent},
-  { path: 'option/edit', component: OptionFormComponent},
-  { path: 'option/add', component: OptionFormComponent},
-  { path: 'productDefinition', component: ProductDefinitionComponent},
-  { path: 'productDefinition/edit', component: ProductDefinitionFormComponent},
-  { path: 'priceAgreement', component: PriceAgreementComponent},
-  { path: 'priceAgreement/edit', component: PriceAgreementFormComponent},
-  { path: 'address', component: AddressComponent},
-  { path: 'address/edit', component: AddressFormComponent},
-  { path: 'productUnit', component: ProductUnitComponent},
-  { path: 'productUnit/edit', component: ProductUnitFormComponent},
-  { path: 'contract', component: ContractComponent},
-  { path: 'contract/edit', component: ContractFormComponent},
-  { path: 'subscription', component: SubscriptionComponent},
-  { path: 'subscription/subscribe', component: SubscriptionFormComponent},
-  { path: 'subscription/overview', component: SubscriptionOverviewComponent}
+  { path: 'option', component: OptionComponent },
+  { path: 'option/edit', component: OptionFormComponent },
+  { path: 'option/add', component: OptionFormComponent },
+  { path: 'productDefinition', component: ProductDefinitionComponent },
+  { path: 'productDefinition/edit', component: ProductDefinitionFormComponent },
+  { path: 'priceAgreement', component: PriceAgreementComponent },
+  { path: 'priceAgreement/edit', component: PriceAgreementFormComponent },
+  { path: 'address', component: AddressComponent },
+  { path: 'address/edit', component: AddressFormComponent },
+  { path: 'productUnit', component: ProductUnitComponent },
+  { path: 'productUnit/edit', component: ProductUnitFormComponent },
+  { path: 'contract', component: ContractComponent },
+  { path: 'contract/edit', component: ContractFormComponent },
+  { path: 'subscription', component: SubscriptionComponent },
+  { path: 'subscription/subscribe', component: SubscriptionFormComponent },
+  { path: 'subscription/overview', component: SubscriptionOverviewComponent }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

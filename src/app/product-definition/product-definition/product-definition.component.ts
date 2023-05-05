@@ -11,56 +11,61 @@ import { Option } from 'src/app/option/option';
   styleUrls: ['./product-definition.component.scss']
 })
 export class ProductDefinitionComponent implements OnInit {
-
-  productDefinition: ProductDefinition ={
-    id:0,
-    name:"",
-    description:"",
-    startDate:"",
-    endDate:"",
-    numberOfSessions:0,
-    numberOfGroups:0,
-    maxAmountMembers:0,
-    price:0,
-    dayOfWeek:"",
-    parentProductDefinitionId:0,
-    productDefinitionFormatId:0,
-    productDefinitionSportId:0,
-    productDefinitionStatusId:0,
-    imageUrl:"",
-    subscriptionOpening:"",
-    subscriptionClosing:"",
+  productDefinition: ProductDefinition = {
+    id: 0,
+    name: '',
+    description: '',
+    startDate: '',
+    endDate: '',
+    numberOfSessions: 0,
+    numberOfGroups: 0,
+    maxAmountMembers: 0,
+    price: 0,
+    dayOfWeek: '',
+    parentProductDefinitionId: 0,
+    productDefinitionFormatId: 0,
+    productDefinitionSportId: 0,
+    productDefinitionStatusId: 0,
+    imageUrl: '',
+    subscriptionOpening: '',
+    subscriptionClosing: ''
   };
   options: Option[] = [];
-  productDefinitions: ProductDefinition [] = [];
-  productDefinition$ : Subscription = new Subscription();
-  option$: Subscription =new Subscription();
+  productDefinitions: ProductDefinition[] = [];
+  productDefinition$: Subscription = new Subscription();
+  option$: Subscription = new Subscription();
   isLoading = true;
-  errorMessage: string='';
+  errorMessage: string = '';
 
-  constructor(private productDefinitionService: ProductDefinitionService, private router: Router) { 
-
-  }
+  constructor(
+    private productDefinitionService: ProductDefinitionService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.getProductDefinitions();
     console.log(this.isLoading);
   }
 
-  getProductDefinitions(){
-    this.productDefinition$= this.productDefinitionService.getProductDefinitions().subscribe(result => {
-      this.productDefinitions = result;
-      this.isLoading = false;
-      console.log("alle productDefinitions ", this.productDefinitions)
-    });
+  getProductDefinitions() {
+    this.productDefinition$ = this.productDefinitionService
+      .getProductDefinitions()
+      .subscribe(result => {
+        this.productDefinitions = result;
+        this.isLoading = false;
+        console.log('alle productDefinitions ', this.productDefinitions);
+      });
   }
 
   edit(id: number) {
     //Navigate to form in edit mode
-    this.router.navigate(['productDefinition/edit'], { state: { id: id, mode: 'edit' } });
+    this.router.navigate(['productDefinition/edit'], {
+      state: { id: id, mode: 'edit' }
+    });
   }
-  add(){
-    this.router.navigate(['productDefinition/edit'], { state: {mode: 'add'}});
+  add() {
+    this.router.navigate(['productDefinition/edit'], {
+      state: { mode: 'add' }
+    });
   }
-
 }

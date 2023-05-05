@@ -15,46 +15,53 @@ import { ProductDefinitionService } from 'src/app/product-definition/product-def
 })
 export class ProductUnitComponent implements OnInit {
   productUnit: ProductUnit = {
-    id:0,
-    productId:0,
-    date:"",
-    comment:"",
-    startTimeScheduled:"",
-    startTimeActual:"",
-    endTimeActual:"",
-    endTimeScheduled:"",
-    addressId:0,
-    productUnitStatusId:0
-  }
-  productDefinitions: ProductDefinition [] = [];
-  productUnits: ProductUnit [] = [];
+    id: 0,
+    productId: 0,
+    date: '',
+    comment: '',
+    startTimeScheduled: '',
+    startTimeActual: '',
+    endTimeActual: '',
+    endTimeScheduled: '',
+    addressId: 0,
+    productUnitStatusId: 0
+  };
+  productDefinitions: ProductDefinition[] = [];
+  productUnits: ProductUnit[] = [];
   options: Option[] = [];
-  productUnit$ : Subscription = new Subscription();
-  productDefinition$ : Subscription = new Subscription();
-  option$ : Subscription = new Subscription();
+  productUnit$: Subscription = new Subscription();
+  productDefinition$: Subscription = new Subscription();
+  option$: Subscription = new Subscription();
   isLoading = true;
-  errorMessage: string=''
+  errorMessage: string = '';
 
-  constructor(private router: Router, private pruductUnitService: ProductUnitService, 
-    private optionService: OptionService, private productDefinitionService: ProductDefinitionService) { }
+  constructor(
+    private router: Router,
+    private pruductUnitService: ProductUnitService,
+    private optionService: OptionService,
+    private productDefinitionService: ProductDefinitionService
+  ) {}
 
   ngOnInit(): void {
     this.getProductUnits();
     console.log(this.isLoading);
   }
-  getProductUnits(){
-    this.productUnit$= this.pruductUnitService.getProductUnits().subscribe(result => {
-      this.productUnits = result;
-      this.isLoading = false;
-      console.log("alle productUnits ", this.productUnits)
-    });
+  getProductUnits() {
+    this.productUnit$ = this.pruductUnitService
+      .getProductUnits()
+      .subscribe(result => {
+        this.productUnits = result;
+        this.isLoading = false;
+        console.log('alle productUnits ', this.productUnits);
+      });
   }
   edit(id: number) {
     //Navigate to form in edit mode
-    this.router.navigate(['productUnit/edit'], { state: { id: id, mode: 'edit' } });
+    this.router.navigate(['productUnit/edit'], {
+      state: { id: id, mode: 'edit' }
+    });
   }
-  add(){
-    this.router.navigate(['productUnit/edit'], { state: {mode: 'add'}});
+  add() {
+    this.router.navigate(['productUnit/edit'], { state: { mode: 'add' } });
   }
-
 }

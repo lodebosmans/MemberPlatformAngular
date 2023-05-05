@@ -8,10 +8,9 @@ import { OptionType } from './option-type';
   providedIn: 'root'
 })
 export class OptionTypeService {
-  api_url = environment.apiUrl + "OptionType/";
+  api_url = environment.apiUrl + 'OptionType/';
 
-  constructor(private httpClient: HttpClient) { 
-  }
+  constructor(private httpClient: HttpClient) {}
   getOptionTypes(): Observable<OptionType[]> {
     return this.httpClient.get<OptionType[]>(this.api_url);
   }
