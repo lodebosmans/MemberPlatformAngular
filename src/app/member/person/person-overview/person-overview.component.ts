@@ -61,16 +61,12 @@ export class PersonOverviewComponent implements OnInit {
     this.authService.user$.subscribe((user: User | undefined | null) => {
       // debugger
       this.emailAddress = user?.email;
-
       this.getPerson();
-
     });
   }
 
   getPerson() {
-
     // debugger
-    // let personId = this.personService.getPersonByEmailAddress(this.emailAddress);
     this.person$ = this.personService.getPersonById(this.id).subscribe(result => {
       this.person = result;
       this.isLoading = false;

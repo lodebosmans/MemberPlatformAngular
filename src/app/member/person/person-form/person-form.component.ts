@@ -29,8 +29,8 @@ export class PersonFormComponent implements OnInit {
   // Initialize person object
   person: Person = {
     id: 0,
-    firstName: "",
-    lastName: "",
+    firstName: "     ",
+    lastName: "     ",
     gender: "",
     dateOfBirth: "",
     insuranceCompany: "",
@@ -80,10 +80,11 @@ export class PersonFormComponent implements OnInit {
     this.isEdit = this.router.getCurrentNavigation()?.extras.state?.['mode'] === 'edit';
     this.personId = +this.router.getCurrentNavigation()?.extras.state?.['id'];
     this.parentId = +this.router.getCurrentNavigation()?.extras.state?.['parentId'];
-    this.firstName = this.router.getCurrentNavigation()?.extras.state?.['firstName'];
-    this.lastName = this.router.getCurrentNavigation()?.extras.state?.['lastName'];
-    this.emailAddress = this.router.getCurrentNavigation()?.extras.state?.['emailAddress'];
+    this.firstName = this.router.getCurrentNavigation()?.extras.state?.['firstName'] ?? '';
+    this.lastName = this.router.getCurrentNavigation()?.extras.state?.['lastName'] ?? '';
+    this.emailAddress = this.router.getCurrentNavigation()?.extras.state?.['emailAddress'] ?? '';
 
+    debugger
     console.log('in constructor: ' + this.personId)
     // debugger
     if (this.personId != null && this.personId > 0) {
@@ -168,7 +169,8 @@ export class PersonFormComponent implements OnInit {
         console.log('Plotten variable:')
         console.log(this.personForm.value)
         debugger
-        this.router.navigateByUrl("profile");
+        this.router.navigateByUrl("mymembers");
+        // this.router.navigate(['mymembers/'], { state: { emailAddressEncoded: this.emailAddressEncoded, mode: 'show' } });
       },
         error => {
           this.errorMessage = error.message;
