@@ -13,6 +13,7 @@ import { ProductDefinitionService } from 'src/app/product-definition/product-def
 import { SubscriptionService } from '../subscription.service';
 import { SubscriptionDTO } from '../subscriptionDTO';
 
+
 @Component({
   selector: 'app-subscription-overview',
   templateUrl: './subscription-overview.component.html',
@@ -55,6 +56,7 @@ export class SubscriptionOverviewComponent implements OnInit {
     for (let i = this.currentYear - 10; i <= this.currentYear + 1; i++) {
       this.years.push(i);
     }
+
   }
   getAuthCredentials(): Promise<void> {
     return new Promise<void>((resolve, reject) => {

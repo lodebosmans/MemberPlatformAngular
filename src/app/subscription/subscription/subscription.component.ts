@@ -12,7 +12,25 @@ import { ProductDefinitionService } from 'src/app/product-definition/product-def
 
 @Component({
   selector: 'app-subscription',
-  templateUrl: './subscription.component.html',
+  template: `<p>subscription works!</p>
+  <div>
+    <table
+      class="table"
+      *ngIf="productDefinitions && productDefinitions.length > 0"
+    >
+      <tbody>
+        <tr *ngFor="let p of productDefinitions">
+          <th scope="row">{{ p.id }}</th>
+          <td>{{ p.name }}</td>
+          <td>
+            <button type="button" class="btn knop" (click)="subscribe(p.id)">
+              Inschrijven
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>`,
   styleUrls: ['./subscription.component.scss']
 })
 export class SubscriptionComponent implements OnInit {
@@ -42,6 +60,7 @@ export class SubscriptionComponent implements OnInit {
     this.getProductDefinitions();
     console.log(this.isLoading);
     this.getAuthCredentials();
+    
   }
   getAuthCredentials() {
     this.authService.user$.subscribe((user: User | undefined | null) => {
