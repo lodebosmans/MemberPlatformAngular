@@ -1,10 +1,11 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators, ValidatorFn, AsyncValidatorFn } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription, delay, of } from 'rxjs';
 import { Person } from '../person';
 import { PersonService } from '../person.service';
+import { RoleService } from 'src/app/role.service';
 
 @Component({
   selector: 'app-person-form',
@@ -62,7 +63,7 @@ export class PersonFormComponent implements OnInit {
     insuranceCompany: new FormControl<string>('', { nonNullable: true }),
     mobilePhone: new FormControl<string>('', { nonNullable: true }),
     emailAddress: new FormControl<string>({ value: '', disabled: true }, { nonNullable: true }),
-    identityNumber: new FormControl<string>('', { nonNullable: true }),
+    identityNumber: new FormControl<string>('', { nonNullable: true}),
     privacyApproval: new FormControl<boolean>(true, { nonNullable: true }),
     street: new FormControl<string>('', { nonNullable: true }),
     number: new FormControl<string>('', { nonNullable: true }),
@@ -77,7 +78,7 @@ export class PersonFormComponent implements OnInit {
 
 
 
-  constructor(private router: Router, private personService: PersonService) {
+  constructor(private router: Router, private personService: PersonService, private roleService: RoleService) {
     this.isAdd = this.router.getCurrentNavigation()?.extras.state?.['mode'] === 'add';
     this.isEdit = this.router.getCurrentNavigation()?.extras.state?.['mode'] === 'edit';
     this.personId = +this.router.getCurrentNavigation()?.extras.state?.['id'];
@@ -170,11 +171,11 @@ export class PersonFormComponent implements OnInit {
       console.log(this.personForm.value)
       debugger
       this.postPerson$ = this.personService.postPerson(this.personForm.getRawValue()).subscribe(result => {
-        console.log('Plotten variable:')
-        console.log(this.personForm.value)
         debugger
+        if (this.roleService.isRegistered != true) {
+          this.roleService.isRegistered = true;
+        }
         this.router.navigateByUrl("mymembers");
-        // this.router.navigate(['mymembers/'], { state: { emailAddressEncoded: this.emailAddressEncoded, mode: 'show' } });
       },
         error => {
           this.errorMessage = error.message;
@@ -189,12 +190,12 @@ export class PersonFormComponent implements OnInit {
       debugger
       this.putPerson$ = this.personService.putPerson(this.personId, this.personForm.getRawValue()).subscribe(result => {
         //all went well
-        this.router.navigateByUrl("/profile");
+        this.router.navigateByUrl("/mymembers");
       },
         error => {
           this.errorMessage = error.message;
         });
     }
   }
-
 }
+

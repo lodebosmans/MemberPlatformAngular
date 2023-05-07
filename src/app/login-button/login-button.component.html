@@ -10,12 +10,26 @@
         Log out
     </button> -->
 
-    <button (click)="auth.logout({ logoutParams: { returnTo: document.location.origin } })" mat-button class="menu-button">
+    <button (click)="auth.logout({ logoutParams: { returnTo: document.location.origin } })" mat-button
+        class="menu-button">
         <mat-icon>exit_to_app</mat-icon>
         <span>Log out</span>
-      </button>
+    </button>
 </ng-container>
 
 <ng-template #loggedOut>
-    <button (click)="auth.loginWithRedirect()" class="btn btn-light">Log in</button>
+    <div class="background">
+        <div class="row spacer"></div>
+        <div class="row">
+            <div class="container text-center col-10 col-sm-8 col-md-6 col-lg-4 focus">
+                <img src="../../assets/Westfit logo.png" alt="Westfit logo" class="img-fluid">
+                <div class="mt-5">
+                    <h2>Welkom op het WestFit ledenplatform!</h2>
+                </div>
+                <div>
+                    <button (click)="auth.loginWithRedirect()" class="btn btn-primary">Inloggen</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </ng-template>
