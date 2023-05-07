@@ -1,7 +1,6 @@
-<!-- <div *ngIf="!isSignedIn"> -->
+
 <div *ngIf="!(authService.isAuthenticated$ | async)">
-  <p>test</p>
-  <!-- <app-signin></app-signin> -->
+
   <app-login-button></app-login-button>
 </div>
 

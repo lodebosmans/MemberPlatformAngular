@@ -55,7 +55,6 @@ export class PersonOverviewComponent implements OnInit {
 
   ngOnDestroy(): void {
     this.person$.unsubscribe();
-    // this.deletePriceListCategory$.unsubscribe();
   }
 
   getAuthCredentials() {

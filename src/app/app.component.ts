@@ -7,6 +7,7 @@ import { Observable, of } from 'rxjs';
 import { PersonService } from './member/person/person.service';
 import { Person } from './member/person/person';
 import { Router } from '@angular/router';
+import { RoleService } from './role.service';
 
 @Component({
   selector: 'app-root',
@@ -27,45 +28,43 @@ export class AppComponent {
   lastName: string | undefined = '';
   mymembers: Person[] = [];
 
-  isRegistered: boolean = true;
-  // isTrainer: boolean = false;
-  // isAdmin: boolean = false;
+  public get isRegistered() {
+    return this.roleService.isRegistered;
+  }
+  public get isTrainer() {
+    return this.roleService.isTrainer;
+  }
+  public get isAdmin() {
+    return this.roleService.isAdmin;
+  }
 
   constructor(
     private observer: BreakpointObserver,
     public authService: AuthService,
     private personService: PersonService,
-    private router: Router
+    private router: Router,
+    private roleService: RoleService,
   ) {
     // Get the email address of the authenticated user
     // debugger
     this.authService.user$.subscribe((user: User | undefined | null) => {
       // debugger
       this.emailAddress = user?.email;
-      this.emailAddressEncoded = this.emailAddress
-        ? encodeURIComponent(this.emailAddress)
-        : '';
+      this.emailAddressEncoded = this.emailAddress ? encodeURIComponent(this.emailAddress) : '';
       this.firstName = user?.given_name;
       this.lastName = user?.family_name;
       // debugger
 
       // Check if the person is registered or not
-
-      personService
-        .getPersonByEmailAddress(this.emailAddressEncoded)
-        .subscribe((mymembers: Person[] | null) => {
+      personService.getPersonByEmailAddress(this.emailAddressEncoded).subscribe((mymembers: Person[] | null) => {
           console.log('Repons op email addres in db:');
           console.log(mymembers);
           // debugger
           if (mymembers != null) {
             this.mymembers = mymembers;
-            this.isRegistered = true;
             // debugger
-            // this.router.navigate(['mymembers/'], { state: { emailAddressEncoded: this.emailAddressEncoded, mode: 'show' } });
             this.navigateToMyMembers();
           } else {
-            this.isRegistered = false;
-            // this.router.navigate(['register/']);
             // debugger
             this.router.navigate(['register/'], {
               state: {
@@ -81,6 +80,7 @@ export class AppComponent {
   }
 
   navigateToMyMembers() {
+    this.roleService.isRegistered = true;
     this.router.navigate(['mymembers/']);
   }
 

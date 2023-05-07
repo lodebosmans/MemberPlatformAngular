@@ -1,0 +1,21 @@
+.focus {
+    // border: 1px solid black;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    // opacity: 0.9;
+}
+
+
+.background {
+    background: url('../../assets/CyclingWestFit_2.jpg') no-repeat center center fixed;
+    background-size: cover;
+    height: 100vh;
+}
+
+div.spacer {
+    padding-top: 5rem;
+}
+
+.focus button.btn {
+    opacity: 1.0;
+}

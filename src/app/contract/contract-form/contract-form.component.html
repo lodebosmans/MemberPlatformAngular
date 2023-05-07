@@ -2,8 +2,8 @@
     <div class="alert alert-danger" role="alert" *ngIf="isSubmitted && errorMessage">
         {{errorMessage}}
     </div>
-    <p *ngIf="isAdd">Voeg een nieuwe option toe.</p>
-    <p *ngIf="isEdit">Pas de gegevens van een option aan.</p>
+    <p *ngIf="isAdd">Voeg een nieuw contract toe.</p>
+    <p *ngIf="isEdit">Pas de gegevens van een contract aan.</p>
     <form (ngSubmit)="onSubmit()" [formGroup]="contractForm">
         <div>
             <mat-form-field>

@@ -11,6 +11,7 @@
 .mat-drawer-inner-container::-webkit-scrollbar {
     display: none;
 }
+
 .knop {
     background-color: coral;
     color: black;
@@ -31,3 +32,90 @@
 button {
     text-align: left !important;
 }
+
+div.form-group {
+    margin-top: 1rem;
+}
+
+h2 {
+    margin-top: 2rem !important;
+}
+
+
+// -------
+// BUTTONS
+// -------
+
+.btn-primary,
+.btn-secondary {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    margin-right: 0.5rem;
+}
+
+// Primary is the save/update button
+.btn-primary,
+.btn-primary:active,
+.btn-primary:visited,
+.btn-primary:focus {
+    background-color: $primary_red;
+    border-color: $primary_red;
+}
+
+.btn-primary:hover {
+    background-color: white;
+    border-color: $primary_red;
+    color: $primary_red;
+}
+
+.btn-primary:disabled {
+    background-color: $primary_red;
+    border-color: $primary_red;
+    opacity: 0.5;
+}
+
+// Secundary is the cancel button
+.btn-secondary,
+.btn-secondary:active,
+.btn-secondary:visited,
+.btn-secondary:focus {
+    background-color: grey;
+    border-color: grey;
+}
+
+.btn-secondary:hover {
+    background-color: white;
+    border-color: grey;
+    color: grey;
+}
+
+// IF an input field is invalid, highlight the border in red.
+input:invalid {
+    border-color: $primary_red !important;
+}
+
+// If an input field is selected, make it more visible.
+.form-group input:focus,
+.form-group select:focus {
+    border-color: grey;
+    box-shadow: 0 1px 1px grey inset, 0 0 8px grey;
+    outline: 0 none;
+}
+
+// Change the color of select text
+::-moz-selection {
+    /* Code for Firefox */
+    color: white;
+    background: $primary_red;
+}
+
+::selection {
+    color: white;
+    background: $primary_red;
+}
+
+option:hover {
+    background-color: $primary_red !important;
+}
+
+
