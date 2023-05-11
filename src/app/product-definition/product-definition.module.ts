@@ -4,6 +4,7 @@ import { ProductDefinitionComponent } from './product-definition/product-definit
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductDefinitionFormComponent } from './product-definition-form/product-definition-form.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -16,6 +17,7 @@ import { ProductDefinitionFormComponent } from './product-definition-form/produc
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    RouterModule
 
   ],
   providers: [DatePipe]

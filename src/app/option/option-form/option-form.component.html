@@ -31,14 +31,13 @@
         required
         class="form-select"
         aria-label="Default select example"
-      >
-        <option
+      > 
+          <option
           *ngFor="let type of optionTypes"
           [ngValue]="type.id"
           [selected]="type.id === option.optionTypeId"
-          >{{ type.name }}</option
-        >
-      </select>
+          >{{ type.name }}</option>
+      </select> 
     </div>
     <button
       type="submit"
@@ -56,6 +55,6 @@
     >
       Save
     </button>
-    <a class="btn btn-danger ml-1" routerLink="/option">Cancel</a>
+    <a class="btn btn-secondary ml-1" routerLink="/option/">Annuleren</a>
   </form>
 </div>

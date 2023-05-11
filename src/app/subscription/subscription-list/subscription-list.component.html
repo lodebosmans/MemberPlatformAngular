@@ -1,0 +1,29 @@
+<div>
+    <table
+      class="table">
+      <tbody>
+        <tr *ngFor="let s of subscriptions | async">
+          <th scope="row">{{s.contractDate | date: "dd-MM-yyyy"}}</th>
+          <td>{{ s.name }}</td>
+          <td>{{s.firstName}} {{s.lastName}}</td>
+          <td>{{s.status}}</td>
+          <td>
+            <select>
+              <ng-container *ngFor="let p of s.priceAgreements">
+                <ng-container *ngIf="options | async as optionList">
+                  <option [ngValue]="p.priceAgreementStatusId">
+                      {{ p.priceAgreementStatusId | optionName: optionList }}
+                  </option>
+                </ng-container>
+              </ng-container>
+              </select>
+          </td>
+          <td>
+            <button type="button" class="btn knop" (click)="update(s.priceAgreementId)">
+              Update
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

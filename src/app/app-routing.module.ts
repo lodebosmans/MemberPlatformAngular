@@ -18,6 +18,7 @@ import { PriceAgreementComponent } from './price-agreement/price-agreement/price
 import { PriceAgreementFormComponent } from './price-agreement/price-agreement-form/price-agreement-form.component';
 import { SubscriptionOverviewComponent } from './subscription/subscription-overview/subscription-overview.component';
 import { MymembersComponent } from './member/mymembers/mymembers.component';
+import { SubscriptionListComponent } from './subscription/subscription-list/subscription-list.component';
 
 const routes: Routes = [
   { path: 'register', component: PersonFormComponent },
@@ -39,7 +40,8 @@ const routes: Routes = [
   { path: 'contract/edit', component: ContractFormComponent },
   { path: 'subscription', component: SubscriptionComponent },
   { path: 'subscription/subscribe', component: SubscriptionFormComponent },
-  { path: 'subscription/overview', component: SubscriptionOverviewComponent }
+  { path: 'subscription/overview', component: SubscriptionOverviewComponent },
+  { path: 'subscriptionList', component: SubscriptionListComponent}
 ];
 
 @NgModule({

@@ -135,6 +135,11 @@ export class ProductDefinitionFormComponent implements OnInit {
       this.getProductDefinitionById();
     }
   }
+  ngOnDestroy(): void {
+    this.productDefinition$.unsubscribe();
+    this.putProductDefinition$.unsubscribe();
+    this.postProductDefinition$.unsubscribe();
+  }
   getProductDefinitionById() {
     this.productDefinition$ = this.productDefinitionService
       .getProductDefinitionById(this.productDefinitionId)
