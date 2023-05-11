@@ -32,6 +32,7 @@ export class ProductDefinitionService {
     id: number,
     productDefinition: ProductDefinition
   ): Observable<ProductDefinition> {
+    debugger
     return this.httpClient.put<ProductDefinition>(
       this.api_url + id,
       productDefinition
