@@ -1,21 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Contract } from 'src/app/contract/contract';
-import { ContractService } from 'src/app/contract/contract.service';
-import { Option } from 'src/app/option/option';
-import { OptionService } from 'src/app/option/option.service';
 import { ProductDefinitionService } from 'src/app/product-definition/product-definition.service';
 import { SubscriptionService } from '../subscription.service';
 
 import {
-  Form,
   FormBuilder,
   FormControl,
   FormGroup,
   Validators
 } from '@angular/forms';
-import { SubscriptionDTO } from '../subscriptionDTO';
 import { AuthService, User } from '@auth0/auth0-angular';
 import { Person } from 'src/app/member/person/person';
 import { PersonService } from 'src/app/member/person/person.service';
@@ -121,5 +115,10 @@ export class SubscriptionFormComponent implements OnInit {
     this.productDefinition$ = this.productDefinitionService
       .getProductDefinitionById(this.productDefinitionId)
       .subscribe(result => (this.productDefinition = result));
+  }
+  ngOnDestroy():void{
+    this.person$.unsubscribe();
+    this.productDefinition$.unsubscribe();
+    this.postSubscription$.unsubscribe();
   }
 }

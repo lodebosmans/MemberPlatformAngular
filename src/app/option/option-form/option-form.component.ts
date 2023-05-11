@@ -75,6 +75,7 @@ export class OptionFormComponent implements OnInit {
     if (this.isEdit) {
       this.getOptionById();
     }
+
   }
 
   ngOnDestroy(): void {

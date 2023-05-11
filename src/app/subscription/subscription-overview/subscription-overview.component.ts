@@ -1,15 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { AuthService, User } from '@auth0/auth0-angular';
 import { Subscription } from 'rxjs';
-import { Contract } from 'src/app/contract/contract';
-import { ContractService } from 'src/app/contract/contract.service';
 import { Person } from 'src/app/member/person/person';
 import { PersonService } from 'src/app/member/person/person.service';
-import { ProductAgreement } from 'src/app/product-agreement/product-agreement';
-import { ProductAgreementService } from 'src/app/product-agreement/product-agreement.service';
-import { ProductDefinition } from 'src/app/product-definition/product-definition';
-import { ProductDefinitionService } from 'src/app/product-definition/product-definition.service';
 import { SubscriptionService } from '../subscription.service';
 import { SubscriptionDTO } from '../subscriptionDTO';
 
@@ -20,14 +13,6 @@ import { SubscriptionDTO } from '../subscriptionDTO';
   styleUrls: ['./subscription-overview.component.scss']
 })
 export class SubscriptionOverviewComponent implements OnInit {
-  productDefinitions: ProductDefinition[] = [];
-  contracts: Contract[] = [];
-  productAgreements: ProductAgreement[] = [];
-  contract$: Subscription = new Subscription();
-  productAgreement$: Subscription = new Subscription();
-  productDefinition$: Subscription = new Subscription();
-  postProductAgreement$: Subscription = new Subscription();
-  PostContract$: Subscription = new Subscription();
   subscriptionDTOs: SubscriptionDTO[] = [];
   subscriptionDTO$: Subscription = new Subscription();
   isLoading = true;
@@ -42,8 +27,6 @@ export class SubscriptionOverviewComponent implements OnInit {
   public selectedYear: number = 2023;
 
   constructor(
-    private productDefinitionService: ProductDefinitionService,
-    private router: Router,
     private subscriptionService: SubscriptionService,
     private personService: PersonService,
     private authService: AuthService
@@ -56,7 +39,10 @@ export class SubscriptionOverviewComponent implements OnInit {
     for (let i = this.currentYear - 10; i <= this.currentYear + 1; i++) {
       this.years.push(i);
     }
-
+  }
+  ngOnDestroy():void{
+    this.person$.unsubscribe();
+    this.subscriptionDTO$.unsubscribe();
   }
   getAuthCredentials(): Promise<void> {
     return new Promise<void>((resolve, reject) => {
@@ -89,4 +75,5 @@ export class SubscriptionOverviewComponent implements OnInit {
   back() {
     this.isDetail = false;
   }
+  
 }

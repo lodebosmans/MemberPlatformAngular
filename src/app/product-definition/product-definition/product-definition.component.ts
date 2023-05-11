@@ -46,6 +46,9 @@ export class ProductDefinitionComponent implements OnInit {
     this.getProductDefinitions();
     console.log(this.isLoading);
   }
+  ngOnDestroy(): void {
+    this.productDefinition$.unsubscribe();
+  }
 
   getProductDefinitions() {
     this.productDefinition$ = this.productDefinitionService
