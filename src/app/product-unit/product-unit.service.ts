@@ -28,6 +28,7 @@ export class ProductUnitService {
     id: number,
     productUnit: ProductUnit
   ): Observable<ProductUnit> {
+    debugger
     return this.httpClient.put<ProductUnit>(this.api_url + id, productUnit);
   }
 
