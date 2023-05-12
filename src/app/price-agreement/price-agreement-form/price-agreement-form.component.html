@@ -41,16 +41,24 @@
               formControlName="discountAmount"
             />
           </div>
+ 
           <div class="form-group">
-            <label for="priceAgreementStatusId">statusId</label>
-            <input
-              type="number"
-              class="form-control"
+            <label for="priceAgreementStatusId">Status:</label>
+            <select
               id="priceAgreementStatusId"
               name="priceAgreementStatusId"
-              placeholder="priceAgreementStatusId"
               formControlName="priceAgreementStatusId"
-            />
+              required
+              class="form-select"
+              aria-label="Default select example"
+            >
+              <option
+                *ngFor="let type of optionsByStatus | async"
+                [ngValue]="type.id"
+                [selected]="type.id === priceAgreementId"
+                >{{ type.name }}</option
+              >
+            </select>
           </div>
           <div class="form-group">
             <label for="contractId">contractId</label>
@@ -71,5 +79,5 @@
         >
           Save
         </button>
-
+        <a class="btn btn-secondary ml-1" routerLink="/subscriptionList/">Annuleren</a>
     </form>

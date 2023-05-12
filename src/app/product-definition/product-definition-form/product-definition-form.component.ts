@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductDefinition } from '../product-definition';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ProductDefinitionService } from '../product-definition.service';
@@ -42,9 +42,10 @@ export class ProductDefinitionFormComponent implements OnInit {
   productDefinition$: Subscription = new Subscription();
   putProductDefinition$: Subscription = new Subscription();
   postProductDefinition$: Subscription = new Subscription();
-  option$: Subscription = new Subscription();
-  options: Option[] = [];
   productDefinitions: ProductDefinition[] = [];
+  optionsByStatus?: Observable<Option[]> | any  = this.optionService.getOptionsByTypeAsync("Status");
+  optionsBySport?: Observable<Option[]> | any = this.optionService.getOptionsByTypeAsync("Sport");
+  optionsByFormat?: Observable<Option[]> | any = this.optionService.getOptionsByTypeAsync("Format");
 
   productDefinitionForm = new FormGroup({
     id: new FormControl<number>(0, { nonNullable: true }),
@@ -120,9 +121,7 @@ export class ProductDefinitionFormComponent implements OnInit {
           });
         });
     }
-    this.option$ = this.optionService.getOptions().subscribe(result => {
-      this.options = result;
-    });
+
     this.productDefinition$ = this.productDefinitionService
       .getProductDefinitions()
       .subscribe(result => {

@@ -172,7 +172,7 @@
         aria-label="Default select example"
       >
         <option
-          *ngFor="let type of options"
+          *ngFor="let type of optionsByStatus | async"
           [ngValue]="type.id"
           [selected]="type.id === productDefinition.productDefinitionStatusId"
           >{{ type.name }}</option
@@ -190,7 +190,7 @@
         aria-label="Default select example"
       >
         <option
-          *ngFor="let type of options"
+          *ngFor="let type of optionsBySport | async"
           [ngValue]="type.id"
           [selected]="type.id === productDefinition.productDefinitionSportId"
           >{{ type.name }}</option
@@ -208,7 +208,7 @@
         aria-label="Default select example"
       >
         <option
-          *ngFor="let type of options"
+          *ngFor="let type of optionsByFormat | async"
           [ngValue]="type.id"
           [selected]="type.id === productDefinition.productDefinitionFormatId"
           >{{ type.name }}</option

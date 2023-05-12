@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
 export class SubscriptionListComponent implements OnInit {
   subscriptions? : Observable<SubscriptionDTO[]> = this.subscriptionService.getSubscriptionsAsync();
   options? : Observable<Option[]>;
- 
+  searchText: string = '';
   isLoading = true;
   
 

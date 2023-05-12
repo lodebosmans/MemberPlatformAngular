@@ -5,6 +5,8 @@ import { PriceAgreementService } from '../price-agreement.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
+import { Option } from 'src/app/option/option';
+import { OptionService } from 'src/app/option/option.service';
 
 @Component({
   selector: 'app-price-agreement-form',
@@ -31,6 +33,7 @@ export class PriceAgreementFormComponent implements OnInit {
   };
   priceAgreement$?: Observable<PriceAgreement>;
   postPriceAgreement?: Observable<PriceAgreement>;
+  optionsByStatus?: Observable<Option[]> | any;
 
   priceAgreementForm = new FormGroup({
     id: new FormControl<number>(0,{nonNullable:true}),
@@ -47,7 +50,7 @@ export class PriceAgreementFormComponent implements OnInit {
   })
 
   constructor(private priceAgreementService: PriceAgreementService, private router: Router,
-    private datePipe: DatePipe) {
+    private datePipe: DatePipe, private optionService: OptionService) {
     this.isEdit =
     this.router.getCurrentNavigation()?.extras.state?.['mode'] === 'edit';
     this.priceAgreementId = +this.router.getCurrentNavigation()?.extras
@@ -61,7 +64,7 @@ export class PriceAgreementFormComponent implements OnInit {
         this.priceAgreementForm.setValue({
           id: 0,
           priceAgreementStatusId: priceAgreement.priceAgreementStatusId,
-          paymentDate: this.datePipe.transform( priceAgreement.paymentDate, 'yyyy-MM-dd') ?? '',
+          paymentDate: this.datePipe.transform( priceAgreement.paymentDate, 'yyyy-MM-dd') ?? null,
           priceBillable: priceAgreement.priceBillable,
           approverId: priceAgreement.approverId,
           contractId: priceAgreement.contractId,
@@ -72,17 +75,19 @@ export class PriceAgreementFormComponent implements OnInit {
         });
       });
     }
+    this.optionsByStatus = this.optionService.getOptionsByTypeAsync("Status");
    }
 
   ngOnInit(): void {
     if (this.isEdit) {
-      this.getPriceAgreementById();
+      this.getPriceAgreementById();   
     }
   }
 
   getPriceAgreementById(){
     this.priceAgreement$ = this.priceAgreementService.getPriceAgreementById(this.priceAgreementId);
   }
+ 
 
   onSubmit(){
     this.isSubmitted = true;
@@ -91,6 +96,7 @@ export class PriceAgreementFormComponent implements OnInit {
       (result) => {
         // handle success
         console.log(result);
+        this.router.navigateByUrl('/subscriptionList');
       },
       (error) => {
         // handle error
