@@ -1,11 +1,14 @@
 <div>
+  <input type="text" [(ngModel)]="searchText" placeholder="Search">
+
     <table
       class="table">
       <tbody>
-        <tr *ngFor="let s of subscriptions | async">
+        <tr *ngFor="let s of (subscriptions | async) ?? []  | filter: searchText">
           <th scope="row">{{s.contractDate | date: "dd-MM-yyyy"}}</th>
           <td>{{ s.name }}</td>
-          <td>{{s.firstName}} {{s.lastName}}</td>
+          <td>{{s.firstName}}</td>
+          <td>{{s.lastName}}</td>
           <td>{{s.status}}</td>
           <td>
             <select>

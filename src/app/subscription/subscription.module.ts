@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SubscriptionOverviewComponent } from './subscription-overview/subscription-overview.component';
 import { SubscriptionListComponent } from './subscription-list/subscription-list.component';
 import { OptionNamePipe } from './name.pipe';
+import { FilterPipe } from './filter.pipe';
 
 
 
@@ -17,6 +18,8 @@ import { OptionNamePipe } from './name.pipe';
     SubscriptionOverviewComponent,
     SubscriptionListComponent,
     OptionNamePipe,
+    FilterPipe
+    
   
  
   
