@@ -7,6 +7,9 @@ import { SubscriptionOverviewComponent } from './subscription-overview/subscript
 import { SubscriptionListComponent } from './subscription-list/subscription-list.component';
 import { OptionNamePipe } from './name.pipe';
 import { FilterPipe } from './filter.pipe';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatButton, MatButtonModule } from '@angular/material/button';
+
 
 
 
@@ -18,7 +21,9 @@ import { FilterPipe } from './filter.pipe';
     SubscriptionOverviewComponent,
     SubscriptionListComponent,
     OptionNamePipe,
-    FilterPipe
+    FilterPipe,
+    MatExpansionModule,
+    MatButtonModule
     
   
  
