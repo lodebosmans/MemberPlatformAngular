@@ -23,8 +23,8 @@ export class ContractFormComponent implements OnInit {
   contract: Contract ={
     id:0,
     contractDate:"",
-    // startDate:"",
-    // endDate:"",
+    startDate:"",
+    endDate:"",
     contractTypeId:0
   }
   contract$ : Subscription = new Subscription();
@@ -37,8 +37,8 @@ export class ContractFormComponent implements OnInit {
   contractForm = new FormGroup({
     id: new FormControl<number>(0, { nonNullable: true }),
     contractDate: new FormControl<string>("",{ nonNullable: true}),
-    // startDate: new FormControl<string>("",{ nonNullable: true}),
-    // endDate: new FormControl<string>("",{ nonNullable: true}),
+    startDate: new FormControl<string>("",{ nonNullable: true}),
+    endDate: new FormControl<string>("",{ nonNullable: true}),
     contractTypeId: new FormControl<number>(0, { nonNullable: true }),
   })
 
@@ -53,8 +53,8 @@ export class ContractFormComponent implements OnInit {
           this.contractForm.setValue({
           id: result.id,
           contractDate: result.contractDate,
-          // startDate: result.startDate,
-          // endDate: result.endDate,
+          startDate: result.startDate,
+          endDate: result.endDate,
           contractTypeId: result.contractTypeId
         });
         });

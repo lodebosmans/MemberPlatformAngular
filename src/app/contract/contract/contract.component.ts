@@ -14,8 +14,8 @@ export class ContractComponent implements OnInit {
 
   contract: Contract = {
     id:0,
-    // startDate:"",
-    // endDate:"",
+    startDate:"",
+    endDate:"",
     contractDate:"",
     contractTypeId:0
   };
