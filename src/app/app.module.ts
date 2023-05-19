@@ -30,6 +30,7 @@ import { AuthModule } from '@auth0/auth0-angular';
 import { LoginButtonModule } from './login-button/login-button.module';
 import { PriceAgreementModule } from './price-agreement/price-agreement.module';
 import { MymembersComponent } from './member/mymembers/mymembers.component';
+// import { InvolvementRoleFormComponent } from './involvement-role/involvement-role-form/involvement-role-form.component';
 
 
 
@@ -40,7 +41,8 @@ import { MymembersComponent } from './member/mymembers/mymembers.component';
     PersonFormComponent,
     SignInComponent,
     SignoutComponent,
-    MymembersComponent
+    MymembersComponent,
+    // InvolvementRoleFormComponent
     // PersonOverviewComponent
   ],
   imports: [

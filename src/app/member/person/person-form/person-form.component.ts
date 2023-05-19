@@ -78,7 +78,11 @@ export class PersonFormComponent implements OnInit {
 
 
 
-  constructor(private router: Router, private personService: PersonService, private roleService: RoleService) {
+  constructor(
+    private router: Router, 
+    private personService: PersonService, 
+    private roleService: RoleService,
+    private datePipe: DatePipe) {
     this.isAdd = this.router.getCurrentNavigation()?.extras.state?.['mode'] === 'add';
     this.isEdit = this.router.getCurrentNavigation()?.extras.state?.['mode'] === 'edit';
     this.personId = +this.router.getCurrentNavigation()?.extras.state?.['id'];
@@ -94,9 +98,7 @@ export class PersonFormComponent implements OnInit {
       this.person$ = this.personService.getPersonById(this.personId).subscribe(result => {
         // If the person exist, add the data to the form.
         console.log(result);
-        const tempDateTime = new Date(result.dateOfBirth);
-        const tempUtcDate = new Date(Date.UTC(tempDateTime.getFullYear(), tempDateTime.getMonth(), tempDateTime.getDate()));
-        const tempDateOnly = tempUtcDate.toISOString().slice(0, 10);
+        const tempDateOnly = this.datePipe.transform(result.dateOfBirth, 'yyyy-MM-dd') ?? ''
         console.log('Dit is de datum: ')
         console.log(tempDateOnly)
 

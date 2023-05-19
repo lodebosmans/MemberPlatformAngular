@@ -1,0 +1,173 @@
+// import { Component, OnInit } from '@angular/core';
+// import { InvolvementRole } from '../involvement-role';
+// import { FormControl, FormGroup } from '@angular/forms';
+// import { Router } from '@angular/router';
+// import { DatePipe } from '@angular/common';
+// import { Subscription } from 'rxjs';
+// import { PersonService } from 'src/app/member/person/person.service';
+// import { RoleService } from 'src/app/role.service';
+
+// @Component({
+//   selector: 'app-involvement-role-form',
+//   templateUrl: './involvement-role-form.component.html',
+//   styleUrls: ['./involvement-role-form.component.scss']
+// })
+// export class InvolvementRoleFormComponent implements OnInit {
+
+
+//   isAdd: boolean = false;
+//   isEdit: boolean = false;
+//   personId: number = 0;
+//   addressType: string = "Residential";
+//   emailAddress: string = '';
+
+//   isSubmitted: boolean = false;
+//   errorMessage: string = '';
+//   nameChangeMessage: string = '';
+
+//   // Initialize person object
+//   involvementRole: InvolvementRole = {
+//     id: 0,
+//     startDate: '',
+//     endDate: '',
+//     contractType: '',
+//     personId: 0,
+//   };
+//   person$: Subscription = new Subscription();
+//   postPerson$: Subscription = new Subscription();
+//   putPerson$: Subscription = new Subscription();
+
+//   // reactive form
+//   involvementRoleForm = new FormGroup({
+//     id: new FormControl<number>(0, { nonNullable: true })!,
+//     startDate: new FormControl<string>('', { nonNullable: true }),
+//     endDate: new FormControl<string>('', { nonNullable: true }),
+//     contractType: new FormControl<string>('', { nonNullable: true }),
+//     personId: new FormControl<number>(0, { nonNullable: true }),
+//   });
+
+
+
+//   constructor(
+//     private router: Router, 
+//     private personService: PersonService, 
+//     private roleService: RoleService,
+//     private datePipe: DatePipe) {
+//     this.isAdd = this.router.getCurrentNavigation()?.extras.state?.['mode'] === 'add';
+//     this.isEdit = this.router.getCurrentNavigation()?.extras.state?.['mode'] === 'edit';
+//     this.personId = +this.router.getCurrentNavigation()?.extras.state?.['id'];
+//     this.parentId = +this.router.getCurrentNavigation()?.extras.state?.['parentId'];
+//     this.firstName = this.router.getCurrentNavigation()?.extras.state?.['firstName'] ?? '';
+//     this.lastName = this.router.getCurrentNavigation()?.extras.state?.['lastName'] ?? '';
+//     this.emailAddress = this.router.getCurrentNavigation()?.extras.state?.['emailAddress'] ?? '';
+
+//     debugger
+//     console.log('in constructor: ' + this.personId)
+//     // debugger
+//     if (this.personId != null && this.personId > 0) {
+//       this.person$ = this.personService.getPersonById(this.personId).subscribe(result => {
+//         // If the person exist, add the data to the form.
+//         console.log(result);
+//         const tempDateOnly = this.datePipe.transform(result.dateOfBirth, 'yyyy-MM-dd') ?? ''
+//         console.log('Dit is de datum: ')
+//         console.log(tempDateOnly)
+
+//         this.personForm.setValue({
+//           id: result.id,
+//           firstName: result.firstName,
+//           lastName: result.lastName,
+//           gender: result.gender,
+//           dateOfBirth: tempDateOnly,
+//           mobilePhone: result.mobilePhone,
+//           emailAddress: result.emailAddress,
+//           identityNumber: result.identityNumber,
+//           insuranceCompany: result.insuranceCompany,
+//           privacyApproval: result.privacyApproval,
+//           street: result.street,
+//           number: result.number,
+//           box: result.box,
+//           postalCode: result.postalCode,
+//           city: result.city,
+//           country: result.country,
+//           addressId: result.addressId,
+//           addressType: this.addressType,
+//           parentId: result.parentId
+//         });
+//       });
+//     } else {
+//       // If the person does not exist, send the name and email address to the person form
+//       // debugger
+//       this.personForm.setValue({
+//         id: 0,
+//         firstName: this.firstName,
+//         lastName: this.lastName,
+//         gender: '',
+//         dateOfBirth: '',
+//         mobilePhone: '',
+//         emailAddress: this.emailAddress,
+//         identityNumber: '',
+//         insuranceCompany: '',
+//         privacyApproval: true,
+//         street: '',
+//         number: '',
+//         box: '',
+//         postalCode: '',
+//         city: '',
+//         country: '',
+//         addressId: 0,
+//         addressType: this.addressType,
+//         parentId: this.parentId
+//       });
+//     }
+//   }
+
+//   ngOnInit(): void {
+//     this.getPersonById()
+//   }
+
+//   ngOnDestroy(): void {
+//     this.person$.unsubscribe();
+//     this.postPerson$.unsubscribe();
+//     this.putPerson$.unsubscribe();
+//   }
+
+//   getPersonById() {
+//     this.person$ = this.personService.getPersonById(this.personId).subscribe(result => this.person = result);
+//   }
+
+//   onSubmit(): void {
+//     this.isSubmitted = true;
+
+//     if (this.isAdd) {
+//       console.log("In isAdd")
+//       console.log(this.personForm.value)
+//       debugger
+//       this.postPerson$ = this.personService.postPerson(this.personForm.getRawValue()).subscribe(result => {
+//         debugger
+//         if (this.roleService.isRegistered != true) {
+//           this.roleService.isRegistered = true;
+//         }
+//         this.router.navigateByUrl("mymembers");
+//       },
+//         error => {
+//           this.errorMessage = error.message;
+//         });
+//     }
+
+
+//     if (this.isEdit) {
+//       console.log("In isEdit")
+//       console.log(this.personId)
+//       console.log(this.personForm.value)
+//       debugger
+//       this.putPerson$ = this.personService.putPerson(this.personId, this.personForm.getRawValue()).subscribe(result => {
+//         //all went well
+//         this.router.navigateByUrl("/mymembers");
+//       },
+//         error => {
+//           this.errorMessage = error.message;
+//         });
+//     }
+//   }
+
+// }
