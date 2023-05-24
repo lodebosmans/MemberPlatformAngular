@@ -5,6 +5,7 @@ import { Person } from 'src/app/member/person/person';
 import { PersonService } from 'src/app/member/person/person.service';
 import { SubscriptionService } from '../subscription.service';
 import { SubscriptionDTO } from '../subscriptionDTO';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -25,11 +26,13 @@ export class SubscriptionOverviewComponent implements OnInit {
   public years: number[] = [];
   public currentYear: number = new Date().getFullYear();
   public selectedYear: number = 2023;
+  list: [] = [];
 
   constructor(
     private subscriptionService: SubscriptionService,
     private personService: PersonService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router : Router
   ) {}
 
   async ngOnInit(): Promise<void> {
@@ -39,6 +42,7 @@ export class SubscriptionOverviewComponent implements OnInit {
     for (let i = this.currentYear - 10; i <= this.currentYear + 1; i++) {
       this.years.push(i);
     }
+
   }
   ngOnDestroy():void{
     this.person$.unsubscribe();
@@ -62,18 +66,39 @@ export class SubscriptionOverviewComponent implements OnInit {
       .subscribe(result => {
         this.persons = result;
         console.log('r', this.persons);
+        this.getAllSubscriptions();
       });
   }
-  show(id: number, SelectedYear: number) {
-    this.isDetail = true;
-    this.subscriptionDTO$ = this.subscriptionService
-      .getAllById(id, SelectedYear)
-      .subscribe(result => {
-        this.subscriptionDTOs = result;
+ 
+  // show(id: number, SelectedYear: number) {
+  //   this.isDetail = true;
+  //   this.subscriptionDTO$ = this.subscriptionService
+  //     .getAllById(id, SelectedYear)
+  //     .subscribe(result => {
+  //       this.subscriptionDTOs = result;
+  //     });
+  // }
+  // back() {
+  //   this.isDetail = false;
+  // }
+  getAllSubscriptions() {
+      console.log('per', this.persons)
+      const allSubscriptions = [];
+      for (const person of this.persons) {
+        console.log('person', person)
+      this.subscriptionService.getAllById(person.id, this.selectedYear).subscribe(result => {
+        const subscriptions = result;
+        this.subscriptionDTOs.push(...subscriptions)
       });
+      console.log('subs', this.subscriptionDTOs)
+    }
   }
-  back() {
-    this.isDetail = false;
+  onYearChange(event: any) {
+    const selectElement = event.target as HTMLSelectElement;
+    const selectedYear = selectElement.value;
+    console.log('Selected year:', selectedYear);
+    this.router.navigateByUrl('subscription/overview');
+    this.getPerson();
+    this.subscriptionDTOs = [];
   }
-  
 }

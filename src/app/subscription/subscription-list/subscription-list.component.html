@@ -1,4 +1,4 @@
-<!-- <div>
+<div>
   <input type="text" [(ngModel)]="searchText" placeholder="Search">
 
     <table
@@ -29,7 +29,7 @@
         </tr>
       </tbody>
     </table>
-  </div> -->
+  </div>
   <!-- <div>
     <input type="text" [(ngModel)]="searchText" placeholder="Search">
   
@@ -64,34 +64,5 @@
     </table>
   </div>
    -->
-   <div>
-    <input type="text" [(ngModel)]="searchText" placeholder="Search">
-  
-    <mat-accordion>
-      <ng-container *ngFor="let s of (subscriptions | async) ?? [] | filter: searchText">
-        <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            <div>{{ s.contractDate | date: 'dd-MM-yyyy' }}</div>
-            <div>{{ s.name }}</div>
-            <div>{{ s.firstName }}</div>
-            <div>{{ s.lastName }}</div>
-            <div>{{ s.status }}</div>
-          </mat-expansion-panel-header>
-  
-          <table class="table">
-            <tbody>
-              <tr *ngFor="let p of s.priceAgreements">
-                <td>{{ p.status }}</td>
-                <td>
-                  <button type="button" class="btn knop" (click)="update(p.priceAgreementId)">
-                    Update
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </mat-expansion-panel>
-      </ng-container>
-    </mat-accordion>
-  </div>
+   
   
