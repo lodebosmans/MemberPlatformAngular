@@ -30,6 +30,9 @@ import { AuthModule } from '@auth0/auth0-angular';
 import { LoginButtonModule } from './login-button/login-button.module';
 import { PriceAgreementModule } from './price-agreement/price-agreement.module';
 import { MymembersComponent } from './member/mymembers/mymembers.component';
+import { Error403Component } from './error-pages/error403/error403.component';
+import { Error404Component } from './error-pages/error404/error404.component';
+import { HomeComponent } from './home/home.component';
 // import { InvolvementRoleFormComponent } from './involvement-role/involvement-role-form/involvement-role-form.component';
 
 
@@ -42,6 +45,9 @@ import { MymembersComponent } from './member/mymembers/mymembers.component';
     SignInComponent,
     SignoutComponent,
     MymembersComponent,
+    Error403Component,
+    Error404Component,
+    HomeComponent,
     // InvolvementRoleFormComponent
     // PersonOverviewComponent
   ],

@@ -57,30 +57,43 @@ export class AppComponent {
 
       // Check if the person is registered or not
       personService.getPersonByEmailAddress(this.emailAddressEncoded).subscribe((mymembers: Person[] | null) => {
-          console.log('Repons op email addres in db:');
-          console.log(mymembers);
+        console.log('Repons op email addres in db:');
+        console.log(mymembers);
+
+        // debugger
+        if (mymembers != null) {
+          // Check if the person is an admin (or trainer)
+          let test$ = this.roleService.checkForAdminRights(mymembers[0].id).subscribe(result => {
+            debugger
+            this.roleService.isAdmin = result;
+          });
+
+
+          this.mymembers = mymembers;
           // debugger
-          if (mymembers != null) {
-            this.mymembers = mymembers;
-            // debugger
-            this.navigateToMyMembers();
-          } else {
-            // debugger
-            this.router.navigate(['register/'], {
-              state: {
-                emailAddress: this.emailAddress,
-                firstName: this.firstName,
-                lastName: this.lastName,
-                mode: 'add'
-              }
-            });
-          }
-        });
+          this.navigateToHome();
+        } else {
+          // debugger
+          this.router.navigate(['register/'], {
+            state: {
+              emailAddress: this.emailAddress,
+              firstName: this.firstName,
+              lastName: this.lastName,
+              mode: 'add'
+            }
+          });
+        }
+      });
     });
   }
 
-  navigateToMyMembers() {
+  navigateToHome() {
+    debugger
     this.roleService.isRegistered = true;
+    this.router.navigate(['home']);
+  }
+
+  ngOnDestroy(): void {
     this.router.navigate(['mymembers/']);
     this.ngAfterViewInit();
   }
