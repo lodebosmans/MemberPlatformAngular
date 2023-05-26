@@ -49,6 +49,7 @@ export class SubscriptionOverviewComponent implements OnInit {
     this.subscriptionDTO$.unsubscribe();
   }
   getAuthCredentials(): Promise<void> {
+    this.isLoading=false;
     return new Promise<void>((resolve, reject) => {
       this.authService.user$.subscribe((user: User | undefined | null) => {
         this.emailAddress = user?.email;
@@ -58,6 +59,7 @@ export class SubscriptionOverviewComponent implements OnInit {
         resolve();
       });
     });
+  
   }
   getPerson() {
     console.log('mmm', this.m);
@@ -70,17 +72,6 @@ export class SubscriptionOverviewComponent implements OnInit {
       });
   }
  
-  // show(id: number, SelectedYear: number) {
-  //   this.isDetail = true;
-  //   this.subscriptionDTO$ = this.subscriptionService
-  //     .getAllById(id, SelectedYear)
-  //     .subscribe(result => {
-  //       this.subscriptionDTOs = result;
-  //     });
-  // }
-  // back() {
-  //   this.isDetail = false;
-  // }
   getAllSubscriptions() {
       console.log('per', this.persons)
       const allSubscriptions = [];
