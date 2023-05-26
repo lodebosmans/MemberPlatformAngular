@@ -19,29 +19,39 @@ import { PriceAgreementFormComponent } from './price-agreement/price-agreement-f
 import { SubscriptionOverviewComponent } from './subscription/subscription-overview/subscription-overview.component';
 import { MymembersComponent } from './member/mymembers/mymembers.component';
 import { SubscriptionListComponent } from './subscription/subscription-list/subscription-list.component';
+import { AuthGuardAdmin } from './auth.guard';
+import { Error403Component } from './error-pages/error403/error403.component';
+import { Error404Component } from './error-pages/error404/error404.component';
+import { AppComponent } from './app.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
+  { path: '', component: AppComponent, pathMatch: 'full'},
+  { path: 'home', component: HomeComponent, pathMatch: 'full'},
   { path: 'register', component: PersonFormComponent },
   { path: 'profile', component: PersonOverviewComponent },
   { path: 'profile/edit', component: PersonFormComponent },
   { path: 'mymembers', component: MymembersComponent },
-  { path: 'option', component: OptionComponent },
-  { path: 'option/edit', component: OptionFormComponent },
-  { path: 'option/add', component: OptionFormComponent },
-  { path: 'productDefinition', component: ProductDefinitionComponent },
-  { path: 'productDefinition/edit', component: ProductDefinitionFormComponent },
-  { path: 'priceAgreement', component: PriceAgreementComponent },
-  { path: 'priceAgreement/edit', component: PriceAgreementFormComponent },
-  { path: 'address', component: AddressComponent },
-  { path: 'address/edit', component: AddressFormComponent },
-  { path: 'productUnit', component: ProductUnitComponent },
-  { path: 'productUnit/edit', component: ProductUnitFormComponent },
-  { path: 'contract', component: ContractComponent },
-  { path: 'contract/edit', component: ContractFormComponent },
   { path: 'subscription', component: SubscriptionComponent },
+  { path: 'error403', component: Error403Component, pathMatch: 'full'},
+  { path: 'error404', component: Error404Component, pathMatch: 'full'},
   { path: 'subscription/subscribe', component: SubscriptionFormComponent },
   { path: 'subscription/overview', component: SubscriptionOverviewComponent },
-  { path: 'subscriptionList', component: SubscriptionListComponent}
+  // { path: 'option', component: OptionComponent, canActivate: [AuthGuardAdmin]},
+  { path: 'option', component: OptionComponent, pathMatch: 'full' },
+  { path: 'option/edit', component: OptionFormComponent, canActivate: [AuthGuardAdmin] },
+  { path: 'option/add', component: OptionFormComponent, canActivate: [AuthGuardAdmin] },
+  { path: 'productDefinition', component: ProductDefinitionComponent, canActivate: [AuthGuardAdmin] },
+  { path: 'productDefinition/edit', component: ProductDefinitionFormComponent, canActivate: [AuthGuardAdmin] },
+  { path: 'priceAgreement', component: PriceAgreementComponent, canActivate: [AuthGuardAdmin] },
+  { path: 'priceAgreement/edit', component: PriceAgreementFormComponent, canActivate: [AuthGuardAdmin] },
+  { path: 'address', component: AddressComponent, canActivate: [AuthGuardAdmin] },
+  { path: 'address/edit', component: AddressFormComponent, canActivate: [AuthGuardAdmin] },
+  { path: 'productUnit', component: ProductUnitComponent, canActivate: [AuthGuardAdmin] },
+  { path: 'productUnit/edit', component: ProductUnitFormComponent, canActivate: [AuthGuardAdmin] },
+  { path: 'contract', component: ContractComponent, canActivate: [AuthGuardAdmin] },
+  { path: 'contract/edit', component: ContractFormComponent, canActivate: [AuthGuardAdmin] },
+  { path: 'subscriptionList', component: SubscriptionListComponent, canActivate: [AuthGuardAdmin]},
 ];
 
 @NgModule({
