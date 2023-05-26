@@ -91,6 +91,7 @@ export class AppComponent {
     debugger
     this.roleService.isRegistered = true;
     this.router.navigate(['home']);
+    this.ngAfterViewInit();
   }
 
   ngOnDestroy(): void {
