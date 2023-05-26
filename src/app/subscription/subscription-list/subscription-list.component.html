@@ -1,3 +1,5 @@
+<p *ngIf="isLoading">Aan het laden</p>
+<div *ngIf="!isLoading">
 <div>
   <input type="text" [(ngModel)]="searchText" placeholder="Search">
 
@@ -29,6 +31,7 @@
         </tr>
       </tbody>
     </table>
+  </div>
   </div>
   <!-- <div>
     <input type="text" [(ngModel)]="searchText" placeholder="Search">

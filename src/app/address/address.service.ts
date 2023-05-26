@@ -30,4 +30,8 @@ export class AddressService {
   deleteAddress(id: number): Observable<Address> {
     return this.httpClient.delete<Address>(this.api_url + id);
   }
+
+  getTrainingFacilities():Observable<Address[]> {
+    return this.httpClient.get<Address[]>(this.api_url+'*');
+  }
 }

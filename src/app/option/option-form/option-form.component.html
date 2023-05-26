@@ -10,7 +10,7 @@
   <p *ngIf="isEdit">Pas de gegevens van een option aan.</p>
   <form (ngSubmit)="onSubmit()" [formGroup]="optionForm">
     <div class="form-group">
-      <label for="name">name</label>
+      <label for="name">naam:</label>
       <input
         type="text"
         class="form-control"
@@ -53,7 +53,7 @@
       *ngIf="isEdit"
       [disabled]="!optionForm.valid"
     >
-      Save
+      Opslaan
     </button>
     <a class="btn btn-secondary ml-1" routerLink="/option/">Annuleren</a>
   </form>

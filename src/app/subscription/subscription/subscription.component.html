@@ -1,3 +1,5 @@
+<p *ngIf="isLoading">Aan het laden</p>
+<div *ngIf="!isLoading">
 <div>
   <table
     class="table"
@@ -15,4 +17,5 @@
       </tr>
     </tbody>
   </table>
+</div>
 </div>

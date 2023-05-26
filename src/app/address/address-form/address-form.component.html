@@ -44,14 +44,14 @@
             <label for="addressTypeId">OptionType:</label>
             <select id="addressTypeId" name="addressTypeId" formControlName="addressTypeId" required class="form-select"
                 aria-label="Default select example">
-                 <option *ngFor="let type of options" [ngValue]="type.id" [selected]="type.id === address.addressTypeId">{{ type.name }}</option>
+                 <option *ngFor="let type of optionsByAddress | async" [ngValue]="type.id" [selected]="type.id === address.addressTypeId">{{ type.name }}</option>
             </select>
         </div>
         <button type="submit" class="btn btn-succes btn-primary" *ngIf="isAdd"
-        [disabled]="!addressForm.valid">Add</button>
+        [disabled]="!addressForm.valid">Toevoegen</button>
     <button type="submit" class="btn btn-succes btn-primary" *ngIf="isEdit"
-        [disabled]="!addressForm.valid">Save</button>
-    <a class="btn btn-danger ml-1" routerLink="/option">Cancel</a>
+        [disabled]="!addressForm.valid">opslaan</button>
+        <a class="btn btn-secondary ml-1" routerLink="/address/">Annuleren</a>
 
     </form>
 </div>
