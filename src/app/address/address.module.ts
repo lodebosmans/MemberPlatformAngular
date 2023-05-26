@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AddressComponent } from './address/address.component';
 import { AddressFormComponent } from './address-form/address-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -18,6 +19,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    RouterModule
 
   ],
   schemas:[

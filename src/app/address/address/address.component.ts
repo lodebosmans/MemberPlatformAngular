@@ -39,7 +39,7 @@ export class AddressComponent implements OnInit {
   this.getAddresses();
   }
   getAddresses(){
-    this.address$= this.addressService.getAddresses().subscribe(result => {
+    this.address$= this.addressService.getTrainingFacilities().subscribe(result => {
       this.addresses = result;
       this.isLoading = false;
       console.log("alle adressen ", this.addresses)

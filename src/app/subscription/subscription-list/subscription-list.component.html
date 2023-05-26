@@ -1,3 +1,5 @@
+<p *ngIf="isLoading">Aan het laden</p>
+<div *ngIf="!isLoading">
 <div>
   <input type="text" [(ngModel)]="searchText" placeholder="Search">
 
@@ -30,3 +32,40 @@
       </tbody>
     </table>
   </div>
+  </div>
+  <!-- <div>
+    <input type="text" [(ngModel)]="searchText" placeholder="Search">
+  
+    <table class="table">
+      <tbody>
+        <ng-container *ngFor="let s of (subscriptions | async) ?? [] | filter: searchText">
+          <ng-container *ngFor="let p of s.priceAgreements; let i = index">
+            <tr>
+              <th scope="row">{{ s.contractDate | date: 'dd-MM-yyyy' }}</th>
+              <td >{{ s.name }}</td>
+              <td >{{ s.firstName }}</td>
+              <td >{{ s.lastName }}</td>
+              <td >{{ p.status }}</td> -->
+              <!-- <td>
+                <select>
+                  <ng-container *ngIf="options | async as optionList">
+                    <option [ngValue]="pa.priceAgreementStatusId" *ngFor="let pa of s.priceAgreements">
+                      {{ pa.priceAgreementStatusId | optionName: optionList }}
+                    </option>
+                  </ng-container>
+                </select>
+              </td> -->
+              <!-- <td>
+                <button type="button" class="btn knop" (click)="update(s.priceAgreementId)">
+                  Update
+                </button>
+              </td>
+            </tr>
+          </ng-container>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+   -->
+   
+  

@@ -1,45 +1,26 @@
+<p *ngIf="isLoading">Aan het laden</p>
+<div *ngIf="!isLoading">
 <p>Mijn inschrijvingen</p>
 
-<div *ngIf="!isDetail">
+<div>
   <div>
-    <select [(ngModel)]="selectedYear">
+    <select [(ngModel)]="selectedYear" (change)="onYearChange($event)">
       <option value="">-- Select a year --</option>
       <option *ngFor="let year of years" [value]="year">{{ year }}</option>
     </select>
   </div>
-  <table class="table" *ngIf="persons && persons.length > 0">
-    <tbody>
-      <tr *ngFor="let p of persons">
-        <th scope="row">{{ p.id }}</th>
-        <td>{{ p.firstName }}</td>
-        <td>
-          <button
-            type="button"
-            class="btn knop"
-            (click)="show(p.id, selectedYear)"
-          >
-            <i class="fas fa-edit"></i>
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-<div *ngIf="isDetail">
-  <table class="table" *ngIf="subscriptionDTOs && subscriptionDTOs.length > 0">
+
+<div *ngIf="subscriptionDTOs && subscriptionDTOs.length > 0">
+  <table class="table">
     <tbody>
       <tr *ngFor="let s of subscriptionDTOs">
-        <th scope="row">{{ s.id }}</th>
+        <th scope="row">{{ s.firstName }}</th>
+        <td>{{s.lastName}}</td>
         <td>{{ s.name }}</td>
         <td>{{ s.status }}</td>
-        <!-- <td><button type="button" class="btn knop" (click)="show(p.id)"><i class="fas fa-edit"></i></button></td> -->
       </tr>
     </tbody>
   </table>
-
-  <p>
-    <button type="button" class="btn knop" (click)="back()">
-      Terug naar het overzicht
-    </button>
-  </p>
 </div>
+</div>
+

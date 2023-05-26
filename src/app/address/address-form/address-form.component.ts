@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Address } from '../address';
 import { Option } from 'src/app/option/option';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { FormControl, FormGroup } from '@angular/forms';
 import { OptionService } from 'src/app/option/option.service';
 import { AddressService } from '../address.service';
@@ -36,8 +36,9 @@ export class AddressFormComponent implements OnInit {
   address$ : Subscription = new Subscription();
   putAddress$ : Subscription = new Subscription();
   postAddress$: Subscription = new Subscription();
-  option$: Subscription =new Subscription();
-  options: Option[] = [];
+  // option$: Subscription =new Subscription();
+  // options: Option[] = [];
+  optionsByAddress?: Observable<Option[]> | any = this.optionService.getOptionsByTypeAsync("Address");
 
   addressForm = new FormGroup({
     id: new FormControl<number>(0, { nonNullable: true }),
@@ -59,7 +60,7 @@ export class AddressFormComponent implements OnInit {
     console.log('in constructor: ' + this.addressId)
 
     if (this.addressId != null && this.addressId > 0){
-      this.option$ = this.addressService.getAddressById(this.addressId).subscribe(result => {
+      this.address$ = this.addressService.getAddressById(this.addressId).subscribe(result => {
         console.log(result);
         this.addressForm.setValue({
           id: result.id,
@@ -74,9 +75,9 @@ export class AddressFormComponent implements OnInit {
         });
       });
     }
-    this.option$ = this.optionService.getOptions().subscribe(result => {
-      this.options = result;
-    });
+    // this.option$ = this.optionService.getOptions().subscribe(result => {
+    //   this.options = result;
+    // });
   }
 
   ngOnInit(): void {
@@ -84,7 +85,7 @@ export class AddressFormComponent implements OnInit {
       this.getAddressById();}
   }
   ngOnDestroy(): void {
-    this.option$.unsubscribe();
+    // this.option$.unsubscribe();
     this.address$.unsubscribe();
     this.postAddress$.unsubscribe();
     this.putAddress$.unsubscribe();

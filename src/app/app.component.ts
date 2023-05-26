@@ -94,17 +94,22 @@ export class AppComponent {
   }
 
   ngOnDestroy(): void {
-
+    this.router.navigate(['mymembers/']);
+    this.ngAfterViewInit();
   }
 
   ngAfterViewInit() {
     this.observer.observe(['(max-width: 800px)']).subscribe(res => {
       if (res.matches) {
-        this.sidenav.mode = 'over';
-        this.sidenav.close();
+        if (this.sidenav) {
+          this.sidenav.mode = 'over';
+          this.sidenav.close();
+        }
       } else {
-        this.sidenav.mode = 'side';
-        this.sidenav.open();
+        if (this.sidenav) {
+          this.sidenav.mode = 'side';
+          this.sidenav.open();
+        }
       }
     });
   }

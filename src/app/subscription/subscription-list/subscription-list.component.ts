@@ -25,6 +25,7 @@ export class SubscriptionListComponent implements OnInit {
   ngOnInit(): void {
     // this.subscriptions = this.subscriptionService.getSubscriptionsAsync();
     this.options = this.optionService.getOptions();
+    this.isLoading=false;
     debugger
   }
 

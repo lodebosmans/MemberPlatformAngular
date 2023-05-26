@@ -5,8 +5,7 @@
     <table class="table" *ngIf="addresses && addresses.length > 0">
         <tbody>
             <tr *ngFor="let a of addresses">
-                <th scope="row">{{a.id}}</th>
-                <td>{{a.name}}</td>
+                <th scope="row">{{a.name}}</th> 
                 <td><button type="button" class="btn knop" (click)="edit(a.id)"><i class="fas fa-edit"></i></button></td>
             </tr>
         </tbody>

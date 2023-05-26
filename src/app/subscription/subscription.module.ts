@@ -7,6 +7,9 @@ import { SubscriptionOverviewComponent } from './subscription-overview/subscript
 import { SubscriptionListComponent } from './subscription-list/subscription-list.component';
 import { OptionNamePipe } from './name.pipe';
 import { FilterPipe } from './filter.pipe';
+import { RouterModule } from '@angular/router';
+
+
 
 
 
@@ -18,7 +21,9 @@ import { FilterPipe } from './filter.pipe';
     SubscriptionOverviewComponent,
     SubscriptionListComponent,
     OptionNamePipe,
-    FilterPipe
+    FilterPipe,
+    
+
     
   
  
@@ -28,7 +33,8 @@ import { FilterPipe } from './filter.pipe';
   imports: [
     CommonModule,  
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule
   ]
 })
 export class SubscriptionModule { }
