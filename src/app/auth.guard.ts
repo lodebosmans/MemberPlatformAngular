@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, NavigationExtras, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import { RoleService } from './role.service';
 import { Role } from './role';
@@ -22,10 +22,13 @@ export class AuthGuardAdmin implements CanActivate {
       return true; 
     } else {
       // User is not authenticated, redirect to home page
-      // this.router.navigate(['error403']);
-      debugger
-      // return false;
-      // return this.router.parseUrl('error403');
+      
+      // const navigationExtras: NavigationExtras = {
+      //   queryParamsHandling: 'preserve',
+      //   fragment: 'preserve'
+      // };
+  
+      // return this.router.navigate(['error403'], navigationExtras);
       return this.router.navigate(['error403']);
     }
   }

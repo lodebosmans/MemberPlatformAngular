@@ -70,7 +70,7 @@ export class PriceAgreementFormComponent implements OnInit {
           contractId: priceAgreement.contractId,
           discountAmount: priceAgreement.discountAmount,
           discountTypeId: priceAgreement.discountTypeId,
-          comment: priceAgreement.comment,
+          comment: '',
           structuredMessage: priceAgreement.structuredMessage
         });
       });

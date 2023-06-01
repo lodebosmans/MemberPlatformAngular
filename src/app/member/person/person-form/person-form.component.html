@@ -73,14 +73,15 @@
             <div class="form-group col-12 col-md-6">
                 <label for="identityNumber">Rijksregisternummer</label>
                 <input type="text" class="form-control" id="identityNumber" name="identityNumber"
-                    placeholder="Rijksregisternummer" formControlName="identityNumber" minlength="11" maxlength="11" size="11" required>
+                    placeholder="Rijksregisternummer" formControlName="identityNumber" minlength="11" maxlength="11"
+                    size="11" required>
             </div>
             <div *ngIf="personForm.controls['identityNumber'].invalid && isSubmitted" class="alert">
                 Geef een geldig rijksregisternummer in.
             </div>
             <div class="invalid-feedback">
                 Geef een geldig rijksregisternummer in met exact 11 karakters.
-              </div>
+            </div>
 
             <div class="form-group col-12 col-md-6">
                 <label for="insuranceCompany">Mutualiteit</label>
@@ -172,13 +173,14 @@
                 formControlName="addressId">
         </div>
 
-
-        <button type="submit" class="btn btn-succes btn-primary" *ngIf="isAdd"
-            [disabled]="!personForm.valid">Toevoegen</button>
-        <button type="submit" class="btn btn-succes btn-primary" *ngIf="isEdit"
-            [disabled]="!personForm.valid">Opslaan</button>
-        <!-- <button type="submit" class="btn btn-succes btn-primary" *ngIf="isAdd">Toevoegen</button>
+        <div class="">
+            <button type="submit" class="btn btn-succes btn-primary btn-spacing" *ngIf="isAdd"
+                [disabled]="!personForm.valid">Toevoegen</button>
+            <button type="submit" class="btn btn-succes btn-primary btn-spacing" *ngIf="isEdit"
+                [disabled]="!personForm.valid">Opslaan</button>
+            <!-- <button type="submit" class="btn btn-succes btn-primary" *ngIf="isAdd">Toevoegen</button>
         <button type="submit" class="btn btn-succes btn-primary" *ngIf="isEdit">Opslaan</button> -->
-        <a class="btn btn-secondary ml-1" routerLink="/mymembers/">Annuleren</a>
+            <a class="btn btn-secondary btn-spacing" routerLink="/mymembers/">Annuleren</a>
+        </div>
     </form>
 </div>
