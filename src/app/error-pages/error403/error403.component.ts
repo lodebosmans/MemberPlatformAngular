@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { AuthService } from '@auth0/auth0-angular';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-error403',
@@ -7,9 +10,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Error403Component implements OnInit {
 
+  // isAuthenticated: boolean;
+
   constructor() { }
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit() {}
 }

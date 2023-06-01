@@ -12,13 +12,7 @@
     display: none;
 }
 
-.knop {
-    background-color: coral;
-    color: black;
-}
-
-.menu-button {
-    width: 100%;
+.button-format {
     display: flex;
     align-items: left;
     justify-content: flex-start;
@@ -27,6 +21,10 @@
     mat-icon {
         margin-right: 8px;
     }
+}
+
+.menu-button {
+    width: 100%; 
 }
 
 button {
@@ -46,8 +44,7 @@ h2 {
 // BUTTONS
 // -------
 
-.btn-primary,
-.btn-secondary {
+.btn-spacing {
     margin-top: 2rem;
     margin-bottom: 2rem;
     margin-right: 0.5rem;
@@ -119,3 +116,8 @@ option:hover {
 }
 
 
+// Center the text in a table
+th,
+td {
+    vertical-align: middle;
+}

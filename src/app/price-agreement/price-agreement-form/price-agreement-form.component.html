@@ -6,10 +6,10 @@
     >
       {{ errorMessage }}
     </div>
-    <p>Nieuwe price agreement aan het contract toevoegen</p>
+    <p>Pas de status van deze inschrijving aan:</p>
     <form (ngSubmit)="onSubmit()" [formGroup]="priceAgreementForm">
         <div class="form-group">
-            <label for="paymentDate">paymentDate</label>
+            <label for="paymentDate">Betalingsdatum</label>
             <input
               type="date"
               class="form-control"
@@ -20,7 +20,7 @@
             />
           </div>
           <div class="form-group">
-            <label for="priceBillable">priceBillable</label>
+            <label for="priceBillable">Originele prijs</label>
             <input
               type="number"
               class="form-control"
@@ -31,7 +31,7 @@
             />
           </div>
           <div class="form-group">
-            <label for="discountAmount">Discount</label>
+            <label for="discountAmount">Toe te passen korting</label>
             <input
               type="number"
               class="form-control"
@@ -43,7 +43,7 @@
           </div>
  
           <div class="form-group">
-            <label for="priceAgreementStatusId">Status:</label>
+            <label for="priceAgreementStatusId">Status</label>
             <select
               id="priceAgreementStatusId"
               name="priceAgreementStatusId"
@@ -60,7 +60,7 @@
               >
             </select>
           </div>
-          <div class="form-group">
+          <div class="form-group d-none">
             <label for="contractId">contractId</label>
             <input
               type="number"
@@ -71,13 +71,24 @@
               formControlName="contractId"
             />
           </div>
+          <div class="form-group">
+            <label for="comment">Opmerking</label>
+            <input
+              type="text"
+              class="form-control"
+              id="comment"
+              name="comment"
+              placeholder="Opmerking"
+              formControlName="comment"
+            />
+          </div>
           <button
           type="submit"
-          class="btn btn-succes btn-primary"
+          class="btn btn-primary btn-spacing"
           *ngIf="isEdit"
           [disabled]="!priceAgreementForm.valid"
         >
           Opslaan
         </button>
-        <a class="btn btn-secondary ml-1" routerLink="/subscriptionList/">Annuleren</a>
+        <a class="btn btn-secondary btn-spacing" routerLink="/subscriptionList/">Annuleren</a>
     </form>
