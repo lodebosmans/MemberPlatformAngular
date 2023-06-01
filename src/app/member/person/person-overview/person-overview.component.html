@@ -48,7 +48,7 @@
                 </tr>
                 <tr>
                     <th>Geslacht:</th>
-                    <td>{{person.gender}}</td>
+                    <td>{{person.gender | translateGender}}</td>
                 </tr>
                 <tr>
                     <th>Rijksregisternummer:</th>
@@ -144,7 +144,7 @@
                 <p>Geslacht: </p>
             </div>
             <div class="col-8">
-                <p>{{person.gender}}</p>
+                <p>{{person.gender | translateGender}}</p>
             </div>
         </div>
         <div class="row">
@@ -158,6 +158,5 @@
 
         <div class="btn btn-primary btn-spacing" (click)="editPerson(person.id)">Aanpassen</div>
         <a class="btn btn-secondary btn-spacing" (click)="goToMyMembers()">Annuleren</a>
-
     </div>
 </div>
