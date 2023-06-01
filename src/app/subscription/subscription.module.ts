@@ -5,7 +5,7 @@ import { SubscriptionFormComponent } from './subscription-form/subscription-form
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SubscriptionOverviewComponent } from './subscription-overview/subscription-overview.component';
 import { SubscriptionListComponent } from './subscription-list/subscription-list.component';
-import { OptionNamePipe } from './name.pipe';
+import { OptionNamePipe } from './option-name.pipe';
 import { FilterPipe } from './filter.pipe';
 import { RouterModule } from '@angular/router';
 
