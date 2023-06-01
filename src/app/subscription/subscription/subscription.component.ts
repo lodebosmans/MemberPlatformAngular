@@ -7,24 +7,33 @@ import { ProductDefinitionService } from 'src/app/product-definition/product-def
 
 @Component({
   selector: 'app-subscription',
-  template: `<p>subscription works!</p>
-  <div>
-    <table
-      class="table"
-      *ngIf="productDefinitions && productDefinitions.length > 0"
-    >
-      <tbody>
-        <tr *ngFor="let p of productDefinitions">
-          <th scope="row">{{ p.id }}</th>
-          <td>{{ p.name }}</td>
-          <td>
-            <button type="button" class="btn knop" (click)="subscribe(p.id)">
-              Inschrijven
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  template: `<div class="container">
+  <p>Kies één van de volgende sporten!</p>
+    <div>
+      <table
+        class="table"
+        *ngIf="productDefinitions && productDefinitions.length > 0"
+      >
+        <tbody>
+          <tr>
+            <th>Sport</th>
+            <th>Prijs (in EUR)</th>
+            <th>Periode</th>
+            <th></th>
+          </tr>
+          <tr *ngFor="let p of productDefinitions">
+            <td>{{ p.name }}</td>
+            <td>{{ p.price }}</td>
+            <td>{{ p.startDate | date: "dd-MM-yyyy" }} tem {{p.endDate | date: "dd-MM-yyyy"}}</td>
+            <td>
+              <button type="button" class="btn btn-primary" (click)="subscribe(p.id)">
+                Inschrijven
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>`,
   styleUrls: ['./subscription.component.scss']
 })

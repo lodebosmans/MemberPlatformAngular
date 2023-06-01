@@ -26,7 +26,6 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
-  { path: '', component: AppComponent, pathMatch: 'full'},
   { path: 'home', component: HomeComponent, pathMatch: 'full'},
   { path: 'register', component: PersonFormComponent },
   { path: 'profile', component: PersonOverviewComponent },
@@ -37,8 +36,8 @@ const routes: Routes = [
   { path: 'error404', component: Error404Component, pathMatch: 'full'},
   { path: 'subscription/subscribe', component: SubscriptionFormComponent },
   { path: 'subscription/overview', component: SubscriptionOverviewComponent },
-  // { path: 'option', component: OptionComponent, canActivate: [AuthGuardAdmin]},
-  { path: 'option', component: OptionComponent, pathMatch: 'full' },
+  // { path: 'option', component: OptionComponent},
+  { path: 'option', component: OptionComponent, canActivate: [AuthGuardAdmin], pathMatch: 'full' },
   { path: 'option/edit', component: OptionFormComponent, canActivate: [AuthGuardAdmin] },
   { path: 'option/add', component: OptionFormComponent, canActivate: [AuthGuardAdmin] },
   { path: 'productDefinition', component: ProductDefinitionComponent, canActivate: [AuthGuardAdmin] },
@@ -55,7 +54,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,{ enableTracing: true } )],
   exports: [RouterModule]
 })
 export class AppRoutingModule {}

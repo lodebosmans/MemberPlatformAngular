@@ -1,17 +1,6 @@
 <ng-container *ngIf="auth.isAuthenticated$ | async; else loggedOut">
-    <!-- <ul *ngIf="auth.user$ | async as user">
-        <li>{{ user.email }}</li>
-        <li>{{ user.family_name }}</li>
-        <li>{{ user.given_name }}</li>
-        <li>{{ user.phone_number }}</li>
-    </ul> -->
-
-    <!-- <button (click)="auth.logout({ logoutParams: { returnTo: document.location.origin } })" mat-button class="menu-button">
-        Log out
-    </button> -->
-
     <button (click)="auth.logout({ logoutParams: { returnTo: document.location.origin } })" mat-button
-        class="menu-button">
+        class="menu-button button-format">
         <mat-icon>exit_to_app</mat-icon>
         <span>Log out</span>
     </button>
@@ -27,7 +16,7 @@
                     <h2>Welkom op het WestFit ledenplatform!</h2>
                 </div>
                 <div>
-                    <button (click)="auth.loginWithRedirect()" class="btn btn-primary">Inloggen</button>
+                    <button (click)="auth.loginWithRedirect()" class="btn btn-primary btn-spacing">Inloggen</button>
                 </div>
             </div>
         </div>

@@ -25,7 +25,7 @@ export class SubscriptionOverviewComponent implements OnInit {
   m: string | undefined = '';
   public years: number[] = [];
   public currentYear: number = new Date().getFullYear();
-  public selectedYear: number = 2023;
+  public selectedYear: number = this.currentYear;
   list: [] = [];
 
   constructor(
@@ -39,7 +39,7 @@ export class SubscriptionOverviewComponent implements OnInit {
     await this.getAuthCredentials();
     this.getPerson();
     // populate years array with the last 10 years and the next year from current year
-    for (let i = this.currentYear - 10; i <= this.currentYear + 1; i++) {
+    for (let i = this.currentYear - 2; i <= this.currentYear + 1; i++) {
       this.years.push(i);
     }
 
@@ -48,6 +48,7 @@ export class SubscriptionOverviewComponent implements OnInit {
     this.person$.unsubscribe();
     this.subscriptionDTO$.unsubscribe();
   }
+
   getAuthCredentials(): Promise<void> {
     this.isLoading=false;
     return new Promise<void>((resolve, reject) => {

@@ -4,6 +4,7 @@ import { Person } from '../person';
 import { PersonService } from '../person.service';
 import { Subscription } from 'rxjs';
 import { AuthService, User } from '@auth0/auth0-angular';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-person-overview',
@@ -78,6 +79,10 @@ export class PersonOverviewComponent implements OnInit {
   editPerson(id: number) {
     //Navigate to form in edit mode
     this.router.navigate(['profile/edit'], { state: { id: id, mode: 'edit' } });
+  }
+
+  goToMyMembers() {
+    this.router.navigate(['mymembers']);
   }
 
 }
