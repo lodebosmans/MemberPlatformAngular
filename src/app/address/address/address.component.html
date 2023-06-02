@@ -1,13 +1,19 @@
-<p *ngIf="isLoading">Aan het laden</p>
+<div class="container">
+    <p *ngIf="isLoading">Aan het laden</p>
 
-<div *ngIf="!isLoading">
-    <div class="btn btn-success" (click)="add()">Adres toevoegen</div>
-    <table class="table" *ngIf="addresses && addresses.length > 0">
-        <tbody>
-            <tr *ngFor="let a of addresses">
-                <th scope="row">{{a.name}}</th> 
-                <td><button type="button" class="btn knop" (click)="edit(a.id)"><i class="fas fa-edit"></i></button></td>
-            </tr>
-        </tbody>
-    </table>
+    <div *ngIf="!isLoading">
+        <div class="btn btn-primary float-end button-format" (click)="add()">
+            <mat-icon>person_add</mat-icon>
+            <span>Locatie toevoegen</span>
+        </div>
+        <table class="table" *ngIf="addresses && addresses.length > 0">
+            <tbody>
+                <tr *ngFor="let a of addresses">
+                    <th scope="row">{{a.name}}</th>
+                    <td><button type="button" class="btn btn-primary" (click)="edit(a.id)"><i class="fas fa-edit"></i></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
