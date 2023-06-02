@@ -13,9 +13,7 @@
         <label for="personId">Kies wie je wil inschrijven:</label>
         <select id="personId" name="personId" formControlName="personId" required class="form-select">
           <!-- <option value="">--Kies de persoon voor wie je wil inschrijven --</option> -->
-          <option *ngFor="let p of persons" [ngValue]="p.id">{{
-            p.firstName
-            }}</option>
+          <option *ngFor="let p of persons" [ngValue]="p.id">{{p.firstName}} {{p.lastName}}</option>
         </select>
       </div>
 

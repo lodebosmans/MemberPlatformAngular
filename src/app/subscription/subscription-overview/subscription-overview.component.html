@@ -1,32 +1,34 @@
-<p *ngIf="isLoading">Aan het laden</p>
+<div class="container">
+  <p *ngIf="isLoading">Aan het laden</p>
 
-<div *ngIf="!isLoading">
-  <div>
+  <div *ngIf="!isLoading">
     <div>
-      <select [(ngModel)]="selectedYear" (change)="onYearChange($event)">
-        <option value="">-- Select a year --</option>
-        <option *ngFor="let year of years" [value]="year">{{year}}</option>
-      </select>
-    </div>
+      <div>
+        <select [(ngModel)]="selectedYear" (change)="onYearChange($event)">
+          <option value="">-- Select a year --</option>
+          <option *ngFor="let year of years" [value]="year">{{year}}</option>
+        </select>
+      </div>
 
-    <div *ngIf="subscriptionDTOs && subscriptionDTOs.length > 0">
-      <table class="table">
-        <tbody>
-          <tr>
-            <th>Voornaam</th>
-            <th>Achternaam</th>
-            <th>Sport/event</th>
-            <th>Status</th>
-            <th>Opmerking</th>
-          </tr>
-          <tr *ngFor="let s of subscriptionDTOs">
-            <td>{{s.firstName}}</td>
-            <td>{{s.lastName}}</td>
-            <td>{{s.name}}</td>
-            <td>{{s.status}}</td>
-            <td></td>
-          </tr>
-        </tbody>
-      </table>
+      <div *ngIf="subscriptionDTOs && subscriptionDTOs.length > 0">
+        <table class="table">
+          <tbody>
+            <tr>
+              <th>Voornaam</th>
+              <th>Achternaam</th>
+              <th>Sport/event</th>
+              <th>Status</th>
+              <th>Opmerking</th>
+            </tr>
+            <tr *ngFor="let s of subscriptionDTOs">
+              <td>{{s.firstName}}</td>
+              <td>{{s.lastName}}</td>
+              <td>{{s.name}}</td>
+              <td>{{s.status}}</td>
+              <td>{{s.priceAgreements[s.priceAgreements.length - 1].comment}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
