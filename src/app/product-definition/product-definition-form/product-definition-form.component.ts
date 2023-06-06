@@ -90,7 +90,6 @@ export class ProductDefinitionFormComponent implements OnInit {
         .getProductDefinitionById(this.productDefinitionId)
         .subscribe(result => {
           console.log(result);
-          debugger
           const formattedStartDate =
             this.datePipe.transform(result.startDate, 'yyyy-MM-dd') ?? '';
           const formattedEndDate =

@@ -9,15 +9,19 @@
   <p *ngIf="isAdd">Voeg een nieuwe ProductUnit toe.</p>
   <p *ngIf="isEdit">Pas de gegevens van een ProductUnit aan.</p>
   <form (ngSubmit)="onSubmit()" [formGroup]="productUnitForm">
-    <div>
+    <div class="form-group">
+      <label for="date">Trainingsdatum</label>
+      <input type="date" class="form-control" id="date" name="date" placeholder="Trainingsdatum"
+        formControlName="date" minlength="2" required />
+    </div>
+    <!-- <div>
       <mat-form-field>
         <mat-label>Choose a date</mat-label>
         <input matInput [matDatepicker]="picker" formControlName="date"  />
-        <!-- <mat-hint>DD/MM/YYYY</mat-hint> -->
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
-    </div>
+    </div> -->
     <div class="form-group">
       <label for="comment">Comment</label>
       <input
@@ -68,6 +72,14 @@
       </select>
     </div>
     <div class="form-group">
+      <label for="productUnitStatusId">Status</label>
+      <select id="productUnitStatusId" name="productUnitStatusId"
+        formControlName="productUnitStatusId" required class="form-select" aria-label="Default select example">
+        <option *ngFor="let type of optionsByStatus | async" [ngValue]="type.id"
+          [selected]="type.id === productUnit.productUnitStatusId">{{ type.name }}</option>
+      </select>
+    </div>
+    <!-- <div class="form-group">
       <label for="productUnitStatusId">Status:</label>
       <select
         id="productUnitStatusId"
@@ -84,7 +96,7 @@
           >{{ type.name }}</option
         >
       </select>
-    </div>
+    </div> -->
 
     <div>
       <mat-form-field>
