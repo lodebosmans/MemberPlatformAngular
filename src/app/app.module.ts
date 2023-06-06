@@ -14,13 +14,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { PersonFormComponent } from './member/person/person-form/person-form.component';
 import { SignInComponent } from './login/signin/signin.component';
 import { SignoutComponent } from './login/signout/signout.component';
-import { OptionModule } from './option/option.module';
-import { ProductDefinitionModule } from './product-definition/product-definition.module';
+// import { OptionModule } from './option/option.module';
+// import { ProductDefinitionModule } from './product-definition/product-definition.module';
 // import { PersonOverviewComponent } from './member/person/person-overview/person-overview.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
-import { ProductUnitModule } from './product-unit/product-unit.module';
-import { AddressModule } from './address/address.module';
+// import { ProductUnitModule } from './product-unit/product-unit.module';
+// import { AddressModule } from './address/address.module';
 import { MAT_DATE_LOCALE, MatNativeDateModule} from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ContractModule } from './contract/contract.module';
@@ -33,9 +33,18 @@ import { MymembersComponent } from './member/mymembers/mymembers.component';
 import { Error403Component } from './error-pages/error403/error403.component';
 import { Error404Component } from './error-pages/error404/error404.component';
 import { HomeComponent } from './home/home.component';
+import { AddressComponent } from './address/address/address.component';
+import { AddressFormComponent } from './address/address-form/address-form.component';
+import { ProductDefinitionComponent } from './product-definition/product-definition/product-definition.component';
+import { ProductDefinitionFormComponent } from './product-definition/product-definition-form/product-definition-form.component';
+import { OptionComponent } from './option/option/option.component';
+import { OptionFormComponent } from './option/option-form/option-form.component';
 // import { InvolvementRoleFormComponent } from './involvement-role/involvement-role-form/involvement-role-form.component';
-
-
+import { CommonModule, DatePipe } from '@angular/common';
+import { ProductUnitComponent } from './product-unit/product-unit/product-unit.component';
+import { ProductUnitFormComponent } from './product-unit/product-unit-form/product-unit-form.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -48,28 +57,38 @@ import { HomeComponent } from './home/home.component';
     Error403Component,
     Error404Component,
     HomeComponent,
+    AddressComponent,
+    AddressFormComponent,
+    ProductDefinitionComponent,
+    ProductDefinitionFormComponent,
+    OptionComponent,
+    OptionFormComponent,
+    ProductUnitComponent,
+    ProductUnitFormComponent
     // InvolvementRoleFormComponent
     // PersonOverviewComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    RouterModule,
     BrowserAnimationsModule,
     MatToolbarModule,
     MatSidenavModule,
     MatButtonModule,
     MatIconModule,
     MatDividerModule,
+    MatDatepickerModule,
     ReactiveFormsModule,
     FormsModule,
     MemberModule,
     HttpClientModule,
-    OptionModule,
-    ProductDefinitionModule,
+    // OptionModule,
+    // ProductDefinitionModule,
     // MatCardModule,
     // MatInputModule,
-    ProductUnitModule,
-    AddressModule,
+    // ProductUnitModule,
+    // AddressModule,
     MatNativeDateModule,
     MatInputModule,
     MatFormFieldModule,
@@ -77,6 +96,7 @@ import { HomeComponent } from './home/home.component';
     ProductAgreementModule,
     SubscriptionModule,
     PriceAgreementModule,
+    CommonModule,
     AuthModule.forRoot({
       domain: 'lodebosmans.eu.auth0.com',
       clientId: 'dc8iyjLONxtjfDcLBAixsaMspzeLlt0G',
@@ -86,7 +106,7 @@ import { HomeComponent } from './home/home.component';
     }),
     LoginButtonModule
   ],
-  providers: [{provide: MAT_DATE_LOCALE, useValue:"nl-BE"},],
+  providers: [{provide: MAT_DATE_LOCALE, useValue:"nl-BE"},DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,14 +1,25 @@
-<p *ngIf="isLoading">Aan het laden</p>
+<div class="container">
+  <p *ngIf="isLoading">Aan het laden</p>
 
-<div *ngIf="!isLoading">
-  <div class="btn btn-success" (click)="add()">Option toevoegen</div>
+  <div *ngIf="!isLoading">
+    <div class="btn btn-primary float-end btn-format" (click)="add()">
+      <mat-icon>add_box</mat-icon>
+      <span>Optie toevoegen</span>
+    </div>
+  </div>
   <table class="table" *ngIf="options && options.length > 0">
     <tbody>
+      <tr>
+        <th>Naam</th>
+        <!-- <th>Type</th> -->
+        <th></th>
+      </tr>
       <tr *ngFor="let o of options">
-        <th scope="row">{{ o.id }}</th>
+        <!-- <th scope="row">{{ o.id }}</th> -->
         <td>{{ o.name }}</td>
+        <!-- <td>{{ o.optionTypeName}}</td> -->
         <td>
-          <button type="button" class="btn knop" (click)="edit(o.id)">
+          <button type="button" class="btn btn-primary" (click)="edit(o.id)">
             <i class="fas fa-edit"></i>
           </button>
         </td>

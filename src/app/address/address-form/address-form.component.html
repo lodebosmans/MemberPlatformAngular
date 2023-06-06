@@ -6,52 +6,58 @@
     <p *ngIf="isEdit">Pas de gegevens van een adres aan.</p>
     <form (ngSubmit)="onSubmit()" [formGroup]="addressForm">
         <div class="form-group">
-            <label for="name">name</label>
-            <input type="text" class="form-control" id="name" name="name" placeholder="option"
-                formControlName="name" minlength="2">
+            <label for="name">Naam</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Naam"
+                formControlName="name" minlength="2" required>
         </div>
         <div class="form-group">
-            <label for="street">straat</label>
-            <input type="text" class="form-control" id="street" name="street" placeholder="straat"
+            <label for="street">Straat</label>
+            <input type="text" class="form-control" id="street" name="street" placeholder="Straat"
                 formControlName="street" minlength="2" required>
         </div>
         <div class="form-group">
             <label for="number">Nummer</label>
-            <input type="text" class="form-control" id="number" name="number" placeholder="number"
+            <input type="text" class="form-control" id="number" name="number" placeholder="Nummer"
                 formControlName="number" minlength="1" required>
         </div>
         <div class="form-group">
-            <label for="box">busnummer</label>
-            <input type="box" class="form-control" id="box" name="box" placeholder="busnummer"
+            <label for="box">Bus</label>
+            <input type="box" class="form-control" id="box" name="box" placeholder="Bus"
                 formControlName="box" minlength="1">
         </div>
         <div class="form-group">
-            <label for="postalCode">postcode</label>
-            <input type="text" class="form-control" id="postalCode" name="postalCode" placeholder="potcode"
+            <label for="postalCode">Postcode</label>
+            <input type="text" class="form-control" id="postalCode" name="postalCode" placeholder="Postcode"
                 formControlName="postalCode" minlength="1" required>
         </div>
         <div class="form-group">
-            <label for="city">Stad</label>
-            <input type="city" class="form-control" id="city" name="city" placeholder="stad"
+            <label for="city">Stad/gemeente</label>
+            <input type="text" class="form-control" id="city" name="city" placeholder="Stad/gemeente"
                 formControlName="city" minlength="1" required>
         </div>
         <div class="form-group">
             <label for="country">Land</label>
-            <input type="country" class="form-control" id="country" name="country" placeholder="Land"
+            <input type="text" class="form-control" id="country" name="country" placeholder="Land"
                 formControlName="country" minlength="1" required>
         </div>
-        <div class="form-group">
+        <!-- <div class="form-group">
             <label for="addressTypeId">OptionType:</label>
             <select id="addressTypeId" name="addressTypeId" formControlName="addressTypeId" required class="form-select"
                 aria-label="Default select example">
                  <option *ngFor="let type of optionsByAddress | async" [ngValue]="type.id" [selected]="type.id === address.addressTypeId">{{ type.name }}</option>
             </select>
+        </div> -->
+        <div class="form-group d-none">
+            <label for="addressTypeId">addressTypeId</label>
+            <input type="text" class="form-control" id="addressTypeId" name="addressTypeId" placeholder="addressTypeId"
+                formControlName="addressTypeId" required>
         </div>
-        <button type="submit" class="btn btn-succes btn-primary" *ngIf="isAdd"
+
+        <button type="submit" class="btn btn-primary btn-spacing" *ngIf="isAdd"
         [disabled]="!addressForm.valid">Toevoegen</button>
-    <button type="submit" class="btn btn-succes btn-primary" *ngIf="isEdit"
-        [disabled]="!addressForm.valid">opslaan</button>
-        <a class="btn btn-secondary ml-1" routerLink="/address/">Annuleren</a>
+        <button type="submit" class="btn btn-primary btn-spacing" *ngIf="isEdit"
+        [disabled]="!addressForm.valid">Opslaan</button>
+        <a class="btn btn-secondary btn-spacing" routerLink="/address/">Annuleren</a>
 
     </form>
 </div>

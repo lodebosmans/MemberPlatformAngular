@@ -13,7 +13,7 @@ export class OptionComponent implements OnInit {
   option: Option = {
     id: 0,
     name: '',
-    optionTypeId: 0
+    optionTypeId: 0,
   };
 
   options: Option[] = [];
@@ -37,6 +37,7 @@ export class OptionComponent implements OnInit {
     this.option$ = this.optionService.getOptions().subscribe(result => {
       this.options = result;
       this.isLoading = false;
+      debugger
       console.log('alle options ', this.options);
     });
   }

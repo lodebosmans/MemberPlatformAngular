@@ -12,5 +12,4 @@ export interface SubscriptionDTO {
   firstName: string |null;
   contractDate: string | null;
   priceAgreements: PriceAgreement[];
-
 }

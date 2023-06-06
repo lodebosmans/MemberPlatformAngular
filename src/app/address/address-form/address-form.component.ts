@@ -22,23 +22,25 @@ export class AddressFormComponent implements OnInit {
   addressId: number = 0;
 
   address: Address = {
-    id:0,
-    name:"",
-    street:"",
-    number:"",
-    box:"",
-    postalCode:"",
-    city:"",
-    country:"",
-    addressTypeId:0
-    
+    id: 0,
+    name: "",
+    street: "",
+    number: "",
+    box: "",
+    postalCode: "",
+    city: "",
+    country: "",
+    addressTypeId: 0
+
   }
-  address$ : Subscription = new Subscription();
-  putAddress$ : Subscription = new Subscription();
+  address$: Subscription = new Subscription();
+  putAddress$: Subscription = new Subscription();
   postAddress$: Subscription = new Subscription();
   // option$: Subscription =new Subscription();
   // options: Option[] = [];
-  optionsByAddress?: Observable<Option[]> | any = this.optionService.getOptionsByTypeAsync("Address");
+  optionsByAddress$: Subscription = new Subscription();
+  // this.optionService.getOptionsByTypeAsync("Address");
+  trainingFacilityId: number = 0;
 
   addressForm = new FormGroup({
     id: new FormControl<number>(0, { nonNullable: true }),
@@ -51,7 +53,7 @@ export class AddressFormComponent implements OnInit {
     country: new FormControl<string>("", { nonNullable: true }),
     addressTypeId: new FormControl<number>(0, { nonNullable: true }),
   })
-  
+
 
   constructor(private router: Router, private addressService: AddressService, private optionService: OptionService) {
     this.isAdd = this.router.getCurrentNavigation()?.extras.state?.['mode'] === 'add';
@@ -59,42 +61,68 @@ export class AddressFormComponent implements OnInit {
     this.addressId = +this.router.getCurrentNavigation()?.extras.state?.['id'];
     console.log('in constructor: ' + this.addressId)
 
-    if (this.addressId != null && this.addressId > 0){
-      this.address$ = this.addressService.getAddressById(this.addressId).subscribe(result => {
-        console.log(result);
-        this.addressForm.setValue({
-          id: result.id,
-          name: result.name,
-         street:result.street,
-         number:result.number,
-         box:result.box,
-         postalCode:result.postalCode,
-         city:result.city,
-         country:result.country,
-         addressTypeId:result.addressTypeId
+    this.optionsByAddress$ = this.optionService.getOptionsByTypeAsync("Address").subscribe(result => {
+
+
+      debugger
+      result
+      for (let i = 0; i < result.length; i++) {
+        let currentOption = result[i];
+        if (currentOption.name == 'Training facility') {
+          this.trainingFacilityId = currentOption.id;
+        }
+      }
+
+      if (this.addressId != null && this.addressId > 0) {
+        this.address$ = this.addressService.getAddressById(this.addressId).subscribe(result => {
+          console.log(result);
+          this.addressForm.setValue({
+            id: result.id,
+            name: result.name,
+            street: result.street,
+            number: result.number,
+            box: result.box,
+            postalCode: result.postalCode,
+            city: result.city,
+            country: result.country,
+            addressTypeId: this.trainingFacilityId
+          });
         });
-      });
-    }
-    // this.option$ = this.optionService.getOptions().subscribe(result => {
-    //   this.options = result;
-    // });
+      } else {
+        this.addressForm.setValue({
+          id: 0,
+          name: '',
+          street: '',
+          number: '',
+          box: '',
+          postalCode: '',
+          city: '',
+          country: '',
+          addressTypeId: this.trainingFacilityId
+        });
+      }
+    });
   }
 
   ngOnInit(): void {
-    if(this.isEdit){
-      this.getAddressById();}
+    if (this.isEdit) {
+      this.getAddressById();
+    }
   }
+
   ngOnDestroy(): void {
     // this.option$.unsubscribe();
     this.address$.unsubscribe();
     this.postAddress$.unsubscribe();
     this.putAddress$.unsubscribe();
   }
+
   getAddressById() {
     this.address$ = this.addressService.getAddressById(this.addressId).subscribe(result => this.address = result);
   }
-  onSubmit(): void{
-    this.isSubmitted =true;
+
+  onSubmit(): void {
+    this.isSubmitted = true;
     if (this.isEdit) {
       console.log("In isEdit")
       console.log(this.addressId)
@@ -107,15 +135,15 @@ export class AddressFormComponent implements OnInit {
           this.errorMessage = error.message;
         });
     }
-    if(this.isAdd) {
+    if (this.isAdd) {
       console.log(" in Add")
       console.log(this.addressId)
       this.postAddress$ = this.addressService.postAddress(this.addressForm.getRawValue()).subscribe(result => {
         this.router.navigateByUrl("/address");
       },
-      error => {
-        this.errorMessage = error.message;
-      });
+        error => {
+          this.errorMessage = error.message;
+        });
     }
 
   }

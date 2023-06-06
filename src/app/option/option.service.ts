@@ -20,6 +20,7 @@ export class OptionService {
   }
 
   postOption(option: Option): Observable<Option> {
+    debugger
     return this.httpClient.post<Option>(this.api_url, option);
   }
 
@@ -30,8 +31,8 @@ export class OptionService {
   deleteOption(id: number): Observable<Option> {
     return this.httpClient.delete<Option>(this.api_url + id);
   }
-  getOptionsByTypeAsync(string: string): Observable<Option> {
+  getOptionsByTypeAsync(string: string): Observable<Option[]> {
     debugger
-    return this.httpClient.get<Option>(this.api_url + 'type?type=' + string);
+    return this.httpClient.get<Option[]>(this.api_url + 'type?type=' + string);
   }
 }

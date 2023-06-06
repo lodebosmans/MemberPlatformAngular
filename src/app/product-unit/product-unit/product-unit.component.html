@@ -1,20 +1,29 @@
-<p *ngIf="isLoading">Aan het laden</p>
+<div class="container">
+  <p *ngIf="isLoading">Aan het laden</p>
 
-<div *ngIf="!isLoading">
-  <div class="btn btn-success" (click)="add()">productUnit toevoegen</div>
-  <div>
-    <table class="table" *ngIf="productUnits && productUnits.length > 0">
-      <tbody>
-        <tr *ngFor="let p of productUnits">
-          <th scope="row">{{ p.id }}</th>
-          <td>{{ p.comment }}</td>
-          <td>
-            <button type="button" class="btn knop" (click)="edit(p.id)">
-              <i class="fas fa-edit"></i>
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <div *ngIf="!isLoading">
+    <div class="btn btn-primary btn-format float-end" (click)="add()">
+      <mat-icon>add_box</mat-icon>
+      <span>Training toevoegen</span>
+    </div>
+    <div>
+      <table class="table" *ngIf="productUnits && productUnits.length > 0">
+        <tbody>
+          <tr>
+            <th>Naam</th>
+            <th></th>
+          </tr>
+          <tr *ngFor="let p of productUnits">
+            <!-- <th scope="row">{{ p.id }}</th> -->
+            <td>{{ p.comment }}</td>
+            <td>
+              <button type="button" class="btn btn-primary" (click)="edit(p.id)">
+                <i class="fas fa-edit"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
