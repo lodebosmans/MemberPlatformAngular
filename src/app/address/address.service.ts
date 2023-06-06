@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable} from '@angular/core'
-import { Observable } from 'rxjs';
+import { Observable, Observer } from 'rxjs';
 import { Address } from './address';
 import { environment } from 'src/environments/environment';
+import { Option } from '../option/option';
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +32,7 @@ export class AddressService {
     return this.httpClient.delete<Address>(this.api_url + id);
   }
 
-  getTrainingFacilities():Observable<Address[]> {
-    return this.httpClient.get<Address[]>(this.api_url+'*');
+  getTrainingFacilities(): Observable<Address[]> {
+    return this.httpClient.get<Address[]>(this.api_url + '*');
   }
 }

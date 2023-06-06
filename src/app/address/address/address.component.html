@@ -2,14 +2,20 @@
     <p *ngIf="isLoading">Aan het laden</p>
 
     <div *ngIf="!isLoading">
-        <div class="btn btn-primary float-end button-format" (click)="add()">
-            <mat-icon>person_add</mat-icon>
-            <span>Locatie toevoegen</span>
+        <div class="btn btn-primary float-end btn-format" (click)="add()">
+            <mat-icon>add_box</mat-icon>
+            <span>Trainingslocatie toevoegen</span>
         </div>
         <table class="table" *ngIf="addresses && addresses.length > 0">
             <tbody>
+                <tr>
+                    <th>Naam</th>
+                    <th>Adres</th>
+                    <th></th>
+                </tr>
                 <tr *ngFor="let a of addresses">
-                    <th scope="row">{{a.name}}</th>
+                    <td>{{a.name}}</td>
+                    <td>{{a.street}} {{a.number}}{{ a.box ? ' ' + a.box : '' }}, {{a.postalCode}} {{a.city}}, {{a.country}}</td>
                     <td><button type="button" class="btn btn-primary" (click)="edit(a.id)"><i class="fas fa-edit"></i></button>
                     </td>
                 </tr>

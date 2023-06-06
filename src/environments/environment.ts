@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: "https://localhost:7094/api/",
+  // apiUrl: "https://localhost:7094/api/",
+  apiUrl: "https://stage-johnny-urkens.cloud.okteto.net/",
   clientId: '140143673699-o5l6aq9vic8sd5mfdr6imrv2vues9mk7.apps.googleusercontent.com',
 };
 
