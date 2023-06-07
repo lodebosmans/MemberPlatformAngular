@@ -30,6 +30,7 @@ export class ProductUnitComponent implements OnInit {
   productUnits: ProductUnit[] = [];
   // options: Option[] = [];
   options? : Observable<Option[]> | undefined;
+  // productDefinitions? : Observable<ProductDefinition[]> | undefined;
   productUnit$: Subscription = new Subscription();
   productDefinition$: Subscription = new Subscription();
   option$: Subscription = new Subscription();
@@ -46,6 +47,7 @@ export class ProductUnitComponent implements OnInit {
   ngOnInit(): void {
     this.getProductUnits();
     this.getOptions();
+    this.getProductDefinitions() 
     console.log(this.isLoading);
   }
 
@@ -62,6 +64,20 @@ export class ProductUnitComponent implements OnInit {
   getOptions() {
     this.options = this.optionService.getOptions();
   }
+
+  getProductDefinitions() {
+    this.productDefinition$ = this.productDefinitionService
+      .getProductDefinitions()
+      .subscribe(result => {
+        this.productDefinitions = result;
+        console.log('alle productDefinitions ', this.productDefinitions);
+      });
+  }
+
+  // getProductDefinitionById(id: number) {
+  //   let productDefinition: ProductDefinition = this.productDefinitionService.getProductDefinitionById(id);
+  //   return name
+  // }
 
   edit(id: number) {
     //Navigate to form in edit mode

@@ -11,6 +11,7 @@
         <tbody>
           <tr>
             <th>Naam</th>
+            <th>Activiteit</th>
             <th>Datum</th>
             <th></th>
           </tr>
@@ -18,11 +19,14 @@
             <!-- <th scope="row">{{ p.id }}</th> -->
             <td>{{ p.comment }}</td>
             <td>
-              <ng-container *ngFor="let o of options | async">
-                <ng-container *ngIf="o.id == p.productId">
-                    {{ o.name }}
+              <ng-container *ngFor="let pd of productDefinitions">
+                <ng-container *ngIf="pd.id == p.productId">
+                  {{ pd.name }}
                 </ng-container>
               </ng-container>
+            </td>
+            <td>
+              {{p.date | date: "dd-MM-yyyy" }}
             </td>
             <td>
               <button type="button" class="btn btn-primary" (click)="edit(p.id)">
