@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductUnit } from '../product-unit';
 import { ProductDefinition } from 'src/app/product-definition/product-definition';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Option } from 'src/app/option/option';
 import { ProductUnitService } from '../product-unit.service';
 import { Router } from '@angular/router';
@@ -28,7 +28,8 @@ export class ProductUnitComponent implements OnInit {
   };
   productDefinitions: ProductDefinition[] = [];
   productUnits: ProductUnit[] = [];
-  options: Option[] = [];
+  // options: Option[] = [];
+  options? : Observable<Option[]> | undefined;
   productUnit$: Subscription = new Subscription();
   productDefinition$: Subscription = new Subscription();
   option$: Subscription = new Subscription();
@@ -44,8 +45,10 @@ export class ProductUnitComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProductUnits();
+    this.getOptions();
     console.log(this.isLoading);
   }
+
   getProductUnits() {
     this.productUnit$ = this.pruductUnitService
       .getProductUnits()
@@ -55,12 +58,18 @@ export class ProductUnitComponent implements OnInit {
         console.log('alle productUnits ', this.productUnits);
       });
   }
+
+  getOptions() {
+    this.options = this.optionService.getOptions();
+  }
+
   edit(id: number) {
     //Navigate to form in edit mode
     this.router.navigate(['productUnit/edit'], {
       state: { id: id, mode: 'edit' }
     });
   }
+
   add() {
     this.router.navigate(['productUnit/edit'], { state: { mode: 'add' } });
   }
