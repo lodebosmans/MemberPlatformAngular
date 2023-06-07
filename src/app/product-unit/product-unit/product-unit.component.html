@@ -11,11 +11,19 @@
         <tbody>
           <tr>
             <th>Naam</th>
+            <th>Datum</th>
             <th></th>
           </tr>
           <tr *ngFor="let p of productUnits">
             <!-- <th scope="row">{{ p.id }}</th> -->
             <td>{{ p.comment }}</td>
+            <td>
+              <ng-container *ngFor="let o of options | async">
+                <ng-container *ngIf="o.id == p.productId">
+                    {{ o.name }}
+                </ng-container>
+              </ng-container>
+            </td>
             <td>
               <button type="button" class="btn btn-primary" (click)="edit(p.id)">
                 <i class="fas fa-edit"></i>
