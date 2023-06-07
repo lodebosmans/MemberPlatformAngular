@@ -31,7 +31,7 @@ export class ProductDefinitionFormComponent implements OnInit {
     price: 0,
     dayOfWeek: '',
     numberOfGroups: 0,
-    parentProductDefinitionId: 0,
+    parentProductDefinitionId: null,
     productDefinitionFormatId: 0,
     productDefinitionSportId: 0,
     productDefinitionStatusId: 0,
@@ -43,7 +43,7 @@ export class ProductDefinitionFormComponent implements OnInit {
   putProductDefinition$: Subscription = new Subscription();
   postProductDefinition$: Subscription = new Subscription();
   productDefinitions: ProductDefinition[] = [];
-  optionsByStatus?: Observable<Option[]> | any  = this.optionService.getOptionsByTypeAsync("Status");
+  optionsByStatus?: Observable<Option[]> | any = this.optionService.getOptionsByTypeAsync("Status");
   optionsBySport?: Observable<Option[]> | any = this.optionService.getOptionsByTypeAsync("Sport");
   optionsByFormat?: Observable<Option[]> | any = this.optionService.getOptionsByTypeAsync("Format");
 
@@ -58,14 +58,10 @@ export class ProductDefinitionFormComponent implements OnInit {
     price: new FormControl<number>(0, { nonNullable: true }),
     dayOfWeek: new FormControl<string>(''),
     numberOfGroups: new FormControl<number>(0),
-    parentProductDefinitionId: new FormControl<number>(0),
-    productDefinitionFormatId: new FormControl<number>(0, {
-      nonNullable: true
-    }),
+    parentProductDefinitionId: new FormControl<number | null >(null),
+    productDefinitionFormatId: new FormControl<number>(0, { nonNullable: true }),
     productDefinitionSportId: new FormControl<number>(0, { nonNullable: true }),
-    productDefinitionStatusId: new FormControl<number>(0, {
-      nonNullable: true
-    }),
+    productDefinitionStatusId: new FormControl<number>(0, { nonNullable: true }),
     imageUrl: new FormControl<string>(''),
     subscriptionOpening: new FormControl<string>('', { nonNullable: true }),
     subscriptionClosing: new FormControl<string>('', { nonNullable: true })

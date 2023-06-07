@@ -93,7 +93,8 @@
       <label for="parentProductDefinitionId">Parent activiteit</label>
       <select id="parentProductDefinitionId" name="parentProductDefinitionId"
         formControlName="parentProductDefinitionId" class="form-select" aria-label="Default select example">
-        <option [ngValue]="null">-- Not Set --</option>
+        <!-- <option [ngValue]="null">-- Not Set --</option> -->
+        <option value = "null">-</option>
         <option *ngFor="let type of productDefinitions" [ngValue]="type.id">{{
           type.name
           }}</option>
