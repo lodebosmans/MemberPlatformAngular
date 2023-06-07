@@ -5,7 +5,12 @@
   <p *ngIf="isAdd">Voeg een nieuwe training/event toe.</p>
   <p *ngIf="isEdit">Pas de gegevens van een training/event aan.</p>
   <form (ngSubmit)="onSubmit()" [formGroup]="productUnitForm">
-    <div>
+    <div class="form-group">
+      <label for="date">Trainingsdatum</label>
+      <input type="date" class="form-control" id="date" name="date" placeholder="Trainingsdatum"
+        formControlName="date" minlength="2" required />
+    </div>
+    <!-- <div>
       <mat-form-field>
         <mat-label>Datum</mat-label>
         <input matInput [matDatepicker]="picker" formControlName="date" />
@@ -13,7 +18,7 @@
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
-    </div>
+    </div> -->
     <div class="form-group">
       <label for="comment">Opmerking</label>
       <input type="text" class="form-control" id="comment" name="comment" placeholder="comment"
@@ -37,12 +42,30 @@
     </div>
     <div class="form-group">
       <label for="productUnitStatusId">Status</label>
-      <select id="productUnitStatusId" name="productUnitStatusId" formControlName="productUnitStatusId" required
-        class="form-select" aria-label="Default select example">
-        <option *ngFor="let type of options" [ngValue]="type.id"
+      <select id="productUnitStatusId" name="productUnitStatusId"
+        formControlName="productUnitStatusId" required class="form-select" aria-label="Default select example">
+        <option *ngFor="let type of optionsBySttus | async" [ngValue]="type.id"
           [selected]="type.id === productUnit.productUnitStatusId">{{ type.name }}</option>
       </select>
     </div>
+    <!-- <div class="form-group">
+      <label for="productUnitStatusId">Status:</label>
+      <select
+        id="productUnitStatusId"
+        name="productUnitStatusId"
+        formControlName="productUnitStatusId"
+        required
+        class="form-select"
+        aria-label="Default select example"
+      >
+        <option
+          *ngFor="let type of options"
+          [ngValue]="type.id"
+          [selected]="type.id === productUnit.productUnitStatusId"
+          >{{ type.name }}</option
+        >
+      </select>
+    </div> -->
 
     <div class="form-group">
       <mat-form-field>

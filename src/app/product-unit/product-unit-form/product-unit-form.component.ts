@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductUnit } from '../product-unit';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Option } from 'src/app/option/option';
 import { ProductDefinition } from 'src/app/product-definition/product-definition';
 import { Address } from 'src/app/address/address';
@@ -45,6 +45,7 @@ export class ProductUnitFormComponent implements OnInit {
   productDefinition$: Subscription = new Subscription();
   addresses: Address[] = [];
   address$: Subscription = new Subscription();
+  optionsByStatus?: Observable<Option[]> | any  = this.optionService.getOptionsByTypeAsync("Status");
 
   productUnitForm = new FormGroup({
     id: new FormControl<number>(0, { nonNullable: true }),
@@ -82,11 +83,14 @@ export class ProductUnitFormComponent implements OnInit {
         .subscribe(result => {
           console.log(result);
           console.log(result.startTimeActual);
+          const formatteddate =
+          this.datePipe.transform(result.date, 'yyyy-MM-dd') ?? '';
+          console.log('date',formatteddate)
 
           this.productUnitForm.setValue({
             id: result.id,
             productId: result.productId,
-            date: result.date,
+            date: formatteddate,
             comment: result.comment,
             startTimeScheduled: result.startTimeScheduled,
             startTimeActual: result.startTimeActual,
@@ -105,7 +109,7 @@ export class ProductUnitFormComponent implements OnInit {
       .subscribe(result => {
         this.productDefinitions = result;
       });
-    this.address$ = this.addressService.getAddresses().subscribe(result => {
+    this.address$ = this.addressService.getTrainingFacilities().subscribe(result => {
       this.addresses = result;
     });
   }
