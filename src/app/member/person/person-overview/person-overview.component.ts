@@ -50,7 +50,7 @@ export class PersonOverviewComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    console.log("In person-overview")
+    // console.log("In person-overview")
     this.getAuthCredentials();
   }
 
@@ -71,8 +71,8 @@ export class PersonOverviewComponent implements OnInit {
     this.person$ = this.personService.getPersonById(this.id).subscribe(result => {
       this.person = result;
       this.isLoading = false;
-      console.log('Person: ');
-      console.log(this.person);
+      // console.log('Person: ');
+      // console.log(this.person);
     });
   }
 

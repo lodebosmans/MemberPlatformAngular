@@ -21,7 +21,6 @@ export class PriceAgreementService {
   }
 
   postPriceAgreement(priceAgreement: PriceAgreement): Observable<PriceAgreement> {
-    debugger
     return this.httpClient.post<PriceAgreement>(this.api_url, priceAgreement);
   }
 

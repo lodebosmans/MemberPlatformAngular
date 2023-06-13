@@ -24,9 +24,9 @@ export class OptionComponent implements OnInit {
   constructor(private optionService: OptionService, private router: Router) {}
 
   ngOnInit(): void {
-    console.log('In option');
+    // console.log('In option');
     this.getOptions();
-    console.log(this.isLoading);
+    // console.log(this.isLoading);
   }
 
   ngOnDestroy(): void {
@@ -38,7 +38,7 @@ export class OptionComponent implements OnInit {
       this.options = result;
       this.isLoading = false;
       debugger
-      console.log('alle options ', this.options);
+      // console.log('alle options ', this.options);
     });
   }
 

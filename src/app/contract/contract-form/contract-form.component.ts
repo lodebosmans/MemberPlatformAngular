@@ -47,7 +47,7 @@ export class ContractFormComponent implements OnInit {
       this.isAdd = this.router.getCurrentNavigation()?.extras.state?.['mode'] === 'add';
       this.isEdit = this.router.getCurrentNavigation()?.extras.state?.['mode'] === 'edit';
       this.contractId = +this.router.getCurrentNavigation()?.extras.state?.['id'];
-      console.log('in constructor: ' + this.contractId)
+      // console.log('in constructor: ' + this.contractId)
       if (this.contractId != null && this.contractId > 0){
         this.contract$ = this.contractService.getContractById(this.contractId).subscribe(result => {
           this.contractForm.setValue({
@@ -77,9 +77,9 @@ export class ContractFormComponent implements OnInit {
   onSubmit(): void{
     this.isSubmitted =true;
     if (this.isEdit) {
-      console.log("In isEdit")
-      console.log(this.contractId)
-      console.log(this.contractForm.value)
+      // console.log("In isEdit")
+      // console.log(this.contractId)
+      // console.log(this.contractForm.value)
       this.contract$ = this.contractService.putContract(this.contractId, this.contractForm.getRawValue()).subscribe(result => {
         //all went well
         this.router.navigateByUrl("/contract");
@@ -89,8 +89,8 @@ export class ContractFormComponent implements OnInit {
         });
     }
     if(this.isAdd) {
-      console.log(" in Add")
-      console.log(this.contractId)
+      // console.log(" in Add")
+      // console.log(this.contractId)
       this.contract$ = this.contractService.postContract(this.contractForm.getRawValue()).subscribe(result => {
         this.router.navigateByUrl("/contract");
       },

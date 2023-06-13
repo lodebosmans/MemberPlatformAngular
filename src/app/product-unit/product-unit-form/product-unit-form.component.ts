@@ -75,17 +75,17 @@ export class ProductUnitFormComponent implements OnInit {
     this.productUnitId = +this.router.getCurrentNavigation()?.extras.state?.[
       'id'
     ];
-    console.log('in constructor: ' + this.productUnitId);
+    // console.log('in constructor: ' + this.productUnitId);
 
     if (this.productUnitId != null && this.productUnitId > 0) {
       this.productUnit$ = this.productUnitService
         .getProductUnitById(this.productUnitId)
         .subscribe(result => {
-          console.log(result);
-          console.log(result.startTimeActual);
+          // console.log(result);
+          // console.log(result.startTimeActual);
           const formatteddate =
           this.datePipe.transform(result.date, 'yyyy-MM-dd') ?? '';
-          console.log('date',formatteddate)
+          // console.log('date',formatteddate)
 
           this.productUnitForm.setValue({
             id: result.id,
@@ -181,9 +181,9 @@ export class ProductUnitFormComponent implements OnInit {
   onSubmit(): void {
     this.isSubmitted = true;
     if (this.isEdit) {
-      console.log('In isEdit');
-      console.log(this.productUnitId);
-      console.log(this.productUnitForm.value);
+      // console.log('In isEdit');
+      // console.log(this.productUnitId);
+      // console.log(this.productUnitForm.value);
       this.putProductUnit$ = this.productUnitService
         .putProductUnit(this.productUnitId, this.productUnitForm.getRawValue())
         .subscribe(
@@ -198,8 +198,8 @@ export class ProductUnitFormComponent implements OnInit {
         );
     }
     if (this.isAdd) {
-      console.log(' in Add');
-      console.log(this.productUnitId);
+      // console.log(' in Add');
+      // console.log(this.productUnitId);
       this.postProductUnit$ = this.productUnitService
         .postProductUnit(this.productUnitForm.getRawValue())
         .subscribe(

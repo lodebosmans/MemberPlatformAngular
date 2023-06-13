@@ -36,7 +36,6 @@ const routes: Routes = [
   { path: 'error404', component: Error404Component, pathMatch: 'full'},
   { path: 'subscription/subscribe', component: SubscriptionFormComponent },
   { path: 'subscription/overview', component: SubscriptionOverviewComponent },
-  // { path: 'option', component: OptionComponent},
   { path: 'option', component: OptionComponent, canActivate: [AuthGuardAdmin], pathMatch: 'full' },
   { path: 'option/edit', component: OptionFormComponent, canActivate: [AuthGuardAdmin] },
   { path: 'option/add', component: OptionFormComponent, canActivate: [AuthGuardAdmin] },

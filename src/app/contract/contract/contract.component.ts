@@ -30,14 +30,14 @@ export class ContractComponent implements OnInit {
 
   ngOnInit(): void {
     this.getContracts();
-    console.log(this.isLoading);
+    // console.log(this.isLoading);
   }
 
   getContracts(){
     this.contract$= this.contractService.getContracts().subscribe(result => {
       this.contracts = result;
       this.isLoading = false;
-      console.log("alle contracts ", this.contracts)
+      // console.log("alle contracts ", this.contracts)
     });
 }
 edit(id: number) {

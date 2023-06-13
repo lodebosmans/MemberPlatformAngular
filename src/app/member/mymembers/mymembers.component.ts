@@ -23,8 +23,8 @@ export class MymembersComponent implements OnInit {
       this.emailAddressEncoded = emailAddress ? encodeURIComponent(emailAddress) : '';
       // debugger
       this.personService.getPersonByEmailAddress(this.emailAddressEncoded).subscribe((mymembers: Person[] | null) => {
-        console.log('Repons op email addres in db:')
-        console.log(mymembers)
+        // console.log('Repons op email addres in db:')
+        // console.log(mymembers)
         this.mymembers = mymembers;
         this.isLoading = false;
         // Loop over the members to find the parent (should be the first one)

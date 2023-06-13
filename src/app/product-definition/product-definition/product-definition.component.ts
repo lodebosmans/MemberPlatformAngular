@@ -44,7 +44,7 @@ export class ProductDefinitionComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProductDefinitions();
-    console.log(this.isLoading);
+    // console.log(this.isLoading);
   }
   ngOnDestroy(): void {
     this.productDefinition$.unsubscribe();
@@ -56,7 +56,7 @@ export class ProductDefinitionComponent implements OnInit {
       .subscribe(result => {
         this.productDefinitions = result;
         this.isLoading = false;
-        console.log('alle productDefinitions ', this.productDefinitions);
+        // console.log('alle productDefinitions ', this.productDefinitions);
       });
   }
 

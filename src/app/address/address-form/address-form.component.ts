@@ -59,7 +59,7 @@ export class AddressFormComponent implements OnInit {
     this.isAdd = this.router.getCurrentNavigation()?.extras.state?.['mode'] === 'add';
     this.isEdit = this.router.getCurrentNavigation()?.extras.state?.['mode'] === 'edit';
     this.addressId = +this.router.getCurrentNavigation()?.extras.state?.['id'];
-    console.log('in constructor: ' + this.addressId)
+    // console.log('in constructor: ' + this.addressId)
 
     this.optionsByAddress$ = this.optionService.getOptionsByTypeAsync("Address").subscribe(result => {
 
@@ -75,7 +75,7 @@ export class AddressFormComponent implements OnInit {
 
       if (this.addressId != null && this.addressId > 0) {
         this.address$ = this.addressService.getAddressById(this.addressId).subscribe(result => {
-          console.log(result);
+          // console.log(result);
           this.addressForm.setValue({
             id: result.id,
             name: result.name,
@@ -124,9 +124,9 @@ export class AddressFormComponent implements OnInit {
   onSubmit(): void {
     this.isSubmitted = true;
     if (this.isEdit) {
-      console.log("In isEdit")
-      console.log(this.addressId)
-      console.log(this.addressForm.value)
+      // console.log("In isEdit")
+      // console.log(this.addressId)
+      // console.log(this.addressForm.value)
       this.putAddress$ = this.addressService.putAddress(this.addressId, this.addressForm.getRawValue()).subscribe(result => {
         //all went well
         this.router.navigateByUrl("/address");
@@ -136,8 +136,8 @@ export class AddressFormComponent implements OnInit {
         });
     }
     if (this.isAdd) {
-      console.log(" in Add")
-      console.log(this.addressId)
+      // console.log(" in Add")
+      // console.log(this.addressId)
       this.postAddress$ = this.addressService.postAddress(this.addressForm.getRawValue()).subscribe(result => {
         this.router.navigateByUrl("/address");
       },

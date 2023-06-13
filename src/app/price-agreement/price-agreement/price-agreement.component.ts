@@ -42,7 +42,7 @@ export class PriceAgreementComponent implements OnInit {
     this.priceAgreement$ = this.priceAgreementService.getPriceAgreements().subscribe(result => {
       this.priceAgreements = result;
       this.isLoading = false;
-      console.log("alle priceAgreements ", this.priceAgreements)
+      // console.log("alle priceAgreements ", this.priceAgreements)
     });
   }
   // edit(id: number) {

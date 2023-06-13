@@ -12,8 +12,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MemberModule } from './member/member.module';
 import { HttpClientModule } from '@angular/common/http';
 import { PersonFormComponent } from './member/person/person-form/person-form.component';
-import { SignInComponent } from './login/signin/signin.component';
-import { SignoutComponent } from './login/signout/signout.component';
+// import { SignInComponent } from './login/signin/signin.component';
+// import { SignoutComponent } from './login/signout/signout.component';
 // import { OptionModule } from './option/option.module';
 // import { ProductDefinitionModule } from './product-definition/product-definition.module';
 // import { PersonOverviewComponent } from './member/person/person-overview/person-overview.component';
@@ -45,14 +45,15 @@ import { ProductUnitComponent } from './product-unit/product-unit/product-unit.c
 import { ProductUnitFormComponent } from './product-unit/product-unit-form/product-unit-form.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { RouterModule } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     PersonFormComponent,
-    SignInComponent,
-    SignoutComponent,
+    // SignInComponent,
+    // SignoutComponent,
     MymembersComponent,
     Error403Component,
     Error404Component,
@@ -97,6 +98,7 @@ import { RouterModule } from '@angular/router';
     SubscriptionModule,
     PriceAgreementModule,
     CommonModule,
+    // AuthModule.forRoot(environment.auth),
     AuthModule.forRoot({
       domain: 'lodebosmans.eu.auth0.com',
       clientId: 'dc8iyjLONxtjfDcLBAixsaMspzeLlt0G',
