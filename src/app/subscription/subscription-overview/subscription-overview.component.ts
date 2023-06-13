@@ -54,41 +54,41 @@ export class SubscriptionOverviewComponent implements OnInit {
     return new Promise<void>((resolve, reject) => {
       this.authService.user$.subscribe((user: User | undefined | null) => {
         this.emailAddress = user?.email;
-        console.log('mail', this.emailAddress);
+        // console.log('mail', this.emailAddress);
         this.m = this.emailAddress;
-        console.log('m', this.m);
+        // console.log('m', this.m);
         resolve();
       });
     });
   
   }
   getPerson() {
-    console.log('mmm', this.m);
+    // console.log('mmm', this.m);
     this.person$ = this.personService
       .getPersonByEmailAddress(this.m)
       .subscribe(result => {
         this.persons = result;
-        console.log('r', this.persons);
+        // console.log('r', this.persons);
         this.getAllSubscriptions();
       });
   }
  
   getAllSubscriptions() {
-      console.log('per', this.persons)
+      // console.log('per', this.persons)
       const allSubscriptions = [];
       for (const person of this.persons) {
-        console.log('person', person)
+        // console.log('person', person)
       this.subscriptionService.getAllById(person.id, this.selectedYear).subscribe(result => {
         const subscriptions = result;
         this.subscriptionDTOs.push(...subscriptions)
       });
-      console.log('subs', this.subscriptionDTOs)
+      // console.log('subs', this.subscriptionDTOs)
     }
   }
   onYearChange(event: any) {
     const selectElement = event.target as HTMLSelectElement;
     const selectedYear = selectElement.value;
-    console.log('Selected year:', selectedYear);
+    // console.log('Selected year:', selectedYear);
     this.router.navigateByUrl('subscription/overview');
     this.getPerson();
     this.subscriptionDTOs = [];

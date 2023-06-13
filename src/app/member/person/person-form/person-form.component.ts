@@ -92,15 +92,15 @@ export class PersonFormComponent implements OnInit {
     this.emailAddress = this.router.getCurrentNavigation()?.extras.state?.['emailAddress'] ?? '';
 
     debugger
-    console.log('in constructor: ' + this.personId)
+    // console.log('in constructor: ' + this.personId)
     // debugger
     if (this.personId != null && this.personId > 0) {
       this.person$ = this.personService.getPersonById(this.personId).subscribe(result => {
         // If the person exist, add the data to the form.
-        console.log(result);
+        // console.log(result);
         const tempDateOnly = this.datePipe.transform(result.dateOfBirth, 'yyyy-MM-dd') ?? ''
-        console.log('Dit is de datum: ')
-        console.log(tempDateOnly)
+        // console.log('Dit is de datum: ')
+        // console.log(tempDateOnly)
 
         this.personForm.setValue({
           id: result.id,
@@ -169,8 +169,8 @@ export class PersonFormComponent implements OnInit {
     this.isSubmitted = true;
 
     if (this.isAdd) {
-      console.log("In isAdd")
-      console.log(this.personForm.value)
+      // console.log("In isAdd")
+      // console.log(this.personForm.value)
       debugger
       this.postPerson$ = this.personService.postPerson(this.personForm.getRawValue()).subscribe(result => {
         debugger
@@ -186,9 +186,9 @@ export class PersonFormComponent implements OnInit {
 
 
     if (this.isEdit) {
-      console.log("In isEdit")
-      console.log(this.personId)
-      console.log(this.personForm.value)
+      // console.log("In isEdit")
+      // console.log(this.personId)
+      // console.log(this.personForm.value)
       debugger
       this.putPerson$ = this.personService.putPerson(this.personId, this.personForm.getRawValue()).subscribe(result => {
         //all went well

@@ -53,39 +53,58 @@ export class AppComponent {
       this.emailAddressEncoded = this.emailAddress ? encodeURIComponent(this.emailAddress) : '';
       this.firstName = user?.given_name;
       this.lastName = user?.family_name;
-      // debugger
+      debugger
 
-      // Check if the person is registered or not
-      personService.getPersonByEmailAddress(this.emailAddressEncoded).subscribe((mymembers: Person[] | null) => {
-        console.log('Repons op email addres in db:');
-        console.log(mymembers);
+      // this.getJWTToken();
 
-        // debugger
-        if (mymembers != null) {
-          // Check if the person is an admin (or trainer)
-          let test$ = this.roleService.checkForAdminRights(mymembers[0].id).subscribe(result => {
-            debugger
-            this.roleService.isAdmin = result;
-          });
+      this.authService.getAccessTokenSilently().subscribe((accessToken) => {
+        // console.log('This is the JWT token'); // JWT token
+        // console.log(accessToken); // JWT token
+        this.roleService.accessToken = accessToken;
+        debugger
+
+        // Check if the person is registered or not
+        personService.getPersonByEmailAddress(this.emailAddressEncoded).subscribe((mymembers: Person[] | null) => {
+          // console.log('Repons op email addres in db:');
+          // console.log(mymembers);
+
+          debugger
+          if (mymembers != null) {
+            // Check if the person is an admin (or trainer)
+            let test$ = this.roleService.checkForAdminRights(mymembers[0].id).subscribe(result => {
+              debugger
+              this.roleService.isAdmin = result;
+            });
 
 
-          this.mymembers = mymembers;
-          // debugger
-          this.navigateToHome();
-        } else {
-          // debugger
-          this.router.navigate(['register/'], {
-            state: {
-              emailAddress: this.emailAddress,
-              firstName: this.firstName,
-              lastName: this.lastName,
-              mode: 'add'
-            }
-          });
-        }
-      });
+            this.mymembers = mymembers;
+            // debugger
+            this.navigateToHome();
+          } else {
+            // debugger
+            this.router.navigate(['register/'], {
+              state: {
+                emailAddress: this.emailAddress,
+                firstName: this.firstName,
+                lastName: this.lastName,
+                mode: 'add'
+              }
+            });
+          }
+        });
+      })
+
+
     });
   }
+
+  // getJWTToken(): void {
+  //   this.authService.getAccessTokenSilently().subscribe((accessToken) => {
+  //     console.log('This is the JWT token'); // JWT token
+  //     console.log(accessToken); // JWT token
+  //     this.roleService.token = accessToken;
+  //   })
+  // }
 
   navigateToHome() {
     debugger

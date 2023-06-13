@@ -53,7 +53,7 @@ export class SubscriptionComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProductDefinitions();
-    console.log(this.isLoading);
+    // console.log(this.isLoading);
     this.getAuthCredentials();
     
   }
@@ -64,7 +64,7 @@ export class SubscriptionComponent implements OnInit {
     this.authService.user$.subscribe((user: User | undefined | null) => {
       // debugger
       this.emailAddress = user?.email;
-      console.log('mail', this.emailAddress);
+      // console.log('mail', this.emailAddress);
     });
   }
 
@@ -74,7 +74,7 @@ export class SubscriptionComponent implements OnInit {
       .subscribe(result => {
         this.productDefinitions = result;
         this.isLoading = false;
-        console.log('alle productDefinitions ', this.productDefinitions);
+        // console.log('alle productDefinitions ', this.productDefinitions);
       });
   }
   subscribe(id: number) {

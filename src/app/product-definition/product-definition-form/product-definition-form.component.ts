@@ -79,13 +79,13 @@ export class ProductDefinitionFormComponent implements OnInit {
       this.router.getCurrentNavigation()?.extras.state?.['mode'] === 'edit';
     this.productDefinitionId = +this.router.getCurrentNavigation()?.extras
       .state?.['id'];
-    console.log('in constructor: ' + this.productDefinitionId);
+    // console.log('in constructor: ' + this.productDefinitionId);
 
     if (this.productDefinitionId != null && this.productDefinitionId > 0) {
       this.productDefinition$ = this.productDefinitionService
         .getProductDefinitionById(this.productDefinitionId)
         .subscribe(result => {
-          console.log(result);
+          // console.log(result);
           const formattedStartDate =
             this.datePipe.transform(result.startDate, 'yyyy-MM-dd') ?? '';
           const formattedEndDate =
@@ -144,9 +144,9 @@ export class ProductDefinitionFormComponent implements OnInit {
   onSubmit(): void {
     this.isSubmitted = true;
     if (this.isEdit) {
-      console.log('In isEdit');
-      console.log(this.productDefinitionId);
-      console.log(this.productDefinitionForm.value);
+      // console.log('In isEdit');
+      // console.log(this.productDefinitionId);
+      // console.log(this.productDefinitionForm.value);
       this.putProductDefinition$ = this.productDefinitionService
         .putProductDefinition(
           this.productDefinitionId,
@@ -163,8 +163,8 @@ export class ProductDefinitionFormComponent implements OnInit {
         );
     }
     if (this.isAdd) {
-      console.log(' in Add');
-      console.log(this.productDefinitionId);
+      // console.log(' in Add');
+      // console.log(this.productDefinitionId);
       this.postProductDefinition$ = this.productDefinitionService
         .postProductDefinition(this.productDefinitionForm.getRawValue())
         .subscribe(

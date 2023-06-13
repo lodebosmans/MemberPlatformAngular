@@ -10,7 +10,7 @@ import { ProductUnit } from './product-unit';
 export class ProductUnitService {
   api_url = environment.apiUrl + 'ProductUnit/';
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) { }
 
   getProductUnits(): Observable<ProductUnit[]> {
     return this.httpClient.get<ProductUnit[]>(this.api_url);
@@ -24,11 +24,7 @@ export class ProductUnitService {
     return this.httpClient.post<ProductUnit>(this.api_url, productUnit);
   }
 
-  putProductUnit(
-    id: number,
-    productUnit: ProductUnit
-  ): Observable<ProductUnit> {
-    debugger
+  putProductUnit(id: number, productUnit: ProductUnit): Observable<ProductUnit> {
     return this.httpClient.put<ProductUnit>(this.api_url + id, productUnit);
   }
 

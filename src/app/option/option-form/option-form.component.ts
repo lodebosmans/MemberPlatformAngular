@@ -50,13 +50,13 @@ export class OptionFormComponent implements OnInit {
     this.isEdit =
       this.router.getCurrentNavigation()?.extras.state?.['mode'] === 'edit';
     this.optionId = +this.router.getCurrentNavigation()?.extras.state?.['id'];
-    console.log('in constructor: ' + this.optionId);
+    // console.log('in constructor: ' + this.optionId);
 
     if (this.optionId != null && this.optionId > 0) {
       this.option$ = this.optionService
         .getOptionById(this.optionId)
         .subscribe(result => {
-          console.log(result);
+          // console.log(result);
           this.optionForm.setValue({
             id: result.id,
             name: result.name,
@@ -94,9 +94,9 @@ export class OptionFormComponent implements OnInit {
     this.isSubmitted = true;
 
     if (this.isEdit) {
-      console.log('In isEdit');
-      console.log(this.optionId);
-      console.log(this.optionForm.value);
+      // console.log('In isEdit');
+      // console.log(this.optionId);
+      // console.log(this.optionForm.value);
       this.putOption$ = this.optionService
         .putOption(this.optionId, this.optionForm.getRawValue())
         .subscribe(
@@ -110,8 +110,8 @@ export class OptionFormComponent implements OnInit {
         );
     }
     if (this.isAdd) {
-      console.log(' in Add');
-      console.log(this.optionId);
+      // console.log(' in Add');
+      // console.log(this.optionId);
       this.postOption$ = this.optionService
         .postOption(this.optionForm.getRawValue())
         .subscribe(

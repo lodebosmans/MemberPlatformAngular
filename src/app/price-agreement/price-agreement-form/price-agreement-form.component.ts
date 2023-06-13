@@ -55,11 +55,11 @@ export class PriceAgreementFormComponent implements OnInit {
     this.router.getCurrentNavigation()?.extras.state?.['mode'] === 'edit';
     this.priceAgreementId = +this.router.getCurrentNavigation()?.extras
     .state?.['id'];
-    console.log('in constructor: ' + this.priceAgreementId);
+    // console.log('in constructor: ' + this.priceAgreementId);
 
     if(this.priceAgreementId !=null && this.priceAgreementId >0){
       this.priceAgreement$ = this.priceAgreementService.getPriceAgreementById(this.priceAgreementId);
-      console.log('pr', this.priceAgreement$)
+      // console.log('pr', this.priceAgreement$)
       this.priceAgreement$.subscribe(priceAgreement => {
         this.priceAgreementForm.setValue({
           id: 0,
@@ -95,12 +95,12 @@ export class PriceAgreementFormComponent implements OnInit {
     this.postPriceAgreement.subscribe(
       (result) => {
         // handle success
-        console.log(result);
+        // console.log(result);
         this.router.navigateByUrl('/subscriptionList');
       },
       (error) => {
         // handle error
-        console.log(error);
+        // console.log(error);
       }
     );
 

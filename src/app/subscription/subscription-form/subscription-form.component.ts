@@ -49,12 +49,12 @@ export class SubscriptionFormComponent implements OnInit {
       this.router.getCurrentNavigation()?.extras.state?.['mode'] === 'edit';
     this.productDefinitionId = +this.router.getCurrentNavigation()?.extras
       .state?.['id'];
-    console.log('in constructor: ' + this.productDefinitionId);
+    // console.log('in constructor: ' + this.productDefinitionId);
     if (this.productDefinitionId != null && this.productDefinitionId > 0) {
       this.productDefinition$ = this.productDefinitionService
         .getProductDefinitionById(this.productDefinitionId)
         .subscribe(result => {
-          console.log('result', result);
+          // console.log('result', result);
         });
     }
   }
@@ -81,27 +81,27 @@ export class SubscriptionFormComponent implements OnInit {
   }
 
   getPersons() {
-    console.log('mmm', this.emailAddress);
+    // console.log('mmm', this.emailAddress);
     this.person$ = this.personService
       .getPersonByEmailAddress(this.emailAddress)
       .subscribe(result => {
         this.persons = result;
-        console.log('r', this.persons);
+        // console.log('r', this.persons);
       });
   }
 
   onSubmit(): void {
-    console.log('form', this.subscriptionForm);
+    // console.log('form', this.subscriptionForm);
     if (this.subscriptionForm.valid) {
       const productId = this.subscriptionForm.value.productId;
       const personId = this.subscriptionForm.value.personId;
-      console.log('test', productId + '' + personId);
+      // console.log('test', productId + '' + personId);
 
       this.postSubscription$ = this.subscriptionService
         .postSubscription(productId, personId)
         .subscribe(
           result => {
-            console.log('test2', result);
+            // console.log('test2', result);
             this.router.navigateByUrl('/subscription/overview');
           },
           error => {

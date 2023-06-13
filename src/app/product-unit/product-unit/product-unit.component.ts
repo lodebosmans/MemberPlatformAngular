@@ -48,7 +48,7 @@ export class ProductUnitComponent implements OnInit {
     this.getProductUnits();
     this.getOptions();
     this.getProductDefinitions() 
-    console.log(this.isLoading);
+    // console.log(this.isLoading);
   }
 
   getProductUnits() {
@@ -57,7 +57,7 @@ export class ProductUnitComponent implements OnInit {
       .subscribe(result => {
         this.productUnits = result;
         this.isLoading = false;
-        console.log('alle productUnits ', this.productUnits);
+        // console.log('alle productUnits ', this.productUnits);
       });
   }
 
@@ -70,7 +70,7 @@ export class ProductUnitComponent implements OnInit {
       .getProductDefinitions()
       .subscribe(result => {
         this.productDefinitions = result;
-        console.log('alle productDefinitions ', this.productDefinitions);
+        // console.log('alle productDefinitions ', this.productDefinitions);
       });
   }
 

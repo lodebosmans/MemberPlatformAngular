@@ -35,14 +35,14 @@ export class AddressComponent implements OnInit {
   }
 
   ngOnInit(): void {
-  console.log(this.isLoading);
+  // console.log(this.isLoading);
   this.getAddresses();
   }
   getAddresses(){
     this.address$= this.addressService.getTrainingFacilities().subscribe(result => {
       this.addresses = result;
       this.isLoading = false;
-      console.log("alle adressen ", this.addresses)
+      // console.log("alle adressen ", this.addresses)
     });
   }
 
